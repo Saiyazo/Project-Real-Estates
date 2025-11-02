@@ -46,10 +46,10 @@ const SidebarAdmin = () => {
          <Button variant="light" className="border d-flex justify-content-start align-items-center">
           <i className="bi bi-info-circle me-2  ms-3"></i>ช่วยเหลือ
         </Button>*/}
-        <Button variant="light" className="border d-flex justify-content-start align-items-center">
+        <Button variant="light" className=" border d-flex justify-content-start align-items-center">
           <i className="bi bi-gear me-2  ms-3 fs-5"></i>ตั้งค่า
         </Button>
-        <Button variant="light" className="border d-flex justify-content-start align-items-center">
+        <Button variant="light" className="btn btn-outline-danger border d-flex justify-content-start align-items-center">
           <i className="bi bi-box-arrow-left me-2  ms-3 fs-5"></i>ออกจากระบบ
         </Button>
       </div>
