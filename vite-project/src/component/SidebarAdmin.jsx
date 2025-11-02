@@ -27,18 +27,18 @@ const SidebarAdmin = () => {
       </Button>
 
       {/* Menu Buttons */}
-      <div className="d-flex flex-column gap-2 mt-5">
+      <div className="d-flex flex-column gap-2 mt-5 ">
         <Button variant="light" className="border d-flex justify-content-start align-items-center" onClick={()=>{}}>
-          <i className="bi bi-columns-gap me-2 ms-3"></i>หน้าแดชบอร์ดแอดมิน
+          <i className="bi bi-columns-gap me-2 ms-3 fs-5"></i>หน้าแดชบอร์ดแอดมิน
         </Button>
         <Button variant="light" className="border d-flex justify-content-start align-items-center">
-          <i className="bi bi-buildings me-2  ms-3"></i>รายการอสังหาริทรัพย์
+          <i className="bi bi-buildings me-2  ms-3 fs-5"></i>รายการอสังหาริทรัพย์
         </Button>
         <Button variant="light" className="border d-flex justify-content-start align-items-center">
-          <i className="bi bi-columns-gap me-2  ms-3"></i>จัดการคำร้องเรียน
+          <i className="bi bi-envelope-paper me-2  ms-3 fs-5"></i>จัดการคำร้องเรียน
         </Button>
         <Button variant="light" className="border d-flex justify-content-start align-items-center">
-          <i className="bi bi-people me-2  ms-3"></i>จัดการผู้ใช้งาน
+          <i className="bi bi-people me-2  ms-3 fs-5"></i>จัดการผู้ใช้งาน
         </Button>
         {/**<Button variant="light" className="border d-flex justify-content-start align-items-center">
           <i className="bi bi-bell me-2  ms-3"></i>การแจ้งเตือน
@@ -47,10 +47,10 @@ const SidebarAdmin = () => {
           <i className="bi bi-info-circle me-2  ms-3"></i>ช่วยเหลือ
         </Button>*/}
         <Button variant="light" className="border d-flex justify-content-start align-items-center">
-          <i className="bi bi-gear me-2  ms-3"></i>ตั้งค่า
+          <i className="bi bi-gear me-2  ms-3 fs-5"></i>ตั้งค่า
         </Button>
         <Button variant="light" className="border d-flex justify-content-start align-items-center">
-          <i className="bi bi-gear me-2  ms-3"></i>ออกจากระบบ
+          <i className="bi bi-box-arrow-left me-2  ms-3 fs-5"></i>ออกจากระบบ
         </Button>
       </div>
     </div>

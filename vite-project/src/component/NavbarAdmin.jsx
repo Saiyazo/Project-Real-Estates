@@ -23,7 +23,7 @@ const NavbarAdmin = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default NavbarAdmin;
