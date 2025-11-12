@@ -1,5 +1,14 @@
-.bg-btn{
-    background-color: rgb(208, 232, 255);
-    color: rgb(0, 121, 242);
+.bg-btn {
+  background-color: rgb(208, 232, 255);
+  color: rgb(0, 121, 242);
 }
 
+.active {
+  background-color: rgb(214, 235, 254);
+  color: rgb(0, 121, 242);
+}
+
+.bg-btn:hover {
+  background-color: rgb(208, 232, 255);
+  color: rgb(0, 121, 242);
+}

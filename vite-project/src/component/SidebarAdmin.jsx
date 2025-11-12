@@ -1,36 +1,48 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Raccoon from "../IMG/Raccoon.jpg";
 
-import './cssforBTN/Tab.css'
+import "./cssforBTN/Tab.css";
 
 const SidebarAdmin = () => {
-  // state เก็บปุ่ม
-  const [active, setActive] = useState("/DashboardAdmin");
-
-  const handleClick = (path) => {
-    setActive(path);
-  };
-
   // เมนู
   const menuItems = [
-    { path: "/DashboardAdmin", label: "หน้าแดชบอร์ดแอดมิน", icon: "bi-columns-gap" },
-    { path: "/ManageAssets", label: "รายการอสังหาริทรัพย์", icon: "bi-buildings" },
-    { path: "/ComplainUser", label: "จัดการคำร้องเรียน", icon: "bi-envelope-paper" },
+    {
+      path: "/DashboardAdmin",
+      label: "หน้าแดชบอร์ดแอดมิน",
+      icon: "bi-columns-gap",
+    },
+    {
+      path: "/ManageAssets",
+      label: "รายการอสังหาริทรัพย์",
+      icon: "bi-buildings",
+    },
     { path: "/ManageUser", label: "รายการบัญชีผู้ใช้", icon: "bi-people" },
+    {
+      path: "/ComplainUser",
+      label: "ประวัติการร้องเรียน",
+      icon: "bi-envelope-paper",
+    },
+
     { path: "/PlaceAd", label: "ติดต่อลงโฆษณา", icon: "bi-megaphone" },
     { path: "/Settings", label: "ตั้งค่า", icon: "bi-gear" },
-    { path: "/Logout", label: "ออกจากระบบ", icon: "bi-box-arrow-left", variant: "danger" },
+
+    {
+      path: "/Logout",
+      label: "ออกจากระบบ",
+      icon: "bi-box-arrow-left",
+      variant: "danger",
+    },
   ];
 
   return (
-    <div className="d-flex flex-column justify-content-center gap-2">
+    <div className=" d-flex flex-column justify-content-center gap-2">
       {/* Profile */}
-      <Link
+      <NavLink
         to="/ProfileAdmin"
-        className="d-flex justify-content-center"
+        className="bg-white d-flex justify-content-center"
         style={{ textDecoration: "none", width: "100%" }}
       >
         <Button
@@ -60,31 +72,29 @@ const SidebarAdmin = () => {
             <span>view profile</span>
           </div>
         </Button>
-      </Link>
+      </NavLink>
 
       {/* Menu Buttons */}
       <div className="d-flex flex-column gap-2 mt-5">
         {menuItems.map((item) => (
-          <Link
+          <NavLink
             to={item.path}
             key={item.path}
-            className="d-flex justify-content-center"
-            style={{ textDecoration: "none", width: "100%" }}
-            onClick={() => handleClick(item.path)}
+            className={({ isActive }) =>
+              ` border d-flex justify-content-start align-items-center w-100 w-sm-75 w-md-50 w-lg-25 ${
+                item.variant === "danger"
+                  ? "btn btn-outline-danger"
+                  : "btn btn:hover"
+              } border align-items-center ${
+                isActive && item.variant !== "danger" ? "bg-btn" : ""
+              }`
+            }
           >
-            <Button
-              variant={item.variant === "danger" ? "outline-danger" : "white"}
-              className={`border d-flex justify-content-start align-items-center w-100 w-sm-75 w-md-50 w-lg-25 ${
-                active === item.path && item.variant !== "danger" ? "bg-btn" : ""
-              }`}
-            >
-              <i className={`bi ${item.icon} me-2 ms-3 fs-5`}></i>
-              {item.label}
-            </Button>
-          </Link>
+            <i className={`bi ${item.icon} me-2 ms-3 fs-5`}></i>
+            {item.label}
+          </NavLink>
         ))}
       </div>
-      
     </div>
   );
 };
