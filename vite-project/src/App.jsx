@@ -18,6 +18,7 @@ import ManageUser from "./pageAdmin/ManageUser.jsx";
 import ComplainUser from "./pageAdmin/ComplaintsUser";
 import ProfileAdmin from "./pageAdmin/ProfileAdmin.jsx";
 import PlaceAd from "./pageAdmin/PlaceAd.jsx";
+import SettingAdmin from './pageAdmin/SettingAdmin.jsx'
 
 function App() {
   
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename="/multipages">
+      <BrowserRouter basename="/multipages/">
         <Routes>
           <Route
             element={
@@ -51,6 +52,7 @@ function App() {
             <Route path="/ComplainUser" element={<ComplainUser />} />
             <Route path="/ManageUser" element={<ManageUser />} />
             <Route path="/PlaceAd" element={<PlaceAd />} />
+            <Route path="/SettingAdmin" element={<SettingAdmin />} />
           </Route>
         </Routes>
       </BrowserRouter>

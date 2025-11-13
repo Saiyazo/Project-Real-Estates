@@ -1,6 +1,6 @@
 const ComplainUser = () => {
     return ( 
-        <div>
+        <div className="p-4 pageAll">
             <h1>ประวัติการร้องเรียน</h1>
         </div>
      );

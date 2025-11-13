@@ -69,3 +69,17 @@
     font-size: 1.2rem;
     vertical-align: middle; 
 }
+
+.pageAll{
+    height: 100vh;
+    overflow-y: scroll; /* แสดง scrollbar ตลอด */
+}
+
+.btn-search{
+    background-color: rgb(240, 244, 255);
+    border: 2px solid rgb(68, 125, 200);
+    border-radius: 5px;
+    margin-right: 4px;
+    color:  rgb(68, 125, 200);
+
+}

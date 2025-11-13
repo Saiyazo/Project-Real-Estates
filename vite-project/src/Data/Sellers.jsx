@@ -1,35 +1,38 @@
 const sellers = [
-  {
+ {
     id: 1,
-    name: "Pawinee Suksai",
-    avatar: "https://randomuser.me/api/portraits/women/12.jpg",
-    email: "pawinee.suksai@realestate.com",
-    phone: "082-345-6789",
-    agency: "Happy Homes Agency"
+    name: "สมชาย ใจดี",
+    avatar: "https://randomuser.me/api/portraits/men/68.jpg",
+    email: "somchai.jaidii@example.com",
+    phone: "081-234-5678",
   },
   {
     id: 2,
-    name: "Thanakorn Yodsawat",
-    avatar: "https://randomuser.me/api/portraits/men/34.jpg",
-    email: "thanakorn.yodsawat@realestate.com",
-    phone: "086-987-6543",
-    agency: "Elite Realty"
+    name: "ศิริพร รักบ้าน",
+    avatar: "https://randomuser.me/api/portraits/women/45.jpg",
+    email: "siriporn.rakban@example.com",
+    phone: "089-876-5432",
   },
   {
     id: 3,
-    name: "Chalida Boonsri",
-    avatar: "https://randomuser.me/api/portraits/women/56.jpg",
-    email: "chalida.boonsri@realestate.com",
-    phone: "089-123-4567",
-    agency: "Urban Nest Realty"
+    name: "วรพงศ์ ดินดี",
+    avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+    email: "vorapong.dindee@example.com",
+    phone: "080-555-1234",
   },
   {
     id: 4,
-    name: "Anuwat Kittipong",
-    avatar: "https://randomuser.me/api/portraits/men/29.jpg",
-    email: "anuwat.kittipong@realestate.com",
-    phone: "081-987-1234",
-    agency: "Cityscape Agency"
+    name: "กมลวรรณ พาณิชย์",
+    avatar: "https://randomuser.me/api/portraits/women/33.jpg",
+    email: "kamonwan.panich@example.com",
+    phone: "087-777-4321",
+  },
+  {
+    id: 5,
+    name: "ธันวา บ้านใหม่",
+    avatar: "https://randomuser.me/api/portraits/men/11.jpg",
+    email: "tanwa.banmai@example.com",
+    phone: "082-111-2222",
   }
 ]
 

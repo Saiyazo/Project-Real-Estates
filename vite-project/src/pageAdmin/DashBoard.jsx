@@ -12,6 +12,7 @@ import {
   YAxis,
 } from "recharts";
 import { NavLink } from "react-router-dom";
+import Table from "react-bootstrap/Table";
 import "../pageAdmin/pageStyle/dash.css";
 import "../component/cssforBTN/Tab.css";
 
@@ -30,20 +31,16 @@ const DashboardAdmin = () => {
 
   // ประเภทคำร้องเรียน
 
-const categorized = complaints.map((c) => {
-  if (c.title?.includes("ข้อมูลไม่ตรง")) return { ...c, type: "ข้อมูลเท็จ" };
-  if (c.title?.includes("ไม่มาตามนัด"))
-    return { ...c, type: "พฤติกรรมผู้ขาย" };
-  if (
-    c.title?.includes("ติดต่อไม่ได้") ||
-    c.title?.includes("ไม่ตอบกลับ")
-  )
-    return { ...c, type: "ติดต่อไม่ได้" };
-  return { ...c, type: "อื่น ๆ" };
-});
+  const categorized = complaints.map((c) => {
+    if (c.title?.includes("ข้อมูลไม่ตรง")) return { ...c, type: "ข้อมูลเท็จ" };
+    if (c.title?.includes("ไม่มาตามนัด"))
+      return { ...c, type: "พฤติกรรมผู้ขาย" };
+    if (c.title?.includes("ติดต่อไม่ได้") || c.title?.includes("ไม่ตอบกลับ"))
+      return { ...c, type: "ติดต่อไม่ได้" };
+    return { ...c, type: "อื่น ๆ" };
+  });
 
-console.log(categorized);
-
+  console.log(categorized);
 
   // ข้อมูล Bar Chart
   const complaintColors = {
@@ -58,7 +55,7 @@ console.log(categorized);
   }));
 
   return (
-    <div className="p-4">
+    <div className="p-4 pageAll">
       <h1>แดชบอร์ด</h1>
       {/**แถบอะไรซักอย่าง การ์ดมั้ง */}
       <div className="d-flex justify-content-between gap-3 mt-3 flex-wrap">
@@ -110,8 +107,11 @@ console.log(categorized);
       </div>{" "}
       {/*กราฟ */}
       {/**กราฟโดนัทเทศกาลคริสต์มาส */}
-      <div className="d-flex mt-2">
-        <div className="border rounded-2 p-3 m-2" style={{ width: "50%" }}>
+      <div className="d-flex flex-wrap">
+        <div
+          className="border rounded-2 p-3 mt-2 me-3"
+          style={{ width: "50%", minWidth: "300px" }}
+        >
           <p className="fw-semibold"> สัดส่วนผู้ใช้</p>
           <hr />
           <div>
@@ -143,8 +143,8 @@ console.log(categorized);
         </div>
         {/*กราฟแท่งป๊อกกี้ ------แก้ด้วย--------*/}
         <div
-          className="border rounded-2 p-3 m-2 flex-fill"
-          style={{ minWidth: "350px" }}
+          className="border rounded-2 p-3 mt-2  flex-fill"
+          style={{ minWidth: "300px" }}
         >
           <p className="fw-semibold">ภาพรวมคำร้องเรียนตามประเภท</p>
           <hr />
@@ -182,8 +182,37 @@ console.log(categorized);
           </ResponsiveContainer>
         </div>
       </div>
-      <div>คำร้องเรียนใหม่</div>
-      <div>ประกาศขายอสังหาใหม่</div>
+      {/*คำร้องเรียนคับพรี่จ๋า */}
+      <div className="border p-3 rounded-2 mt-3">
+        <div className="d-flex justify-content-between align-items-center">
+          <h5>คำร้องเรียนใหม่</h5>
+          <NavLink
+            to="/ComplainUser"
+            className="text-decoration-none text-primary"
+          >
+            ดูประวัติคำร้องเรียน <i className="bi bi-arrow-right-short"></i>
+          </NavLink>
+        </div>
+        <hr />
+        {/**ข้อมูลคำร้องใหม่ */}
+      </div>
+
+
+      {/*อสังหาที่พึ่งประกาศสดๆร้อนๆ */}
+      <div className="border p-3 rounded-2 mt-3">
+        <div className="d-flex justify-content-between align-items-center">
+          <h5>ประกาศขายอสังหาใหม่</h5>
+          <NavLink
+            to="/ManageAssets"
+            className="text-decoration-none text-primary"
+          >
+            ดูรายการอสังหาริมทรัพย์ทั้งหมด <i className="bi bi-arrow-right-short"></i>
+          </NavLink>
+        </div>
+        <hr />
+                {/**ข้อมูลพวกอสังที่ประกาศใหม่ */}
+        <div></div>
+      </div>
     </div>
   );
 };

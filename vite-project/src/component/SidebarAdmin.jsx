@@ -27,7 +27,7 @@ const SidebarAdmin = () => {
     },
 
     { path: "/PlaceAd", label: "ติดต่อลงโฆษณา", icon: "bi-megaphone" },
-    { path: "/Settings", label: "ตั้งค่า", icon: "bi-gear" },
+    { path: "/SettingAdmin", label: "ตั้งค่า", icon: "bi-gear" },
 
     {
       path: "/Logout",

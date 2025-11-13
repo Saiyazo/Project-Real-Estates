@@ -1,7 +1,7 @@
 const PlaceAd = () => {
     return ( 
-        <>ลงโฆษณาให้หน่อยเพ่
-        </>
+        <div className="p-4 pageAll">ลงโฆษณาให้หน่อยเพ่
+        </div>
      );
 }
  
