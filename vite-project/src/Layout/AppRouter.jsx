@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import SidebarAdmin from "../component/SidebarAdmin";
 
 
-const AppRouter = ({ buyers, sellers, properties,complaints }) => {
+const AppRouter = ({ buyers, sellers, properties,complaints, adRequests}) => {
   return (
     <div className="border d-flex">
       <div
@@ -14,12 +14,12 @@ const AppRouter = ({ buyers, sellers, properties,complaints }) => {
           backgroundColor: "#f6faffff",
         }}
       >
-        <SidebarAdmin buyers={buyers} sellers={sellers} properties={properties} />
+        <SidebarAdmin buyers={buyers} sellers={sellers} properties={properties} adRequests={adRequests}/>
       </div>
 
       <div style={{ flex: 1, overflowY: "auto" }}>
         {/* ส่งผ่าน context ให้ Outlet */}
-        <Outlet context={{ buyers, sellers, properties ,complaints }} />
+        <Outlet context={{ buyers, sellers, properties ,complaints,adRequests}} />
       </div>
     </div>
   );

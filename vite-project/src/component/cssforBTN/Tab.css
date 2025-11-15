@@ -12,3 +12,11 @@
   background-color: rgb(208, 232, 255);
   color: rgb(0, 121, 242);
 }
+.boxbox{
+  padding: 2px 13px;
+  border: 1px solid #fff4a3;
+  background-color: rgb(251, 245, 201);
+  border-radius: 25px;
+  color: #c68536;
+}
+

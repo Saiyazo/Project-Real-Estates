@@ -8,6 +8,7 @@ import { fetchBuyers } from "./Data/buyer.jsx";
 import { fetchPropertys } from "./Data/propertyS.jsx";
 import { fetchSellers } from "./Data/Sellers.jsx";
 import { fetchComplaints } from "./Data/DataComplaints.jsx";
+import { fetchAdRequests} from "./Data/adRequests.jsx"
 
 import "./App.css";
 //page
@@ -19,6 +20,7 @@ import ComplainUser from "./pageAdmin/ComplaintsUser";
 import ProfileAdmin from "./pageAdmin/ProfileAdmin.jsx";
 import PlaceAd from "./pageAdmin/PlaceAd.jsx";
 import SettingAdmin from './pageAdmin/SettingAdmin.jsx'
+import DetailCom from "./pageAdmin/DetailComplainJa.jsx";
 
 function App() {
   
@@ -26,12 +28,13 @@ function App() {
   const [buyers, setBuyers] = useState([]);
   const [properties, setProperties] = useState([]);
   const [complaints, setComplaints] = useState([]);
+  const [adRequests, setAdRequests] = useState([]);
 
   useEffect(() => setComplaints(fetchComplaints()), [])
   useEffect(() => setBuyers(fetchBuyers()), []);
   useEffect(() => setSellers(fetchSellers()), []);
   useEffect(() => setProperties(fetchPropertys()), []);
-
+  useEffect(() => setAdRequests(fetchAdRequests()), [])
   return (
     <>
       <BrowserRouter basename="/multipages/">
@@ -43,6 +46,7 @@ function App() {
                 sellers={sellers}
                 properties={properties}
                 complaints={complaints}
+                adRequests={adRequests}
               />
             }
           >
@@ -53,6 +57,7 @@ function App() {
             <Route path="/ManageUser" element={<ManageUser />} />
             <Route path="/PlaceAd" element={<PlaceAd />} />
             <Route path="/SettingAdmin" element={<SettingAdmin />} />
+            <Route path="/DetailCom" element={<DetailCom />} />
           </Route>
         </Routes>
       </BrowserRouter>
