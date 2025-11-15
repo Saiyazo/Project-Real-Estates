@@ -21,6 +21,7 @@ import ProfileAdmin from "./pageAdmin/ProfileAdmin.jsx";
 import PlaceAd from "./pageAdmin/PlaceAd.jsx";
 import SettingAdmin from './pageAdmin/SettingAdmin.jsx'
 import DetailCom from "./pageAdmin/DetailComplainJa.jsx";
+import DetailProperty from "./pageAdmin/DetailProperty.jsx";
 
 function App() {
   
@@ -58,6 +59,7 @@ function App() {
             <Route path="/PlaceAd" element={<PlaceAd />} />
             <Route path="/SettingAdmin" element={<SettingAdmin />} />
             <Route path="/DetailCom" element={<DetailCom />} />
+            <Route path="/DetailProperty" element={<DetailProperty />} />
           </Route>
         </Routes>
       </BrowserRouter>
