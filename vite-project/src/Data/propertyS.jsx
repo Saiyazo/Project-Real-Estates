@@ -1,4 +1,4 @@
-const properties = [
+const properties = [ 
   {
     "id": 1,
     "listingNumber": "LST0001",
@@ -10,7 +10,8 @@ const properties = [
     "type": "คอนโดมิเนียม",
     "province": "กรุงเทพมหานคร",
     "datePosted": "2025-11-12",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "ขายออก"
   },
   {
     "id": 2,
@@ -23,7 +24,8 @@ const properties = [
     "type": "บ้านเดี่ยว",
     "province": "เชียงใหม่",
     "datePosted": "2025-11-13",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "ขายออก"
   },
   {
     "id": 3,
@@ -36,7 +38,8 @@ const properties = [
     "type": "ที่ดิน",
     "province": "ขอนแก่น",
     "datePosted": "2025-11-14",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "ขายออก"
   },
   {
     "id": 4,
@@ -49,7 +52,8 @@ const properties = [
     "type": "อาคารพาณิชย์",
     "province": "ภูเก็ต",
     "datePosted": "2025-11-15",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "ขายไม่ออก"
   },
   {
     "id": 5,
@@ -62,7 +66,8 @@ const properties = [
     "type": "ทาวน์โฮม",
     "province": "นครราชสีมา",
     "datePosted": "2025-11-15",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "ขายไม่ออก"
   },
   {
     "id": 6,
@@ -75,7 +80,8 @@ const properties = [
     "type": "บ้านเดี่ยว",
     "province": "ชลบุรี",
     "datePosted": "2025-11-16",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "พึ่งประกาศ"
   },
   {
     "id": 7,
@@ -88,7 +94,8 @@ const properties = [
     "type": "คอนโดมิเนียม",
     "province": "กรุงเทพมหานคร",
     "datePosted": "2025-11-16",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "พึ่งประกาศ"
   },
   {
     "id": 8,
@@ -101,7 +108,8 @@ const properties = [
     "type": "ที่ดิน",
     "province": "นครราชสีมา",
     "datePosted": "2025-11-17",
-    "listingType": "ขาย"
+    "listingType": "ขาย",
+    "status": "พึ่งประกาศ"
   }
 ];
 
