@@ -11,7 +11,7 @@ const properties = [
     "province": "กรุงเทพมหานคร",
     "datePosted": "2025-11-12",
     "listingType": "ขาย",
-    "status": "ขายออก"
+    "status": "ขายแล้ว"
   },
   {
     "id": 2,
@@ -25,7 +25,7 @@ const properties = [
     "province": "เชียงใหม่",
     "datePosted": "2025-11-13",
     "listingType": "ขาย",
-    "status": "ขายออก"
+    "status": "ขายแล้ว"
   },
   {
     "id": 3,
@@ -39,7 +39,7 @@ const properties = [
     "province": "ขอนแก่น",
     "datePosted": "2025-11-14",
     "listingType": "ขาย",
-    "status": "ขายออก"
+    "status": "ขายแล้ว"
   },
   {
     "id": 4,
@@ -53,7 +53,7 @@ const properties = [
     "province": "ภูเก็ต",
     "datePosted": "2025-11-15",
     "listingType": "ขาย",
-    "status": "ขายไม่ออก"
+    "status": "อยู่ระหว่างการเจรจา"
   },
   {
     "id": 5,
@@ -67,7 +67,7 @@ const properties = [
     "province": "นครราชสีมา",
     "datePosted": "2025-11-15",
     "listingType": "ขาย",
-    "status": "ขายไม่ออก"
+    "status": "อยู่ระหว่างการเจรจา"
   },
   {
     "id": 6,
@@ -81,7 +81,7 @@ const properties = [
     "province": "ชลบุรี",
     "datePosted": "2025-11-16",
     "listingType": "ขาย",
-    "status": "พึ่งประกาศ"
+    "status": "กำลังเผยแพร้"
   },
   {
     "id": 7,
@@ -95,7 +95,7 @@ const properties = [
     "province": "กรุงเทพมหานคร",
     "datePosted": "2025-11-16",
     "listingType": "ขาย",
-    "status": "พึ่งประกาศ"
+    "status": "กำลังเผยแพร้"
   },
   {
     "id": 8,
@@ -109,7 +109,7 @@ const properties = [
     "province": "นครราชสีมา",
     "datePosted": "2025-11-17",
     "listingType": "ขาย",
-    "status": "พึ่งประกาศ"
+    "status": "กำลังเผยแพร้"
   }
 ];
 
