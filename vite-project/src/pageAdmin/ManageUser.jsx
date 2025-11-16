@@ -79,7 +79,7 @@ const ManageUser = () => {
       </div>
       <div className="mt-3">
         <h5>บัญชีผู้ใช้ทั้งหมด</h5>
-        <TableUser/>
+ ค่อยก็อปของอสังหามาวาง
 
       </div>
     </div>
