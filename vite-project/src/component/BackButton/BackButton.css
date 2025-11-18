@@ -1,0 +1,21 @@
+.btn-back-custom {
+  background-color:#F5F7FF;       
+  color: #2D91F5;          
+  font-weight: 500;  
+
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  
+  border-radius: 50rem; 
+  border-color: #2D91F5; 
+  
+  transition: all 0.1s ease-in-out; 
+}
+
+.btn-back-custom:hover {
+  background-color: #e3eeff; 
+  color: #0d6efd;            
+  border-color: #2D91F5; 
+}

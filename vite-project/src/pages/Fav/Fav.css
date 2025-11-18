@@ -1,0 +1,29 @@
+
+.fav-card {
+    border-radius: 8px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.fav-card:hover {
+    transform: translateY(-2px);
+}
+
+/* ส่วนรูปภาพ */
+.fav-image-placeholder {
+    width: 120px; 
+    height: 120px; 
+    background-color: #e9ecef;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #adb5bd;
+    font-size: 3rem;
+}
+
+/* Icon หัวใจ */
+.fav-heart-icon {
+    cursor: pointer;
+    color: #dc3545; 
+}

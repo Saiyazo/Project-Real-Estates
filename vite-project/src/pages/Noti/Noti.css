@@ -1,0 +1,25 @@
+
+.notification-card {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.notification-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.notification-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #e9ecef; 
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sender-image {
+  width: 100%;  
+  height: 100%; 
+  object-fit: cover; /* ให้รูปภาพพอดีไม่เสียสัดส่วน */
+}

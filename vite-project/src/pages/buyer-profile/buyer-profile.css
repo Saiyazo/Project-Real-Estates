@@ -1,0 +1,88 @@
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2.5rem;
+  background-color: #ffffff; 
+  border-bottom: 1px solid #f0f0f0; 
+}
+
+
+
+.profile-images-section {
+  position: relative; /* ทำให้รูปโปรไฟล์ลอยทับได้ */
+  width: 100%;
+  height: 200px; 
+}
+
+
+
+.profile-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+.profile-avatar-img {
+  width: 120px;      
+  height: 120px;      
+  border-radius: 50%; 
+  border: 4px solid white; 
+  position: absolute;
+  left: 50%;
+  bottom: -60px; /* ยื่นลงมาครึ่งหนึ่งของ 120px*/
+  transform: translateX(-50%); /* จัดกึ่งกลาง */
+}
+
+
+.user-name {
+  text-align: center;
+  margin-top: 80px; 
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+
+.settings-menu {
+  margin-top: 2rem;
+}
+
+.settings-menu hr {
+  border: none;
+  border-top: 1px solid #f0f0f0; /* สีเส้นคั่น */
+  margin: 0; 
+}
+
+.menu-item {
+  display: block;
+  padding: 1.25rem 1.5rem; 
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+
+
+/* logout-button */
+.logout-button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #dc3545;
+}
+
+.logout-button:hover {
+  background-color: #f8d7da;
+}

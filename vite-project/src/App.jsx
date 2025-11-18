@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AppLayout from './layout/AppLayout'
+import Noti from './pages/Noti/Noti'
+import Chat from './component/Chat/Chat'
+import Home from './pages/Home'
+import Fav from './pages/Fav/Fav'
+import ForwardToHome from './pages/ForwardToHome'
+import BuyerProfile from './pages/buyer-profile/buyer-profile'
+import EditProfile from './pages/buyer-profile/edit-profile'
+import ChangePass from './pages/buyer-profile/change-password'  
+
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+function App() {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+   
+    <div className="app-container">
+      <BrowserRouter >
+     <Routes>
+           <Route element={<AppLayout />}>
+            <Route path="/Noti" element={<Noti />} />
+             <Route path="/Chat" element={<Chat />} />
+            <Route path="/Home" element={<Home />} />
+          <Route path="/Fav" element={<Fav />} />
+               <Route path="/buyer-profile" element={<BuyerProfile />} /> 
+               <Route path="/edit-profile" element={<EditProfile />} /> 
+               <Route path="/change-password" element={<ChangePass />} /> 
+             <Route path="*" element={<ForwardToHome />} />
+           </Route>
+
+        </Routes>
+       </BrowserRouter>
+     </div>
+     </>
   )
 }
 
