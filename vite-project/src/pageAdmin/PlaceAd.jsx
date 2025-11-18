@@ -9,6 +9,7 @@ import "./pageStyle/dash.css";
 
 const PlaceAd = () => {
   const { adRequests } = useOutletContext();
+  
 
   const totalAD = adRequests.length;
   const pending = adRequests.filter((ad) => ad.status === "รออนุมัติ").length;
@@ -19,11 +20,19 @@ const PlaceAd = () => {
     <div className="p-4 pageAll">
       <h1 className="mb-5">ติดต่อลงโฆษณา</h1>
 
-      <div className="d-flex gap-2">
+      <div className="d-flex gap-3">
+        {/*ปฏิทินกับคำขอติดต่อ */}
+        <div
+          className="border p-3 rounded-2 shadow-sm"
+          style={{ height: "87vh" }}
+        >
+          <h4>ปฏิทินคำขอลงโฆษณา</h4>
+          <CalenderAM adRequests={adRequests} />
+        </div>
         {/*คำขอติดต่อ */}
         <div
-          className=" border p-2 rounded-2 shadow-sm "
-          style={{ height: "80vh", width: "40%" }}
+          className=" border p-2 rounded-2 shadow-sm"
+          style={{ height: "87vh", width: "100%" }}
         >
           <form class="d-flex" role="search">
             <input
@@ -46,8 +55,8 @@ const PlaceAd = () => {
                 <b>คำขอโฆษณาทั้งหมด({totalAD})</b>
               </h6>
               {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
-              
-             {/*ทำให้มันเรียงวันจากวันล่าสุด-วันเก่าแก่สุด*/}
+
+              {/*ทำให้มันเรียงวันจากวันล่าสุด-วันเก่าแก่สุด*/}
               <div className="miniOverflow">
                 {adRequests
                   .filter((ad) => ad.status)
@@ -209,11 +218,6 @@ const PlaceAd = () => {
               </div>
             </Tab>
           </Tabs>
-        </div>
-        {/*ปฏิทินกับคำขอติดต่อ */}
-        <div className=" border p-3 rounded-2 shadow-sm">
-          <h1>ปฏิทิน</h1>
-          <p>ทำไม่เป็นขอเวลาไปหาความรู้</p>
         </div>
       </div>
     </div>

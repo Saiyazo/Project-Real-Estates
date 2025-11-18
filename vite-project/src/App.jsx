@@ -58,7 +58,7 @@ function App() {
             <Route path="/ComplainUser" element={<ComplainUser />} />
             <Route path="/ManageUser" element={<ManageUser />} />
             <Route path="/PlaceAd" element={<PlaceAd />} />
-            {/*<Route path="/SettingAdmin" element={<SettingAdmin />} />*/}
+            <Route path="/SettingAdmin" element={<SettingAdmin />} />
             <Route path="/DetailCom" element={<DetailCom />} />
             <Route path="/DetailProperty" element={<DetailProperty />} />
           </Route>

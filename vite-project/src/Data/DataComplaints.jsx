@@ -9,7 +9,7 @@ const complaints = [
     reporter: "Natcha Prasert",
     date: "2025-11-10",
     status: "รอดำเนินการ",
-    image: "https://randomuser.me/api/portraits/women/55.jpg",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const complaints = [
     reporter: "Krit Phanuphong",
     date: "2025-11-12",
     status: "กำลังตรวจสอบ",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "https://randomuser.me/api/portraits/men/65.jpg",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const complaints = [
     reporter: "Sirintra Chaiyawan",
     date: "2025-11-14",
     status: "รอดำเนินการ",
-    image: "https://randomuser.me/api/portraits/women/11.jpg",
+    image: "https://randomuser.me/api/portraits/women/72.jpg",
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const complaints = [
     reporter: "Anucha Srisawat",
     date: "2025-11-12",
     status: "ปิดการใช้งานบัญชี",
-    image: "https://randomuser.me/api/portraits/men/59.jpg",
+    image: "https://randomuser.me/api/portraits/men/75.jpg",
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const complaints = [
     reporter: "Kittipong Maneerat",
     date: "2025-11-14",
     status: "รอดำเนินการ",
-    image: "https://randomuser.me/api/portraits/men/82.jpg",
+    image: "https://randomuser.me/api/portraits/men/77.jpg",
   },
   {
     id: 6,
@@ -65,9 +65,10 @@ const complaints = [
     reporter: "Saranya P.",
     date: "2025-11-14",
     status: "กำลังตรวจสอบ",
-    image: "https://randomuser.me/api/portraits/women/25.jpg",
+    image: "https://randomuser.me/api/portraits/women/81.jpg",
   },
 ];
+
 export function fetchComplaints() {
   return complaints;
 }

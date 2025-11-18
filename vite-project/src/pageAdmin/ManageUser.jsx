@@ -5,6 +5,7 @@ import './pageStyle/card.css'
 import { fetchSellers } from "../Data/Sellers";
 import { fetchBuyers } from "../Data/buyer";
 import { useEffect, useState } from "react";
+import Table from 'react-bootstrap/Table';
 
 const ManageUser = () => {
 const [sellers,setSellers] = useState([])
@@ -79,6 +80,7 @@ useEffect(() => {
         </div>
       </nav>
       <br />
+      <h5>จำนวนผู้ใช้</h5>
       <div className="stats-container">
         <div className="stats-card total">
           <h6>ผู้ใช้งานทั้งหมด</h6>
@@ -104,6 +106,37 @@ useEffect(() => {
       <div className="mt-3">
         <h5>บัญชีผู้ใช้ทั้งหมด</h5>
       </div>
+
+          <p className="text-white bg-dark">---แก้---</p>
+     <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>ภาพ</th>
+          <th>ไดดีคำร้อง</th>
+          <th>หัวข้อการร้องเรียน</th>
+          <th>วันที่ร้องเรียน</th> 
+          <th>ประเภทคำร้องเรียน</th> 
+          <th>สถานะคำร้อง</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+        </tr>
+        
+        <tr>
+          
+          <td colSpan={3}>Larry the Bird</td>
+          <td colSpan={3} className="text-end">@twitter</td>
+        </tr>
+      </tbody>
+    </Table>
+      
     </div>
   );
 };

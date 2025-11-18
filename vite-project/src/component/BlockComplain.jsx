@@ -68,7 +68,7 @@ const Blockcomplain = () => {
               <div className="d-flex justify-content-between">
                 <span className="text-start">{boxComplain.date}</span>
                 <div className="text-end">
-                  <Button variant="danger">ตรวจสอบการสนทนา{/*เดี๋ยวอันนี้มาใส่ Navlink ไปหน้าดูการสนทนาเพิ่ม */}</Button>
+                  <Button variant="danger">ตรวจสอบ{/*เดี๋ยวอันนี้มาใส่ Navlink ไปหน้าดูการสนทนาเพิ่ม */}</Button>
                 </div>
               </div>
             </div>
