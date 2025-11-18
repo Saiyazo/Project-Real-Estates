@@ -6,11 +6,12 @@ import Table from "react-bootstrap/Table";
 import { Button } from "react-bootstrap";
 import { fetchPropertys } from "../Data/propertyS";
 import "./pageStyle/dash.css";
+import './pageStyle/card.css'
 
 const ManageAssets = () => {
   const [propertys, setPropertys] = useState([]);
   const [curPage, setCurPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [numPages, setNumPages] = useState(1);
 
   useEffect(() => {
@@ -34,6 +35,17 @@ const ManageAssets = () => {
   const FirstPage = (curPage - 1) * itemsPerPage;
   const LastPage = Math.min(curPage * itemsPerPage, propertys.length);
   const property = dateOfProperty.slice(FirstPage, LastPage);
+
+  //จำนวน
+  const soldOut = propertys.filter((p) => p.status === "ขายแล้ว").length;
+
+  const Publishing = propertys.filter(
+    (p) => p.status === "กำลังเผยแพร่"
+  ).length;
+
+  const Negotiating = propertys.filter(
+    (p) => p.status === "อยู่ระหว่างเจรจา"
+  ).length;
 
   return (
     <div className="p-4 pageAll">
@@ -86,7 +98,30 @@ const ManageAssets = () => {
         </div>
       </nav>
 
-      <div className="mt-4">
+<div className="stats-container">
+  <div className="stats-card total">
+    <h6>จำนวนอสังหาทั้งหมด</h6>
+    <h3>{propertys.length}</h3>
+  </div>
+
+  <div className="stats-card publish">
+    <h6>อสังหาที่กำลังเผยแพร่</h6>
+    <h3>{Publishing}</h3>
+  </div>
+
+  <div className="stats-card sold">
+    <h6>อสังหาที่ขายออก</h6>
+    <h3>{soldOut}</h3>
+  </div>
+
+  <div className="stats-card nego">
+    <h6>อสังหาที่อยู่ระหว่างการเจรจา</h6>
+    <h3>{Negotiating}</h3>
+  </div>
+</div>
+
+
+      <div>
         <Form>
           <div className="d-flex mb-3 align-items-center justify-content-between">
             <Form.Select
@@ -97,10 +132,10 @@ const ManageAssets = () => {
                 setCurPage(1);
               }}
             >
-              <option value={5}>จำนวน 5 อสังหาที่แสดง</option>
-              <option value={10}>จำนวน 10 อสังหาที่แสดง</option>
-              <option value={50}>จำนวน 50 อสังหาที่แสดง</option>
-              <option value={100}>จำนวน 100 อสังหาที่แสดง</option>
+              {/* <option value={5}>แสดงประกาศอสังหา 5 ประกาศ</option>*/}
+              <option value={10}>แสดงประกาศอสังหา 10 ประกาศ</option>
+              <option value={50}>แสดงประกาศอสังหา 50 ประกาศ</option>
+              <option value={100}>แสดงประกาศอสังหา 100 ประกาศ</option>
             </Form.Select>
           </div>
         </Form>
@@ -129,17 +164,17 @@ const ManageAssets = () => {
                       color:
                         p.status === "ขายแล้ว"
                           ? "red"
-                          : p.status === "กำลังเผยแพร้"
+                          : p.status === "กำลังเผยแพร่"
                           ? "green"
-                          : p.status === "อยู่ระหว่างการเจรจา"
+                          : p.status === "อยู่ระหว่างเจรจา"
                           ? "#795c36"
                           : "black",
                       backgroundColor:
                         p.status === "ขายแล้ว"
                           ? "#ffcccc"
-                          : p.status === "กำลังเผยแพร้"
+                          : p.status === "กำลังเผยแพร่"
                           ? "#ccffcc"
-                          : p.status === "อยู่ระหว่างการเจรจา"
+                          : p.status === "อยู่ระหว่างเจรจา"
                           ? "#fff0b3"
                           : "white",
                       borderRadius: "8px",

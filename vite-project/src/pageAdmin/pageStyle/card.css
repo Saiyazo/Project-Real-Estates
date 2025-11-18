@@ -1,0 +1,53 @@
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stats-card {
+  padding: 1.5rem;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: 0.2s ease;
+}
+
+/* Hover เบา ๆ */
+.stats-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.stats-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.stats-card h3 {
+  margin-top: 8px;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* สีแต่ละการ์ด */
+.total {
+  background-color: #e3eeff;
+  color: #2a4a7b;
+}
+
+.publish {
+  background-color: #dcffe5;
+  color: #217a3c;
+}
+
+.sold {
+  background-color: #ffe1e1;
+  color: #8a2e2e;
+}
+
+.nego {
+  background-color: #fffac7;
+  color: #7a6b2f;
+}

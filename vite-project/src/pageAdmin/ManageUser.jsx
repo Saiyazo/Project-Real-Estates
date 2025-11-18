@@ -40,8 +40,8 @@ const ManageUser = () => {
                 id="dropdown-status"
                 title="สถานะ"
               >
-                <Dropdown.Item>ขายแล้ว</Dropdown.Item>
-                <Dropdown.Item></Dropdown.Item>
+                <Dropdown.Item>เดี๋ยวมาใส่</Dropdown.Item>
+                <Dropdown.Item>เดี๋ยวมาใส่</Dropdown.Item>
                 <Dropdown.Item>รอการตรวจสอบ</Dropdown.Item>
               </DropdownButton>
 

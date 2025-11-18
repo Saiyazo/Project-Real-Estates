@@ -53,7 +53,7 @@ const properties = [
     "province": "ภูเก็ต",
     "datePosted": "2025-11-15",
     "listingType": "ขาย",
-    "status": "อยู่ระหว่างการเจรจา"
+    "status": "อยู่ระหว่างเจรจา"
   },
   {
     "id": 5,
@@ -67,7 +67,7 @@ const properties = [
     "province": "นครราชสีมา",
     "datePosted": "2025-11-15",
     "listingType": "ขาย",
-    "status": "อยู่ระหว่างการเจรจา"
+    "status": "อยู่ระหว่างเจรจา"
   },
   {
     "id": 6,
@@ -81,7 +81,7 @@ const properties = [
     "province": "ชลบุรี",
     "datePosted": "2025-11-16",
     "listingType": "ขาย",
-    "status": "กำลังเผยแพร้"
+    "status": "กำลังเผยแพร่"
   },
   {
     "id": 7,
@@ -95,7 +95,7 @@ const properties = [
     "province": "กรุงเทพมหานคร",
     "datePosted": "2025-11-16",
     "listingType": "ขาย",
-    "status": "กำลังเผยแพร้"
+    "status": "กำลังเผยแพร่"
   },
   {
     "id": 8,
@@ -109,8 +109,177 @@ const properties = [
     "province": "นครราชสีมา",
     "datePosted": "2025-11-17",
     "listingType": "ขาย",
-    "status": "กำลังเผยแพร้"
+    "status": "กำลังเผยแพร่"
+  },
+  {
+    "id": 9,
+    "listingNumber": "LST0009",
+    "image": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "อาคารพาณิชย์ 4 ชั้น ทำเลค้าขาย",
+    "propertyCode": "PROP009",
+    "posterName": "กมลวรรณ พาณิชย์",
+    "userId": "USR1004",
+    "type": "อาคารพาณิชย์",
+    "province": "ขอนแก่น",
+    "datePosted": "2025-11-06",
+    "listingType": "ขาย",
+    "status": "ขายแล้ว"
+  },
+  {
+    "id": 10,
+    "listingNumber": "LST0010",
+    "image": "https://images.unsplash.com/photo-1516156008657-31c824853e2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "คอนโด Studio ติด มหาวิทยาลัย",
+    "propertyCode": "PROP010",
+    "posterName": "ธันวา บ้านใหม่",
+    "userId": "USR1005",
+    "type": "คอนโด",
+    "province": "เชียงใหม่",
+    "datePosted": "2025-11-05",
+    "listingType": "เช่า",
+    "status": "กำลังเผยแพร่"
+  },
+  {
+    "id": 11,
+    "listingNumber": "LST0011",
+    "image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "บ้านเดี่ยวสไตล์นอร์ดิก",
+    "propertyCode": "PROP011",
+    "posterName": "สมชาย ใจดี",
+    "userId": "USR1001",
+    "type": "บ้านเดี่ยว",
+    "province": "ชลบุรี",
+    "datePosted": "2025-11-04",
+    "listingType": "ขาย",
+    "status": "อยู่ระหว่างเจรจา"
+  },
+  {
+    "id": 12,
+    "listingNumber": "LST0012",
+    "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "ทาวน์เฮาส์ 2 ชั้น รีโนเวทพร้อมอยู่",
+    "propertyCode": "PROP012",
+    "posterName": "ศิริพร รักบ้าน",
+    "userId": "USR1002",
+    "type": "ทาวน์เฮาส์",
+    "province": "กรุงเทพมหานคร",
+    "datePosted": "2025-11-03",
+    "listingType": "เช่า",
+    "status": "กำลังเผยแพร่"
+  },
+  {
+    "id": 13,
+    "listingNumber": "LST0013",
+    "image": "https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "บ้านไม้สไตล์วินเทจ",
+    "propertyCode": "PROP013",
+    "posterName": "วรพงศ์ ดินดี",
+    "userId": "USR1003",
+    "type": "บ้านเดี่ยว",
+    "province": "ภูเก็ต",
+    "datePosted": "2025-11-02",
+    "listingType": "ขาย",
+    "status": "ขายแล้ว"
+  },
+  {
+    "id": 14,
+    "listingNumber": "LST0014",
+    "image": "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "คอนโด Duplex เพดานสูง",
+    "propertyCode": "PROP014",
+    "posterName": "กมลวรรณ พาณิชย์",
+    "userId": "USR1004",
+    "type": "คอนโด",
+    "province": "กรุงเทพมหานคร",
+    "datePosted": "2025-11-01",
+    "listingType": "ขาย",
+    "status": "กำลังเผยแพร่"
+  },
+  {
+    "id": 15,
+    "listingNumber": "LST0015",
+    "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "บ้านเดี่ยวติดทะเลสาบ",
+    "propertyCode": "PROP015",
+    "posterName": "ธันวา บ้านใหม่",
+    "userId": "USR1005",
+    "type": "บ้านเดี่ยว",
+    "province": "ชลบุรี",
+    "datePosted": "2025-10-31",
+    "listingType": "เช่า",
+    "status": "อยู่ระหว่างเจรจา"
+  },
+  {
+    "id": 16,
+    "listingNumber": "LST0016",
+    "image": "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "บ้านเดี่ยว 3 ห้องนอน 2 ห้องน้ำ",
+    "propertyCode": "PROP016",
+    "posterName": "สมชาย ใจดี",
+    "userId": "USR1001",
+    "type": "บ้านเดี่ยว",
+    "province": "ขอนแก่น",
+    "datePosted": "2025-10-30",
+    "listingType": "ขาย",
+    "status": "กำลังเผยแพร่"
+  },
+  {
+    "id": 17,
+    "listingNumber": "LST0017",
+    "image": "https://images.unsplash.com/photo-1510798831971-661f0d0e19f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "บ้านกระท่อมไม้กลางสวน",
+    "propertyCode": "PROP017",
+    "posterName": "ศิริพร รักบ้าน",
+    "userId": "USR1002",
+    "type": "บ้านเดี่ยว",
+    "province": "เชียงใหม่",
+    "datePosted": "2025-10-29",
+    "listingType": "ขาย",
+    "status": "ขายแล้ว"
+  },
+  {
+    "id": 18,
+    "listingNumber": "LST0018",
+    "image": "https://images.unsplash.com/photo-1475855501693-3b6321f84d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "คอนโด Low Rise ใกล้ BTS",
+    "propertyCode": "PROP018",
+    "posterName": "วรพงศ์ ดินดี",
+    "userId": "USR1003",
+    "type": "คอนโด",
+    "province": "กรุงเทพมหานคร",
+    "datePosted": "2025-10-28",
+    "listingType": "เช่า",
+    "status": "กำลังเผยแพร่"
+  },
+  {
+    "id": 19,
+    "listingNumber": "LST0019",
+    "image": "https://images.unsplash.com/photo-1558969702-7c2f629c4b57?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "ที่ดินจัดสรร 150 ตร.ว.",
+    "propertyCode": "PROP019",
+    "posterName": "กมลวรรณ พาณิชย์",
+    "userId": "USR1004",
+    "type": "ที่ดิน",
+    "province": "ภูเก็ต",
+    "datePosted": "2025-10-27",
+    "listingType": "ขาย",
+    "status": "อยู่ระหว่างเจรจา"
+  },
+  {
+    "id": 20,
+    "listingNumber": "LST0020",
+    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "title": "บ้านเดี่ยวหรู พร้อมสระว่ายน้ำส่วนตัว",
+    "propertyCode": "PROP020",
+    "posterName": "ธันวา บ้านใหม่",
+    "userId": "USR1005",
+    "type": "บ้านเดี่ยว",
+    "province": "ชลบุรี",
+    "datePosted": "2025-10-26",
+    "listingType": "ขาย",
+    "status": "กำลังเผยแพร่"
   }
+  
 ];
 
 export function fetchPropertys() {

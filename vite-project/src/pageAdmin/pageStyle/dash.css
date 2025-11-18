@@ -101,6 +101,45 @@
   overflow-y: scroll; /* แสดง scrollbar ตลอด */
 }
 
+.miniOverflow{
+  height: 60vh;
+  overflow-y: scroll
+}
+
+.text-gray{
+  color: #677489;
+}
+.pending-textAd{
+  color: #dd871d;
+  background-color: #ffffb8;
+  margin: 2px;
+  border-radius: 15px;
+  padding: 5px 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+.cancle-textAd{
+  color: #81401d;
+  background-color: #ffcab8;
+  margin: 2px;
+  border-radius: 15px;
+  padding: 5px 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+.OK-textAd{
+  color: #17763a;
+  background-color: #b8ffba;
+  margin: 2px;
+  border-radius: 15px;
+  padding: 5px 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
 .btn-search {
   background-color: rgb(240, 244, 255);
   border: 2px solid rgb(68, 125, 200);

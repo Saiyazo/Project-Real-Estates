@@ -22,8 +22,8 @@ const PlaceAd = () => {
       <div className="d-flex gap-2">
         {/*คำขอติดต่อ */}
         <div
-          className=" border p-2 rounded-2 shadow-sm"
-          style={{ height: "80vh" }}
+          className=" border p-2 rounded-2 shadow-sm "
+          style={{ height: "80vh", width: "40%" }}
         >
           <form class="d-flex" role="search">
             <input
@@ -36,12 +36,7 @@ const PlaceAd = () => {
               Search
             </button>
           </form>
-          <Tabs
-            defaultActiveKey="profile"
-            id="fill-tab-example"
-            className="mb-3 mt-2"
-            fill
-          >
+          <Tabs id="fill-tab-example" className="mb-3 mt-2" fill>
             <Tab
               className="bg-white"
               eventKey="ทั้งหมด"
@@ -50,6 +45,60 @@ const PlaceAd = () => {
               <h6 className="bg-light text-black p-2">
                 <b>คำขอโฆษณาทั้งหมด({totalAD})</b>
               </h6>
+              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
+              <div className="miniOverflow">
+                {adRequests
+                  .filter((ad) => ad.status)
+                  .map((ad, index) => (
+                    <div
+                      key={ad.id || index}
+                      className="border rounded-1 bg-white m-2"
+                    >
+                      <div className="d-flex justify-content-between">
+                        <div className="text-dark p-2" style={{ width: "50%" }}>
+                          <div className="m-2">
+                            <span className=" fs-5">{ad.campaignDetails}</span>
+                          </div>
+                          <span className="m-2 fs-6">{ad.contact.name}</span>
+                        </div>
+
+                        <div className="p-2 text-end">
+                          <span
+                            className="pending-textAd"
+                            style={{
+                              color:
+                                ad.status === "ยกเลิก"
+                                  ? "#81401d"
+                                  : ad.status === "อนุมัติ"
+                                  ? "#17763a"
+                                  : ad.status === "รออนุมัติ"
+                                  ? "#dd871d"
+                                  : "black",
+                              backgroundColor:
+                                ad.status === "ยกเลิก"
+                                  ? "#ffcab8"
+                                  : ad.status === "อนุมัติ"
+                                  ? "#b8ffba"
+                                  : ad.status === "รออนุมัติ"
+                                  ? "#ffffb8"
+                                  : "white",
+                              margin: "2px",
+                              borderRadius: "15px",
+                              padding: "5px 15px",
+                              fontWeight: "600",
+                              fontSize: "0.9rem",
+                              display: "inline-block",
+                            }}
+                          >
+                            {ad.status}
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
+                    </div>
+                  ))}
+              </div>
             </Tab>
             <Tab
               className="bg-white"
@@ -59,9 +108,32 @@ const PlaceAd = () => {
               <h6 className="bg-light text-black p-2">
                 <b>คำขอที่รออนุมัติ({pending})</b>
               </h6>
-              <div className="border d-flex bg-white">
-                {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
-                <div></div>
+
+              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
+              <div className="miniOverflow">
+                {adRequests
+                  .filter((ad) => ad.status === "รออนุมัติ")
+                  .map((ad, index) => (
+                    <div
+                      key={ad.id || index}
+                      className="border rounded-1 bg-white m-2"
+                    >
+                      <div className="d-flex justify-content-between gap-2">
+                        <div className="text-dark p-2" style={{ width: "50%" }}>
+                          <div className="m-2">
+                            <span className=" fs-5">{ad.campaignDetails}</span>
+                          </div>
+                          <span className="m-2 fs-6">{ad.contact.name}</span>
+                        </div>
+
+                        <div className="p-2 text-end">
+                          <span className="pending-textAd">รออนุมัติ</span>
+                        </div>
+                      </div>
+
+                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
+                    </div>
+                  ))}
               </div>
             </Tab>
             <Tab
@@ -72,38 +144,73 @@ const PlaceAd = () => {
               <h6 className="bg-light text-black p-2">
                 <b>คำขอที่อนุมัติแล้ว({approved})</b>
               </h6>
+              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
+              <div className="miniOverflow">
+                {adRequests
+                  .filter((ad) => ad.status === "อนุมัติ")
+                  .map((ad, index) => (
+                    <div
+                      key={ad.id || index}
+                      className="border rounded-1 bg-white m-2"
+                    >
+                      <div className="d-flex justify-content-between gap-2">
+                        <div className="text-dark p-2" style={{ width: "50%" }}>
+                          <div className="m-2">
+                            <span className=" fs-5">{ad.campaignDetails}</span>
+                          </div>
+                          <span className="m-2 fs-6">{ad.contact.name}</span>
+                        </div>
+
+                        <div className="p-2 text-end">
+                          <span className="OK-textAd">อนุมัติ</span>
+                        </div>
+                      </div>
+
+                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
+                    </div>
+                  ))}
+              </div>
             </Tab>
             <Tab
               className="bg-white"
               eventKey="ยกเลิก"
               title={<span className="position-relative">ยกเลิก</span>}
             >
-              {/* หัวข้อ */}
-              <div className="bg-light">
-                <h6
-                  className="bg-light text-black p-2 mb-3 "
-                  style={{ height: "2" }}
-                >
-                  <b>คำขอที่ถูกยกเลิก ({rejected})</b>
-                </h6>
-              </div>
+              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
+              <div className="miniOverflow">
+                {adRequests
+                  .filter((ad) => ad.status === "ยกเลิก")
+                  .map((ad, index) => (
+                    <div
+                      key={ad.id || index}
+                      className="border rounded-1 bg-white m-2"
+                    >
+                      <div className="d-flex justify-content-between">
+                        <div
+                          className=" text-dark p-2"
+                          style={{ width: "50%" }}
+                        >
+                          <div className="m-2">
+                            <span className=" fs-5">{ad.campaignDetails}</span>
+                          </div>
+                          <span className="m-2 fs-6">{ad.contact.name}</span>
+                        </div>
 
-              {/* Box */}
-              <div className="d-flex justify-content-between bg-white border rounded-2 ">
-                <div className="m-2">
-                  <h5 className="text-black">ชื่อ</h5>
-                  <p className="text-dark">รายละเอียด</p>
-                  <span className="text-dark">วันที่ส่งคำขอ:</span>
-                </div>
+                        <div className="p-2 text-end">
+                          <span className="cancle-textAd">ยกเลิก</span>
+                        </div>
+                      </div>
 
-                <div className="text-end m-2">สถานะ</div>
+                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
+                    </div>
+                  ))}
               </div>
             </Tab>
           </Tabs>
         </div>
         {/*ปฏิทินกับคำขอติดต่อ */}
         <div className=" border p-3 rounded-2 shadow-sm">
-          <p>ปฏิทินยังไม่ทำอ่ะ ทำไม่เป็น ไปหาความรู้ก่อน</p>
+          <p>ปฏิทินยังทำไม่เป็นขอเวลาไปหาความรู้ก่อน</p>
         </div>
       </div>
     </div>
