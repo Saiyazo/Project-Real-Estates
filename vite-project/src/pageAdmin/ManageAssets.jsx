@@ -82,7 +82,12 @@ const ManageAssets = () => {
               <DropdownButton variant="outline-secondary" title="ประเภท">
                 <Dropdown.Item>คอนโด</Dropdown.Item>
                 <Dropdown.Item>บ้านเดี่ยว</Dropdown.Item>
+                <Dropdown.Item>บ้านแฝด</Dropdown.Item>
                 <Dropdown.Item>ทาวน์โฮม</Dropdown.Item>
+                <Dropdown.Item>ที่ดินเปล่า</Dropdown.Item>
+                <Dropdown.Item>ที่ดินเปล่าพร้อมสิ่งปลูกสร้าง</Dropdown.Item>
+                <Dropdown.Item>อพาร์ทเมนต์</Dropdown.Item>
+                
               </DropdownButton>
 
               <DropdownButton

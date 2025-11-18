@@ -51,13 +51,14 @@ function App() {
               />
             }
           >
+            <Route index element={<DashboardAdmin />} />
             <Route path="/ProfileAdmin" element={<ProfileAdmin />} />
             <Route path="/DashboardAdmin" element={<DashboardAdmin />} />
             <Route path="/ManageAssets" element={<ManageAssets />} />
             <Route path="/ComplainUser" element={<ComplainUser />} />
             <Route path="/ManageUser" element={<ManageUser />} />
             <Route path="/PlaceAd" element={<PlaceAd />} />
-            <Route path="/SettingAdmin" element={<SettingAdmin />} />
+            {/*<Route path="/SettingAdmin" element={<SettingAdmin />} />*/}
             <Route path="/DetailCom" element={<DetailCom />} />
             <Route path="/DetailProperty" element={<DetailProperty />} />
           </Route>

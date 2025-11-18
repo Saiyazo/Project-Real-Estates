@@ -13,12 +13,6 @@
   transition: 0.2s ease;
 }
 
-/* Hover เบา ๆ */
-.stats-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
 .stats-card p {
   margin: 0;
   font-size: 0.95rem;
@@ -31,7 +25,6 @@
   font-weight: bold;
 }
 
-/* สีแต่ละการ์ด */
 .total {
   background-color: #e3eeff;
   color: #2a4a7b;

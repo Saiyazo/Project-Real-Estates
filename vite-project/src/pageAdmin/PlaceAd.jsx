@@ -46,6 +46,8 @@ const PlaceAd = () => {
                 <b>คำขอโฆษณาทั้งหมด({totalAD})</b>
               </h6>
               {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
+              
+             {/*ทำให้มันเรียงวันจากวันล่าสุด-วันเก่าแก่สุด*/}
               <div className="miniOverflow">
                 {adRequests
                   .filter((ad) => ad.status)
@@ -210,7 +212,8 @@ const PlaceAd = () => {
         </div>
         {/*ปฏิทินกับคำขอติดต่อ */}
         <div className=" border p-3 rounded-2 shadow-sm">
-          <p>ปฏิทินยังทำไม่เป็นขอเวลาไปหาความรู้ก่อน</p>
+          <h1>ปฏิทิน</h1>
+          <p>ทำไม่เป็นขอเวลาไปหาความรู้</p>
         </div>
       </div>
     </div>

@@ -42,7 +42,7 @@ const complaints = [
     request: "ตรวจสอบและดำเนินการตามนโยบาย",
     reporter: "Anucha Srisawat",
     date: "2025-11-12",
-    status: "ปิด",
+    status: "ปิดการใช้งานบัญชี",
     image: "https://randomuser.me/api/portraits/men/59.jpg",
   },
   {
