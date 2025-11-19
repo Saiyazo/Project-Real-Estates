@@ -149,10 +149,12 @@ const ChatWindow = ({ chat }) => {
 
 //รับ onHide มาจากAppNavbar.jsx ที่เซตไว้ใน Modal
 const Chat = ({ onHide }) => {
-
+    
     const [activeChatId, setActiveChatId] = useState(numChat[0].id);
     const activeChat = numChat.find(chat => chat.id === activeChatId);
+    //ใช้ .find() → เพราะอยากได้ chat object ตัวเดียวที่ตรงกับ activeChatId
 
+//กดคลิกเลือกแชตแล้วมันจะเปลี่ยนid ของแชตที่เราเลือก เพื่อไปactiveแล้วแสดงข้อมูล
     const handleChatClick = (id) => {
         setActiveChatId(id);
     };
