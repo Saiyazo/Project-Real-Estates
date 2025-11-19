@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {fetchComplaints} from "../Data/DataComplaints"
 import Table from 'react-bootstrap/Table';
+import './pageStyle/card.css'
 const ComplainUser = () => {
   const complain = fetchComplaints()
 
@@ -29,11 +30,11 @@ const ComplainUser = () => {
       <p className="text-white bg-dark">---แก้---</p>
       {/**ปุ่มกดดูอะไรซักอย่าง*/}
       <div className="d-flex gap-2 p-2 m-1 border rounded mb-2">
-        <button><h5>ทั้งหมด</h5></button>
-        <button><h5>อยู่ระหว่างตรวจสอบ</h5></button>
-        <button><h5>ใช้งานได้ปกติ</h5></button>
-        <button><h5>ระงับการใช้งานชั่วคราว</h5></button>
-        <button><h5>ระงับการใช้งานถาวร</h5></button>
+        <button className="btn-bar"><h5>ทั้งหมด</h5></button>
+        <button className="btn-bar"><h5>อยู่ระหว่างตรวจสอบ</h5></button>
+        <button className="btn-bar"><h5>ใช้งานได้ปกติ</h5></button>
+        <button className="btn-bar"><h5>ระงับการใช้งานชั่วคราว</h5></button>
+        <button className="btn-bar"><h5>ระงับการใช้งานถาวร</h5></button>
       </div>
     {/**รายชื่อแบบร่ายยาว */}
     <p className="text-white bg-dark">---แก้---</p>
