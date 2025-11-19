@@ -46,14 +46,16 @@
 }
 
 /* รายการแชทแต่ละรายการ */
+
+
 .chat-list-item {
   color: black;
   border-top: 1px solid #e9ecef !important;
   border-bottom: 1px solid #e9ecef !important;
   padding: 8px 15px;
-  transition: background-color 0.2s, border-left-color 0.2s;
+  transition: background-color 0.2s, border-left-color 0.2s; /* เวลาเปลี่ยนสีพื้นหลังหรือขอบซ้าย เกิด animation */
   display: flex;
-  align-items: flex-start;
+  align-items: flex-start; /* จัดให้เริ่มจากด้านบน */
   text-decoration: none !important;
 }
 
@@ -85,9 +87,9 @@
 
 .chat-list-message {
   display: -webkit-box;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: vertical; /* ข้อความจะแสดงจากบนลงล่าง */
   overflow: hidden;
-  white-space: normal;
+  white-space: normal;/* ให้ข้อความขึ้นบรรทัดใหม่ได้ตามปกติ */
   max-width: 100%;
   line-height: 1.3;
   height: 2.6em; 
@@ -109,13 +111,13 @@
   background: white;
 }
 
-/* ไอคอนแว่นขยาย (โค้งซ้าย) */
+/* ไอคอนแว่นขยาย (ซ้าย) */
 .chat-search-input-group .input-group-text {
   border-radius: 50px 0 0 50px !important;
   border-right: 0 !important;
 }
 
-/* ช่องพิมพ์ค้นหา (โค้งขวา) */
+/* ช่องพิมพ์ค้นหา (ขวา) */
 .chat-search-input-group .form-control {
   border-radius: 0 50px 50px 0 !important;
   border-left: 0 !important;
@@ -160,15 +162,21 @@
 }
 
 
-/* ปรับ Footer ให้รองรับการวางซ้อน (รูปอยู่บน ช่องพิมพ์อยู่ล่าง) */
+
+/* ปรับ ให้รูปอยู่บน ช่องพิมพ์อยู่ล่าง */
 .chat-window-footer {
   background-color: #f0f5ff;
   border-top: 1px solid #dee2e6;
-  /* เปลี่ยนเป็น column เพื่อให้วางซ้อนกันได้ */
+  
   display: flex;
-  flex-direction: column; 
+  flex-direction: column; /* ใช้ column เพื่อให้วางซ้อนกันได้ */
   padding: 0; 
 }
+
+
+
+
+
 
 /* กล่องใส่รูปภาพ Preview */
 .image-preview-container {

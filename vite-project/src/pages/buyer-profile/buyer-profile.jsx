@@ -11,7 +11,6 @@ const BuyerProfile = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log('Logging out...');
     navigate('/login'); //รอเขื่อมหน้าล็อกอิน
   };
 
