@@ -17,7 +17,7 @@ const DashboardAdmin = () => {
   return (
     <div className="p-4 pageAll">
       <h1>แดชบอร์ด</h1>
-      {/**แถบอะไรซักอย่าง การ์ดมั้ง */}
+      {/**แถบ */}
       <div className="d-flex justify-content-between gap-3 mt-3 flex-wrap">
         {/* ManageUser */}
         <div className="card-1">

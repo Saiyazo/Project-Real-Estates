@@ -97,9 +97,11 @@
 
 .pageAll {
   width: 100%;
-  height: 100vh;
-  overflow-y: scroll; /* แสดง scrollbar ตลอด */
+  min-height: 100vh;
+  padding-bottom: 20px;
+  overflow-y: auto;
 }
+
 
 .miniOverflow{
   height: 70vh;
