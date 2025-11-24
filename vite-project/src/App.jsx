@@ -22,6 +22,7 @@ import PlaceAd from "./pageAdmin/PlaceAd.jsx";
 import SettingAdmin from './pageAdmin/SettingAdmin.jsx'
 import DetailCom from "./pageAdmin/DetailComplainJa.jsx";
 import DetailProperty from "./pageAdmin/DetailProperty.jsx";
+import DetailAD from "./pageAdmin/DetailAD.jsx";
 
 function App() {
   
@@ -38,7 +39,7 @@ function App() {
   useEffect(() => setAdRequests(fetchAdRequests()), [])
   return (
     <>
-      <BrowserRouter basename="/multipages/">
+      <BrowserRouter basename="/AdminPage/">
         <Routes>
           <Route
             element={
@@ -48,6 +49,7 @@ function App() {
                 properties={properties}
                 complaints={complaints}
                 adRequests={adRequests}
+                setAdRequests={setAdRequests}
               />
             }
           >
@@ -61,6 +63,7 @@ function App() {
             <Route path="/SettingAdmin" element={<SettingAdmin />} />
             <Route path="/DetailCom" element={<DetailCom />} />
             <Route path="/DetailProperty" element={<DetailProperty />} />
+            <Route path="/DetailAD" element={<DetailAD />} />
           </Route>
         </Routes>
       </BrowserRouter>

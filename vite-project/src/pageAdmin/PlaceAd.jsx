@@ -1,101 +1,155 @@
-import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import CalenderAM from "../component/CalenderAM.jsx";
+//import CalenderAM from "../component/CalenderAM.jsx";
 
 import "./pageStyle/dash.css";
 
 const PlaceAd = () => {
-  const { adRequests } = useOutletContext();
-  
+  const { adRequests, setAdRequests } = useOutletContext();
+  const [searchText, setSearchText] = useState("");
 
-  const totalAD = adRequests.length;
-  const pending = adRequests.filter((ad) => ad.status === "รออนุมัติ").length;
-  const approved = adRequests.filter((ad) => ad.status === "อนุมัติ").length;
-  const rejected = adRequests.filter((ad) => ad.status === "ยกเลิก").length;
+  useEffect(() => {
+    const changedAd = JSON.parse(sessionStorage.getItem("changedAd"));
+    if (changedAd) {
+      setAdRequests((prev) =>
+        prev.map((ad) =>
+          ad.id === changedAd.id ? { ...ad, status: changedAd.status } : ad
+        )
+      );
+      sessionStorage.removeItem("changedAd");
+    }
+  }, []);
+
+  const filteredAds = adRequests.filter(
+    (ad) =>
+      ad.contact.name.toLowerCase().includes(searchText.toLowerCase()) ||
+      ad.campaignDetails.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  const countByStatus = (status) =>
+    adRequests.filter((ad) => ad.status === status).length;
+
+  const statuses = [
+    "รอการตรวจสอบ",
+    "รอผู้ใช้แก้ไขข้อมูล",
+    "รอชำระเงิน",
+    "กำลังเผยแพร่",
+    "ประกาศหมดอายุ",
+    "ยกเลิก",
+  ];
+
+  const statusColors = {
+    รอการตรวจสอบ: { color: "#b88a00", bg: "#fff4b3" },
+    รอผู้ใช้แก้ไขข้อมูล: { color: "#005c99", bg: "#cfefff" },
+    รอชำระเงิน: { color: "#c15a00", bg: "#ffe2c4" },
+    กำลังเผยแพร่: { color: "#17763a", bg: "#b8ffba" },
+    ประกาศหมดอายุ: { color: "#555555", bg: "#e8e8e8" },
+    ยกเลิก: { color: "#7a1a05", bg: "#ffcab8" },
+  };
 
   return (
-    <div className="p-4 pageAll">
+    <div className="m-2 p-2">
       <h1 className="mb-5">ติดต่อลงโฆษณา</h1>
-
-      <div className="d-flex gap-3">
-        {/*ปฏิทินกับคำขอติดต่อ */}
-        <div
-          className="border p-3 rounded-2 shadow-sm"
-          style={{ height: "87vh" }}
-        >
+      {/*<div className="border p-3 rounded-2 shadow-sm" style={{ height: "87vh" }}>
           <h4>ปฏิทินคำขอลงโฆษณา</h4>
-          <CalenderAM adRequests={adRequests} />
-        </div>
-        {/*คำขอติดต่อ */}
-        <div
-          className=" border p-2 rounded-2 shadow-sm"
-          style={{ height: "87vh", width: "100%" }}
-        >
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-primary" type="submit">
-              Search
-            </button>
-          </form>
-          <Tabs id="fill-tab-example" className="mb-3 mt-2" fill>
-            <Tab
-              className="bg-white"
-              eventKey="ทั้งหมด"
-              title={<span className="position-relative">ทั้งหมด</span>}
-            >
-              <h6 className="bg-light text-black p-2">
-                <b>คำขอโฆษณาทั้งหมด({totalAD})</b>
-              </h6>
-              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
+          <div style={{ flexGrow: 1, overflowY: "auto" }}>
+            <CalenderAM adRequests={adRequests} />
+          </div>
+        </div> */}
+      {/* คำขอ */}
+      <div
+        className="border p-2 rounded-2 shadow-sm"
+        style={{ height: "87vh", width: "100%" }}
+      >
+        <form className="d-flex mb-2" role="search">
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button className="btn btn-outline-primary" type="button">
+            Search
+          </button>
+        </form>
 
-              {/*ทำให้มันเรียงวันจากวันล่าสุด-วันเก่าแก่สุด*/}
-              <div className="miniOverflow">
-                {adRequests
-                  .filter((ad) => ad.status)
-                  .map((ad, index) => (
+        <Tabs id="ad-status-tabs" className="mb-3" fill>
+          {/* Tab ดูทั้งหมด */}
+          <Tab eventKey="ทั้งหมด" title={`ดูทั้งหมด (${filteredAds.length})`}>
+            <div className="miniOverflow bg-white">
+              {filteredAds.map((ad, index) => (
+                <div
+                  key={ad.id || index}
+                  className="border rounded-1 bg-white m-2 p-2"
+                >
+                  <div className="d-flex justify-content-between">
+                    <div className="text-dark">
+                      <div className="fs-5">{ad.campaignDetails}</div>
+                      <div className="fs-6">{ad.contact.name}</div>
+                    </div>
+                    <div className="text-end">
+                      <span
+                        style={{
+                          color: statusColors[ad.status]?.color || "black",
+                          backgroundColor:
+                            statusColors[ad.status]?.bg || "white",
+                          padding: "5px 15px",
+                          borderRadius: "15px",
+                          fontWeight: "600",
+                          fontSize: "0.9rem",
+                          display: "inline-block",
+                        }}
+                      >
+                        {ad.status}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="d-flex justify-content-between mt-2">
+                    <p className="text-gray">{ad.submittedAt}</p>
+                    <Link to="/DetailAD" state={{ ad }}>
+                      <button className="btn btn-sm btn-outline-primary">
+                        ดูรายละเอียด
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Tab>
+
+          {/* Tab ตามสถานะ */}
+          {statuses.map((status) => {
+            const adsByStatus = filteredAds.filter(
+              (ad) => ad.status === status
+            );
+            return (
+              <Tab
+                key={status}
+                eventKey={status}
+                title={`${status} (${countByStatus(status)})`}
+              >
+                <div className="miniOverflow bg-white">
+                  {adsByStatus.map((ad, index) => (
                     <div
                       key={ad.id || index}
-                      className="border rounded-1 bg-white m-2"
+                      className="border rounded-1 bg-white m-2 p-2"
                     >
                       <div className="d-flex justify-content-between">
-                        <div className="text-dark p-2" style={{ width: "50%" }}>
-                          <div className="m-2">
-                            <span className=" fs-5">{ad.campaignDetails}</span>
-                          </div>
-                          <span className="m-2 fs-6">{ad.contact.name}</span>
+                        <div className="text-dark">
+                          <div className="fs-5">{ad.campaignDetails}</div>
+                          <div className="fs-6">{ad.contact.name}</div>
                         </div>
-
-                        <div className="p-2 text-end">
+                        <div className="text-end">
                           <span
-                            className="pending-textAd"
                             style={{
-                              color:
-                                ad.status === "ยกเลิก"
-                                  ? "#81401d"
-                                  : ad.status === "อนุมัติ"
-                                  ? "#17763a"
-                                  : ad.status === "รออนุมัติ"
-                                  ? "#dd871d"
-                                  : "black",
+                              color: statusColors[ad.status]?.color || "black",
                               backgroundColor:
-                                ad.status === "ยกเลิก"
-                                  ? "#ffcab8"
-                                  : ad.status === "อนุมัติ"
-                                  ? "#b8ffba"
-                                  : ad.status === "รออนุมัติ"
-                                  ? "#ffffb8"
-                                  : "white",
-                              margin: "2px",
-                              borderRadius: "15px",
+                                statusColors[ad.status]?.bg || "white",
                               padding: "5px 15px",
+                              borderRadius: "15px",
                               fontWeight: "600",
                               fontSize: "0.9rem",
                               display: "inline-block",
@@ -105,120 +159,21 @@ const PlaceAd = () => {
                           </span>
                         </div>
                       </div>
-
-                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
-                    </div>
-                  ))}
-              </div>
-            </Tab>
-            <Tab
-              className="bg-white"
-              eventKey="รออนุมัติ"
-              title={<span className="position-relative">รออนุมัติ </span>}
-            >
-              <h6 className="bg-light text-black p-2">
-                <b>คำขอที่รออนุมัติ({pending})</b>
-              </h6>
-
-              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
-              <div className="miniOverflow">
-                {adRequests
-                  .filter((ad) => ad.status === "รออนุมัติ")
-                  .map((ad, index) => (
-                    <div
-                      key={ad.id || index}
-                      className="border rounded-1 bg-white m-2"
-                    >
-                      <div className="d-flex justify-content-between gap-2">
-                        <div className="text-dark p-2" style={{ width: "50%" }}>
-                          <div className="m-2">
-                            <span className=" fs-5">{ad.campaignDetails}</span>
-                          </div>
-                          <span className="m-2 fs-6">{ad.contact.name}</span>
-                        </div>
-
-                        <div className="p-2 text-end">
-                          <span className="pending-textAd">รออนุมัติ</span>
-                        </div>
+                      <div className="d-flex justify-content-between mt-2">
+                        <p className="text-gray">{ad.submittedAt}</p>
+                        <Link to="/DetailAD" state={{ ad }}>
+                          <button className="btn btn-sm btn-outline-primary">
+                            ดูรายละเอียด
+                          </button>
+                        </Link>
                       </div>
-
-                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
                     </div>
                   ))}
-              </div>
-            </Tab>
-            <Tab
-              className="bg-white"
-              eventKey="อนุมัติแล้ว"
-              title={<span className="position-relative">อนุมัติแล้ว</span>}
-            >
-              <h6 className="bg-light text-black p-2">
-                <b>คำขอที่อนุมัติแล้ว({approved})</b>
-              </h6>
-              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
-              <div className="miniOverflow">
-                {adRequests
-                  .filter((ad) => ad.status === "อนุมัติ")
-                  .map((ad, index) => (
-                    <div
-                      key={ad.id || index}
-                      className="border rounded-1 bg-white m-2"
-                    >
-                      <div className="d-flex justify-content-between gap-2">
-                        <div className="text-dark p-2" style={{ width: "50%" }}>
-                          <div className="m-2">
-                            <span className=" fs-5">{ad.campaignDetails}</span>
-                          </div>
-                          <span className="m-2 fs-6">{ad.contact.name}</span>
-                        </div>
-
-                        <div className="p-2 text-end">
-                          <span className="OK-textAd">อนุมัติ</span>
-                        </div>
-                      </div>
-
-                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
-                    </div>
-                  ))}
-              </div>
-            </Tab>
-            <Tab
-              className="bg-white"
-              eventKey="ยกเลิก"
-              title={<span className="position-relative">ยกเลิก</span>}
-            >
-              {/*map ข้อมูลคำขอโฆษณาที่รออนุมัติ*/}
-              <div className="miniOverflow">
-                {adRequests
-                  .filter((ad) => ad.status === "ยกเลิก")
-                  .map((ad, index) => (
-                    <div
-                      key={ad.id || index}
-                      className="border rounded-1 bg-white m-2"
-                    >
-                      <div className="d-flex justify-content-between">
-                        <div
-                          className=" text-dark p-2"
-                          style={{ width: "50%" }}
-                        >
-                          <div className="m-2">
-                            <span className=" fs-5">{ad.campaignDetails}</span>
-                          </div>
-                          <span className="m-2 fs-6">{ad.contact.name}</span>
-                        </div>
-
-                        <div className="p-2 text-end">
-                          <span className="cancle-textAd">ยกเลิก</span>
-                        </div>
-                      </div>
-
-                      <p className="m-2 p-2 text-gray">{ad.submittedAt}</p>
-                    </div>
-                  ))}
-              </div>
-            </Tab>
-          </Tabs>
-        </div>
+                </div>
+              </Tab>
+            );
+          })}
+        </Tabs>
       </div>
     </div>
   );

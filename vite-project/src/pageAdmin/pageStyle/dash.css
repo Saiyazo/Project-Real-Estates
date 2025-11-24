@@ -97,14 +97,15 @@
 
 .pageAll {
   width: 100%;
-  min-height: 100vh;
-  padding-bottom: 20px;
-  overflow-y: auto;
+  min-height: 100vh; 
+  max-height: 85vh; 
+  overflow-y: auto; 
+  box-sizing: border-box; 
 }
 
 
 .miniOverflow{
-  height: 70vh;
+  height: 72vh;
   overflow-y: scroll
 }
 

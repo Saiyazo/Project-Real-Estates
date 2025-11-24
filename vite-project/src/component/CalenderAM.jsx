@@ -3,17 +3,21 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./cssforBTN/CalenderAM.css";
 
+const statusColors = {
+  กำลังเผยแพร่: { color: "#17763a", bg: "#b8ffba" },
+  รอการตรวจสอบ: { color: "#b88a00", bg: "#fff4b3" },
+  รอผู้ใช้แก้ไขข้อมูล: { color: "#005c99", bg: "#cfefff" },
+  รอชำระเงิน: { color: "#c15a00", bg: "#ffe2c4" },
+  ประกาศหมดอายุ: { color: "#555555", bg: "#e8e8e8" },
+  ยกเลิก: { color: "#7a1a05", bg: "#ffcab8" },
+  อนุมัติ: { color: "#17763a", bg: "#b8ffba" },
+};
+
 const CalenderAM = ({ adRequests }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const isSameDay = (d1, d2) =>
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate();
-
-  const approvedAds = adRequests.filter((ad) => ad.status === "อนุมัติ");
-
-  const filteredAds = approvedAds.filter((ad) => {
+  const filteredAds = adRequests.filter((ad) => {
+    if (ad.status !== "กำลังเผยแพร่") return false; // แสดงเฉพาะกำลังเผยแพร่
     const adStart = ad.startDate
       ? new Date(ad.startDate)
       : new Date(ad.submittedAt);
@@ -21,15 +25,15 @@ const CalenderAM = ({ adRequests }) => {
     return selectedDate >= adStart && selectedDate <= adEnd;
   });
 
-
   const dateColorsMap = {};
-  approvedAds.forEach((ad) => {
+  adRequests.forEach((ad) => {
+    if (ad.status !== "กำลังเผยแพร่") return; // แสดงจุดเฉพาะกำลังเผยแพร่
     const adStart = new Date(ad.startDate || ad.submittedAt);
     const adEnd = new Date(ad.endDate || adStart);
-    let color = "#17763a"; // 7 วัน
-    if (ad.package.includes("14 วัน")) color = "#ff9800"; // 14 วัน
-    if (ad.package.includes("30 วัน")) color = "#f44336"; // 30 วัน
 
+    let color = "#17763a"; // default 7 วัน
+    if (ad.package.includes("14 วัน")) color = "#ff9800";
+    if (ad.package.includes("30 วัน")) color = "#f44336";
 
     for (let d = new Date(adStart); d <= adEnd; d.setDate(d.getDate() + 1)) {
       const key = d.toDateString();
@@ -40,8 +44,9 @@ const CalenderAM = ({ adRequests }) => {
 
   const getStatusClass = (status) => {
     if (status === "อนุมัติ") return "OK-textAd";
-    if (status === "รออนุมัติ") return "pending-textAd";
+    if (status === "รอการตรวจสอบ") return "pending-textAd";
     if (status === "ยกเลิก") return "cancle-textAd";
+    if (status === "กำลังเผยแพร่") return "OK-textAd";
     return "";
   };
 
@@ -53,9 +58,10 @@ const CalenderAM = ({ adRequests }) => {
   };
 
   return (
-    <div className="calendar-wrapper" style={{ display: "flex", gap: "20px" }}>
+    <div className="calendar-wrapper">
+      {/* Legend */}
       <div
-        className="calendar-legend"
+        className="calendar-legend mb-2"
         style={{
           display: "flex",
           gap: "20px",
@@ -100,6 +106,8 @@ const CalenderAM = ({ adRequests }) => {
           <span>30 วัน</span>
         </div>
       </div>
+
+      {/* ปฏิทิน */}
       <DatePicker
         selected={selectedDate}
         onChange={(date) => setSelectedDate(date)}
@@ -140,37 +148,63 @@ const CalenderAM = ({ adRequests }) => {
         }}
       />
 
-      <div className="pageAll">
-        <h5>คำขอวันที่ {selectedDate.toLocaleDateString()}</h5>
-        {filteredAds.length > 0 ? (
-          filteredAds.map((ad) => (
-            <div
-              key={ad.id}
-              className="border rounded-2 p-3 mb-2 bg-white"
-              style={{ borderLeft: `5px solid ${getPackageColor(ad.package)}` }}
-            >
-              <div className="d-flex justify-content-between align-items-center">
-                <div>
-                  <strong>{ad.campaignDetails}</strong>
-                  <p>จาก: {ad.contact.name}</p>
+      {/* คำขอข้างล่าง */}
+      <div className="mt-3" style={{ height: "35vh", width: "370px" }}>
+        <h5>คำขอที่กำลังเผยแพร่วันที่ {selectedDate.toLocaleDateString()}</h5>
+        <div className="pageKub">
+          {filteredAds.length > 0 ? (
+            filteredAds.map((ad) => (
+              <div
+                key={ad.id}
+                className="border rounded-2 p-3 mb-2 bg-white"
+                style={{
+                  borderLeft: `5px solid ${getPackageColor(ad.package)}`,
+                }}
+              >
+                <div
+                  className="d-flex justify-content-between align-items-center"
+                  style={{ gap: "15px" }}
+                >
+                  <div style={{ flex: 1 }}>
+                    {" "}
+                    {/* ให้ข้อความเต็มพื้นที่ */}
+                    <strong>{ad.campaignDetails}</strong>
+                    <p>จาก: {ad.contact.name}</p>
+                  </div>
+                  <span
+                    className={getStatusClass(ad.status)}
+                    style={{
+                      color: statusColors[ad.status]?.color,
+                      backgroundColor: statusColors[ad.status]?.bg,
+                      margin: "2px",
+                      borderRadius: "15px",
+                      padding: "5px 15px",
+                      fontWeight: "600",
+                      fontSize: "0.9rem",
+                      display: "inline-block",
+                      whiteSpace: "nowrap", 
+                    }}
+                  >
+                    {ad.status}
+                  </span>
                 </div>
-                <span className={getStatusClass(ad.status)}>{ad.status}</span>
+
+                <p>
+                  เริ่ม:{" "}
+                  {ad.startDate
+                    ? new Date(ad.startDate).toLocaleDateString()
+                    : "ไม่ระบุ"}{" "}
+                  | สิ้นสุด:{" "}
+                  {ad.endDate
+                    ? new Date(ad.endDate).toLocaleDateString()
+                    : "ไม่ระบุ"}
+                </p>
               </div>
-              <p>
-                เริ่ม:{" "}
-                {ad.startDate
-                  ? new Date(ad.startDate).toLocaleDateString()
-                  : "ไม่ระบุ"}{" "}
-                | สิ้นสุด:{" "}
-                {ad.endDate
-                  ? new Date(ad.endDate).toLocaleDateString()
-                  : "ไม่ระบุ"}
-              </p>
-            </div>
-          ))
-        ) : (
-          <p>ไม่มีคำขอในวันนี้</p>
-        )}
+            ))
+          ) : (
+            <p>ไม่มีคำขอกำลังเผยแพร่ในวันนี้</p>
+          )}
+        </div>
       </div>
     </div>
   );

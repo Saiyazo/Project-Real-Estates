@@ -34,7 +34,9 @@ const GrapAll = () => {
     loadData();
   }, []);
 
-  //เก็บตามวัน
+
+  // กราฟคำร้องเรียน
+
   const complaintsByDate = complaints.reduce((acc, curr) => {
     if (!acc[curr.date]) acc[curr.date] = 0;
     acc[curr.date] += 1;
@@ -45,37 +47,35 @@ const GrapAll = () => {
     .sort()
     .map((date) => ({
       date,
-      จำนวนคำร้องเรียน: complaintsByDate[date],
+      "จำนวนคำร้องเรียน": complaintsByDate[date],
     }));
 
-  //กราฟแท่งคำขอโฆษณา
-  const adRequestsColor = {
-    ยกเลิก: "#ff9f43",
-    รออนุมัติ: "#f7cb06",
-    อนุมัติ: "#10ac84",
-  };
-
-  const categorized = adRequests.map((AD) => {
-    if (AD.status.includes("รออนุมัติ")) return { ...AD, status: "รออนุมัติ" };
-    if (AD.status.includes("อนุมัติ")) return { ...AD, status: "อนุมัติ" };
-    if (AD.status.includes("ยกเลิก")) return { ...AD, status: "ยกเลิก" };
-    return AD;
-  });
-
-  const requestDataNa = Object.keys(adRequestsColor).map((status) => ({
+ 
+  // กราฟคำขอโฆษณา
+  const adStatusColors = {
+  "รอการตรวจสอบ": "#ffe600ff",
+  "รอผู้ใช้แก้ไขข้อมูล": "#00BFFF",
+  "รอชำระเงิน": "#FF8C00",
+  "กำลังเผยแพร่": "#32CD32",
+  "ประกาศหมดอายุ": "#A9A9A9",
+  "ยกเลิก": "#FF4C4C",
+};
+  //data 4 BarChart
+  const requestDataNa = Object.keys(adStatusColors).map((status) => ({
     type: status,
-    count: categorized.filter((AD) => AD.status === status).length,
+    count: adRequests.filter((ad) => ad.status?.trim() === status).length,
   }));
+
 
   const renderLegend = () => (
     <div style={{ marginTop: 20, display: "flex", gap: "10px", justifyContent: "center" }}>
-      {Object.keys(adRequestsColor).map((status) => (
+      {Object.keys(adStatusColors).map((status) => (
         <div key={status} style={{ display: "flex", alignItems: "center" }}>
           <div
             style={{ 
               width: 15,
               height: 15,
-              backgroundColor: adRequestsColor[status],
+              backgroundColor: adStatusColors[status],
               marginRight: 5,
             }}
           />
@@ -87,7 +87,7 @@ const GrapAll = () => {
 
   return (
     <div className="d-flex flex-wrap">
-      {/* กราฟคำร้อง */}
+      {/* กราฟคำร้องเรียน */}
       <div
         className="border rounded-2 p-3 mt-2 me-3"
         style={{ width: "50%", minWidth: "300px" }}
@@ -108,7 +108,7 @@ const GrapAll = () => {
             <Line
               type="linear"
               dataKey="จำนวนคำร้องเรียน"
-              stroke="#ff4343ff"
+              stroke="#ff4343"
               strokeWidth={3}
               dot={{ r: 6 }}
               activeDot={{ r: 8 }}
@@ -117,7 +117,7 @@ const GrapAll = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* กราฟแท่ง */}
+      {/* กราฟแท่งคำขอโฆษณา */}
       <div
         className="border rounded-2 p-3 mt-2"
         style={{ width: "48%", minWidth: "300px" }}
@@ -133,9 +133,9 @@ const GrapAll = () => {
             <YAxis allowDecimals={false} />
             <Tooltip />
             <Legend content={renderLegend} />
-            <Bar dataKey="count" barSize={30} name='จำนวน'>
+            <Bar dataKey="count" barSize={30} name="จำนวน">
               {requestDataNa.map((entry, index) => (
-                <Cell key={index} fill={adRequestsColor[entry.type]} />
+                <Cell key={index} fill={adStatusColors[entry.type]} />
               ))}
             </Bar>
           </BarChart>

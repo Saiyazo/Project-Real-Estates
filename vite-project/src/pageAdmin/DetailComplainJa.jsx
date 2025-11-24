@@ -1,10 +1,14 @@
-import { NavLink } from "react-router-dom";
+
 const DetailCom = () => {
-    return ( 
-        <div>
-           <NavLink to={'/DashboardAdmin'}><button className="fs-4 mt-2"><i class="bi bi-arrow-left-circle "></i>&nbsp;กลับ</button></NavLink> 
-        </div>
-     );
-}
- 
+
+  return (
+    <div className="p-4">
+      <NavLink to="/ComplainUser">
+        <Button variant="outline-secondary" className="mb-3">กลับ</Button>
+      </NavLink>
+
+    </div>
+  );
+};
+
 export default DetailCom;

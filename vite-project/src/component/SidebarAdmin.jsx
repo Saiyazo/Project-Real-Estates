@@ -13,7 +13,14 @@ const SidebarAdmin = () => {
       path: "/DashboardAdmin",
       label: "หน้าแดชบอร์ดแอดมิน",
       icon: "bi-columns-gap",
+    },/*{
+      path: "/ComplainUser",
+      label: "ประวัติการร้องเรียน",
+      icon: "bi-envelope-paper",
     },
+
+    { path: "/PlaceAd", label: "ติดต่อลงโฆษณา", icon: "bi-megaphone" },
+    //{ path: "/SettingAdmin", label: "ตั้งค่า", icon: "bi-gear" },*/
     {
       path: "/ManageAssets",
       label: "รายการอสังหาริทรัพย์",

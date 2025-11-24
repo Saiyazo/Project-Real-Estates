@@ -27,7 +27,7 @@ const ComplainUser = () => {
         <button className="btn btn-primary px-4">Search</button>
       </div>
 
-      <p className="text-white bg-dark">---แก้---</p>
+
       {/**ปุ่มกดดูอะไรซักอย่าง*/}
       <div className="d-flex gap-2 p-2 m-1 border rounded mb-2">
         <button className="btn-bar"><h5>ทั้งหมด</h5></button>
@@ -37,35 +37,6 @@ const ComplainUser = () => {
         <button className="btn-bar"><h5>ระงับการใช้งานถาวร</h5></button>
       </div>
     {/**รายชื่อแบบร่ายยาว */}
-    <p className="text-white bg-dark">---แก้---</p>
-     <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ภาพ</th>
-          <th>ไดดีคำร้อง</th>
-          <th>หัวข้อการร้องเรียน</th>
-          <th>วันที่ร้องเรียน</th> 
-          <th>ประเภทคำร้องเรียน</th> 
-          <th>สถานะคำร้อง</th> 
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-        
-        <tr>
-          
-          <td colSpan={3}>Larry the Bird</td>
-          <td colSpan={3} className="text-end">@twitter</td>
-        </tr>
-      </tbody>
-    </Table>
       
     </div>
   );
