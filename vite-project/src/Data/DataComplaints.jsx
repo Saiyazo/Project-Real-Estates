@@ -1,5 +1,4 @@
 const complaints = [
-  // รอดำเนินการ (วันที่ใหม่)
   {
     id: 1,
     complaintNumber: "#C854165",
@@ -12,7 +11,7 @@ const complaints = [
     GetReporter: { name: "เมฆินท์ ปลิวลม", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ขายบ้านเดี่ยว 2 ชั้น ย่านลาดพร้าว", category: "ประกาศ" },
     date: "2025-11-25",
-    status: "รอดำเนินการ"
+    status: "รอดำเนินการ",
   },
   {
     id: 3,
@@ -25,7 +24,7 @@ const complaints = [
     GetReporter: { name: "ฟ้าใส หวานฉ่ำ", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ผู้ขายรายนี้", category: "ผู้ใช้" },
     date: "2025-11-25",
-    status: "รอดำเนินการ"
+    status: "รอดำเนินการ",
   },
   {
     id: 4,
@@ -38,7 +37,7 @@ const complaints = [
     GetReporter: { name: "น้ำค้าง ฟองฟู", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ประกาศซ้ำซ้อน", category: "ประกาศ" },
     date: "2025-11-25",
-    status: "รอดำเนินการ"
+    status: "รอดำเนินการ",
   },
 
   // อยู่ระหว่างการตรวจสอบ
@@ -54,7 +53,7 @@ const complaints = [
     GetReporter: { name: "สายลม ชิลชิล", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ผู้ขายคอนโดสุขุมวิท", category: "ผู้ใช้" },
     date: "2025-11-12",
-    status: "อยู่ระหว่างการตรวจสอบ"
+    status: "อยู่ระหว่างการตรวจสอบ",
   },
   {
     id: 5,
@@ -67,7 +66,7 @@ const complaints = [
     GetReporter: { name: "วายุ ไหวลม", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ประกาศสินค้านี้", category: "ประกาศ" },
     date: "2025-11-14",
-    status: "อยู่ระหว่างการตรวจสอบ"
+    status: "อยู่ระหว่างการตรวจสอบ",
   },
 
   // เสร็จสิ้น
@@ -82,8 +81,13 @@ const complaints = [
     GetReporter: { name: "มะลิ สีม่วง", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ผู้ใช้รายนี้", category: "ผู้ใช้" },
     date: "2025-11-15",
-    status: "เสร็จสิ้น"
+    status: "เสร็จสิ้น",
+    action: {
+      type: "เตือนผู้ใช้", // เตือน
+      duration: null,
+    },
   },
+
   {
     id: 7,
     complaintNumber: "#C854171",
@@ -95,8 +99,13 @@ const complaints = [
     GetReporter: { name: "ภูผา เขียวชอุ่ม", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ประกาศบ้านเดี่ยว", category: "ประกาศ" },
     date: "2025-11-16",
-    status: "เสร็จสิ้น"
+    status: "เสร็จสิ้น",
+    action: {
+      type: "ลบประกาศ",
+      duration: null,
+    },
   },
+
   {
     id: 8,
     complaintNumber: "#C854172",
@@ -108,8 +117,13 @@ const complaints = [
     GetReporter: { name: "พายุ น้ำค้าง", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ผู้ขายรายนี้", category: "ผู้ใช้" },
     date: "2025-11-17",
-    status: "เสร็จสิ้น"
+    status: "เสร็จสิ้น",
+    action: {
+      type: "ระงับผู้ใช้",
+      duration: 7, // ระงับ 7 วัน
+    },
   },
+
   {
     id: 9,
     complaintNumber: "#C854173",
@@ -121,8 +135,13 @@ const complaints = [
     GetReporter: { name: "ก้อนเมฆ ขาวฟ้า", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ประกาศบ้านหลังนี้", category: "ประกาศ" },
     date: "2025-11-18",
-    status: "เสร็จสิ้น"
+    status: "เสร็จสิ้น",
+    action: {
+      type: "เตือนผู้ใช้",
+      duration: null,
+    },
   },
+
   {
     id: 10,
     complaintNumber: "#C854174",
@@ -134,8 +153,12 @@ const complaints = [
     GetReporter: { name: "น้ำค้าง ฟองฟู", role: "ผู้ขาย/นายหน้า" },
     target: { name: "ผู้ขายรายนี้", category: "ผู้ใช้" },
     date: "2025-11-19",
-    status: "เสร็จสิ้น"
-  }
+    status: "เสร็จสิ้น",
+    action: {
+      type: "ระงับประกาศ",
+      duration: 3, // ระงับ 3 วัน
+    },
+  },
 ];
 
 export function fetchComplaints() {

@@ -37,7 +37,7 @@
 
 /* Active buttons */
 .active-status , .active-type  {
-    background: linear-gradient(45deg, #ffe9a9, #ffc0a7);
+    background: linear-gradient(45deg, #edf0ff, #ffeae2);
     color: #212529;
 }
 

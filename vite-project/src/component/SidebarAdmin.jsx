@@ -47,8 +47,7 @@ const SidebarAdmin = () => {
   return (
     <div className=" d-flex flex-column justify-content-center gap-2">
       {/* Profile */}
-      <NavLink
-        to="/ProfileAdmin"
+      <div
         className="bg-white d-flex justify-content-center"
         style={{ textDecoration: "none", width: "100%" }}
       >
@@ -79,7 +78,7 @@ const SidebarAdmin = () => {
             <span>view profile</span>
           </div>
         </Button>
-      </NavLink>
+      </div>
 
       {/* Menu Buttons */}
       <div className="d-flex flex-column gap-2 mt-5">

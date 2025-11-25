@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLocation, useOutletContext, NavLink } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
-import "./pageStyle/card.css";
 
 const DetailAD = () => {
   const { adRequests, setAdRequests } = useOutletContext();
@@ -18,6 +17,7 @@ const DetailAD = () => {
     กำลังเผยแพร่: { color: "#32CD32", bg: "#D0FFD0" },
     รอการตรวจสอบ: { color: "#FFA500", bg: "#FFF4CC" },
     รอผู้ใช้แก้ไขข้อมูล: { color: "#1E90FF", bg: "#CCE5FF" },
+    รอชำระเงิน: { color: "#C15A00", bg: "#FCC99F" },
   };
 
   const handleModalShow = () => setShowModal(true);
@@ -25,115 +25,253 @@ const DetailAD = () => {
 
   const handleSendMessage = () => {
     setAd({ ...ad, status: "รอผู้ใช้แก้ไขข้อมูล" });
-    const updatedAds = adRequests.map((a) =>
-      a.id === ad.id ? { ...a, status: "รอผู้ใช้แก้ไขข้อมูล" } : a
+    setAdRequests(
+      adRequests.map((a) =>
+        a.id === ad.id ? { ...a, status: "รอผู้ใช้แก้ไขข้อมูล" } : a
+      )
     );
-    setAdRequests(updatedAds);
     setShowModal(false);
     alert(`ส่งข้อความไปยังผู้ใช้: ${ad.contact.name}\n${message}`);
   };
 
   const handlePublish = () => {
     setAd({ ...ad, status: "รอชำระเงิน" });
-    const updatedAds = adRequests.map((a) =>
-      a.id === ad.id ? { ...a, status: "รอชำระเงิน" } : a
+    setAdRequests(
+      adRequests.map((a) =>
+        a.id === ad.id ? { ...a, status: "รอชำระเงิน" } : a
+      )
     );
-    setAdRequests(updatedAds);
     alert("โฆษณาถูกเปลี่ยนสถานะเป็น รอชำระเงิน เรียบร้อยแล้ว!");
   };
 
   return (
     <div className="p-4">
-      <NavLink to="/PlaceAd">
-        <button className="btn btn-outline-secondary mb-3">กลับ</button>
-      </NavLink>
-      <div className="d-flex">
-        {ad.image && (
-          <div >
-            <h2>{ad.campaignDetails}</h2>
-            <div className="AD-pic">
-              <img src={ad.image} alt={ad.campaignDetails} />
-            </div>
+      <div className="p-4">
+        <NavLink to="/PlaceAd">
+          <Button variant="outline-secondary" className="mb-3">
+            กลับ
+          </Button>
+        </NavLink>
 
-            <div>
-              <h5>วันที่ส่งคำขอ</h5>
-              <p>{ad.submittedAt}</p>
-              <h5>ข้อมูลบริษัท / ผู้ติดต่อ</h5>
-              <p>ชื่อบริษัท: {ad.companyName}</p>
-              <p>ชื่อผู้ติดต่อ: {ad.contact.name}</p>
-              <p>Email: {ad.contact.email}</p>
-            </div>
-          </div>
-        )}
-
-        <div>
-          <h5>รายละเอียดโฆษณา</h5>
-          <p>ประเภทโฆษณา: {ad.adType}</p>
-          <p>แพ็กเกจ: {ad.package}</p>
-          <p>ราคา: {ad.price}</p>
-          <p>ประเภทอสังหา: {ad.propertyType}</p>
-          <p>วันที่เริ่ม: {ad.startDate}</p>
-          <p>วันที่สิ้นสุด: {ad.endDate}</p>
-          <p>
-            สถานะ:{" "}
-            <span
+        <div className="d-flex gap-4">
+          {/* ฝั่งรูป */}
+          <div style={{ flex: "1 1 60%" }}>
+            <div
               style={{
-                color: statusColor[ad.status]?.color,
-                backgroundColor: statusColor[ad.status]?.bg,
-                padding: "5px 12px",
-                borderRadius: "12px",
-                fontWeight: "600",
+                backgroundColor: "white",
+                width: "100%",
+                height: "400px",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                overflow: "hidden",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
               }}
             >
-              {ad.status}
-            </span>
-          </p>
+              {ad.image ? (
+                <img
+                  src={ad.image}
+                  alt={ad.campaignDetails}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                <span className="text-muted">ไม่มีรูป</span>
+              )}
+            </div>
 
-          {ad.status === "รอการตรวจสอบ" && (
-            <>
-              <Button variant="warning" onClick={handleModalShow}>
-                แจ้งผู้ใช้แก้ไข
-              </Button>
-              <Button variant="success" onClick={handlePublish}>
-                เผยแพร่โฆษณา
-              </Button>
-            </>
-          )}
-          {ad.status === "รอผู้ใช้แก้ไขข้อมูล" && (
-            <>
-              <Button variant="warning" onClick={handleModalShow}>
-                แจ้งผู้ใช้แก้ไข
-              </Button>
-              <Button variant="success" onClick={handlePublish}>
-                เผยแพร่โฆษณา
-              </Button>
-            </>
-          )}
+            <div
+              className="card mt-3 p-4"
+              style={{
+                width: "100%",
+                borderRadius: "10px",
+                border: "1px solid #e0e0e0", // ขอบอ่อน
+                backgroundColor: "#fdfdfd", // พื้นการ์ดอ่อน ๆ
+                boxShadow: "0 4px 12px rgba(0,0,0,0.06)", // เงาเบา ๆ
+              }}
+            >
+              <h2
+                className="mb-3"
+                style={{ fontSize: "2rem", fontWeight: "700" }}
+              >
+                {ad.campaignDetails}
+              </h2>
+              <h4 className="mb-2 mt-2" style={{ fontSize: "1.3rem" }}>
+                <strong>ID:</strong> {ad.id}
+              </h4>
+              <h4 className="mb-2 mt-2" style={{ fontSize: "1.3rem" }}>
+                <strong>ชื่อบริษัท:</strong> {ad.companyName}
+              </h4>
+              <h4 className="mb-2 mt-2" style={{ fontSize: "1.3rem" }}>
+                <strong>ชื่อโปรเจค:</strong> {ad.projectName}
+              </h4>
+              <h4 className="mb-2 mt-2" style={{ fontSize: "1.3rem" }}>
+                <strong>ผู้ติดต่อ:</strong> {ad.contact.name}
+              </h4>
+              <h4 className="mb-2 mt-2" style={{ fontSize: "1.3rem" }}>
+                <strong>Email:</strong> {ad.contact.email}
+              </h4>
+            </div>
+          </div>
+
+          {/* ฝั่งข้อมูล slot */}
+          <div style={{ flex: "1 1 35%" }}>
+            <div
+              className="shadow p-4"
+              style={{
+                borderRadius: "15px",
+                backgroundColor: "#ffffff",
+                border: "1px solid #ddd",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "60%",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+              }}
+            >
+              {/* ข้อมูลโฆษณา */}
+              <div>
+                <p
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: "500",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  <strong>Slot:</strong> {ad.slot}
+                </p>
+                <p
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: "500",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  <strong>ระยะเวลา:</strong> {ad.during}
+                </p>
+                <p
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: "500",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  <strong>ราคา:</strong> {ad.price}
+                </p>
+                <p
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: "500",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  <strong>วันที่เริ่ม:</strong> {ad.startDate}
+                </p>
+                <p
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: "500",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  <strong>วันที่สิ้นสุด:</strong> {ad.endDate}
+                </p>
+                <p
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: "500",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  <strong>สถานะ:</strong>{" "}
+                  <span
+                    style={{
+                      color: statusColor[ad.status]?.color,
+                      backgroundColor: statusColor[ad.status]?.bg,
+                      padding: "8px 16px",
+                      borderRadius: "15px",
+                      fontWeight: "600",
+                      fontSize: "1.1rem",
+                      display: "inline-block",
+                    }}
+                  >
+                    {ad.status}
+                  </span>
+                </p>
+              </div>
+
+              {/* ปุ่ม action */}
+              {(ad.status === "รอการตรวจสอบ" ||
+                ad.status === "รอผู้ใช้แก้ไขข้อมูล") && (
+                <div className="d-flex gap-3 mt-2 mb-3">
+                  <Button
+                    variant="warning"
+                    style={{ flex: 1, fontWeight: "400", fontSize: "1.15rem" }}
+                    onClick={handleModalShow}
+                  >
+                    แจ้งผู้ใช้แก้ไข
+                  </Button>
+                  <Button
+                    variant="success"
+                    style={{ flex: 1, fontWeight: "400", fontSize: "1.15rem" }}
+                    onClick={handlePublish}
+                  >
+                    เผยแพร่โฆษณา
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-
-        <Modal show={showModal} onHide={handleModalClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>แจ้งผู้ใช้แก้ไขโฆษณา</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Control
-              as="textarea"
-              rows={4}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="ระบุว่าต้องแก้ตรงไหน แล้วส่งกลับไป"
-            />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleModalClose}>
-              ปิด
-            </Button>
-            <Button variant="primary" onClick={handleSendMessage}>
-              ส่งข้อความ
-            </Button>
-          </Modal.Footer>
-        </Modal>
       </div>
+
+      <Modal show={showModal} onHide={handleModalClose} centered size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title style={{ fontSize: "1.5rem", fontWeight: "600" }}>
+            แจ้งผู้ใช้แก้ไขโฆษณา
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Control
+            as="textarea"
+            rows={6}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="ระบุว่าต้องแก้ตรงไหน แล้วส่งกลับไป"
+            style={{
+              fontSize: "1.1rem",
+              padding: "12px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+            }}
+          />
+        </Modal.Body>
+        <Modal.Footer className="d-flex justify-content-between">
+          <Button
+            variant="secondary"
+            onClick={handleModalClose}
+            style={{
+              fontSize: "1.1rem",
+              padding: "10px 20px",
+              borderRadius: "8px",
+            }}
+          >
+            ปิด
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleSendMessage}
+            style={{
+              fontSize: "1.1rem",
+              padding: "10px 20px",
+              borderRadius: "8px",
+            }}
+          >
+            ส่งข้อความ
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

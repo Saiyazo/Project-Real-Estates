@@ -17,11 +17,9 @@ import DashboardAdmin from "./pageAdmin/DashBoard";
 import ManageAssets from "./pageAdmin/ManageAssets.jsx";
 import ManageUser from "./pageAdmin/ManageUser.jsx";
 import ComplainUser from "./pageAdmin/ComplaintsUser";
-import ProfileAdmin from "./pageAdmin/ProfileAdmin.jsx";
 import PlaceAd from "./pageAdmin/PlaceAd.jsx";
 import SettingAdmin from './pageAdmin/SettingAdmin.jsx'
-import DetailCom from "./pageAdmin/DetailComplainJa.jsx";
-import DetailProperty from "./pageAdmin/DetailProperty.jsx";
+
 import DetailAD from "./pageAdmin/DetailAD.jsx";
 
 function App() {
@@ -54,15 +52,13 @@ function App() {
             }
           >
             <Route index element={<DashboardAdmin />} />
-            <Route path="/ProfileAdmin" element={<ProfileAdmin />} />
+            
             <Route path="/DashboardAdmin" element={<DashboardAdmin />} />
             <Route path="/ManageAssets" element={<ManageAssets />} />
             <Route path="/ComplainUser" element={<ComplainUser />} />
             <Route path="/ManageUser" element={<ManageUser />} />
             <Route path="/PlaceAd" element={<PlaceAd />} />
             <Route path="/SettingAdmin" element={<SettingAdmin />} />
-            <Route path="/DetailCom" element={<DetailCom />} />
-            <Route path="/DetailProperty" element={<DetailProperty />} />
             <Route path="/DetailAD" element={<DetailAD />} />
           </Route>
         </Routes>

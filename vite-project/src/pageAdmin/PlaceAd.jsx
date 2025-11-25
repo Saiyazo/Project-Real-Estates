@@ -12,7 +12,6 @@ const PlaceAd = () => {
   const [numPages, setNumPages] = useState(1);
   const [showTableModal, setShowTableModal] = useState(false);
 
-  // ตั้งค่าคอลัมน์ (ค่าเริ่มต้นโชว์ทั้งหมด)
   const [columns, setColumns] = useState({
     id: true,
     companyName: true,
@@ -23,7 +22,6 @@ const PlaceAd = () => {
     actions: true,
   });
 
-  // อัปเดตสถานะจาก sessionStorage
   useEffect(() => {
     const changedAd = JSON.parse(sessionStorage.getItem("changedAd"));
     if (changedAd) {
@@ -34,27 +32,24 @@ const PlaceAd = () => {
       );
       sessionStorage.removeItem("changedAd");
     }
-  }, []);
+  }, [setAdRequests]);
 
-  // Filter data ตาม search
   const filteredData = adRequests.filter(
     (item) =>
       item.companyName.toLowerCase().includes(search.toLowerCase()) ||
       item.id.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Pagination
   useEffect(() => {
     const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
     setNumPages(totalPages);
     if (curPage > totalPages) setCurPage(totalPages);
   }, [filteredData, itemsPerPage, curPage]);
 
-  const FirstPage = (curPage - 1) * itemsPerPage;
-  const LastPage = Math.min(curPage * itemsPerPage, filteredData.length);
-  const paginatedData = filteredData.slice(FirstPage, LastPage);
+  const firstIndex = (curPage - 1) * itemsPerPage;
+  const lastIndex = Math.min(curPage * itemsPerPage, filteredData.length);
+  const paginatedData = filteredData.slice(firstIndex, lastIndex);
 
-  // Map status ภาษาไทย -> CSS badge
   const statusBadge = {
     รอการตรวจสอบ: { color: "#b88a00", bg: "#fff1b9ff" },
     รอผู้ใช้แก้ไขข้อมูล: { color: "#005c99", bg: "#c4f0ffff" },
@@ -64,24 +59,11 @@ const PlaceAd = () => {
     ยกเลิก: { color: "#7a1a05", bg: "#ffc8c8ff" },
   };
 
-  // ฟังก์ชันจัดการปุ่ม
-  const handleApprove = (id) => {
-    setAdRequests((prev) =>
-      prev.map((ad) => (ad.id === id ? { ...ad, status: "กำลังเผยแพร่" } : ad))
-    );
-  };
-  const handleReject = (id) => {
-    setAdRequests((prev) =>
-      prev.map((ad) => (ad.id === id ? { ...ad, status: "ยกเลิก" } : ad))
-    );
-  };
-
   return (
     <div>
       <main className="flex-fill p-4 bg-light">
         <h1 className="mb-4">คำขอลงโฆษณา</h1>
 
-        {/* Stats cards */}
         <div className="row g-3 mb-4">
           {[
             "รอการตรวจสอบ",
@@ -105,15 +87,12 @@ const PlaceAd = () => {
             <div className="card shadow-sm">
               <div className="card-body text-center">
                 <div className="text-muted small">รวมทั้งหมด</div>
-                <div className="fs-3 fw-bold text-success">
-                  {adRequests.length}
-                </div>
+                <div className="fs-3 fw-bold text-success">{adRequests.length}</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Search + ปุ่ม */}
         <div className="d-flex justify-content-between mb-3">
           <input
             type="text"
@@ -123,17 +102,14 @@ const PlaceAd = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <div className="btn-group">
-            <button
-              className="btn btn-outline-primary"
-            >
-              <i className="bi bi-calendar"></i>&nbsp;&nbsp;<span>ปฏิทิน</span>
+            <button className="btn btn-outline-primary">
+              <i className="bi bi-calendar"></i>&nbsp;ปฏิทิน
             </button>
             <button
               className="btn btn-outline-primary"
               onClick={() => setShowTableModal(true)}
             >
-              <i className="bi bi-gear"></i>&nbsp;&nbsp;
-              <span>ตั้งค่าตาราง</span>
+              <i className="bi bi-gear"></i>&nbsp;ตั้งค่าตาราง
             </button>
             <button
               className="btn btn-outline-primary"
@@ -144,7 +120,6 @@ const PlaceAd = () => {
           </div>
         </div>
 
-        {/* Table */}
         <div className="table-responsive">
           <table className="table table-hover align-middle">
             <thead className="table-light">
@@ -173,10 +148,10 @@ const PlaceAd = () => {
                     <td>
                       <span
                         style={{
-                          color: statusBadge[item.status].color,
-                          backgroundColor: statusBadge[item.status].bg,
+                          color: statusBadge[item.status]?.color || "#000",
+                          backgroundColor: statusBadge[item.status]?.bg || "#eee",
                           borderRadius: "8px",
-                          padding: "10px",
+                          padding: "5px 10px",
                           display: "inline-block",
                           minWidth: "80px",
                         }}
@@ -188,36 +163,22 @@ const PlaceAd = () => {
                   {columns.submittedAt && <td>{item.submittedAt}</td>}
                   {columns.actions && (
                     <td>
-                      <NavLink to={"/DetailProperty"}>
-                        <Button>ดูรายละเอียด</Button>
+                      <NavLink to="/DetailAD" state={{ ad: item }}>
+                        <Button size="sm">ดูรายละเอียด</Button>
                       </NavLink>
                     </td>
                   )}
                 </tr>
               ))}
-
-              {/* Pagination */}
               <tr>
-                <td
-                  colSpan={
-                    columns.id +
-                    columns.companyName +
-                    columns.contact +
-                    columns.adType +
-                    columns.status +
-                    columns.submittedAt +
-                    columns.actions
-                  }
-                >
-                  แสดง {FirstPage + 1} - {LastPage} จาก {filteredData.length}{" "}
-                  โฆษณา
+                <td colSpan={Object.values(columns).filter(Boolean).length}>
+                  แสดง {firstIndex + 1} - {lastIndex} จาก {filteredData.length} โฆษณา
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        {/* Modal ตั้งค่าตาราง */}
         <Modal
           show={showTableModal}
           onHide={() => setShowTableModal(false)}
@@ -227,8 +188,7 @@ const PlaceAd = () => {
         >
           <Modal.Header closeButton className="bg-primary text-white">
             <Modal.Title>
-              <i className="bi bi-table me-2"></i>
-              ตั้งค่าตาราง
+              <i className="bi bi-table me-2"></i>ตั้งค่าตาราง
             </Modal.Title>
           </Modal.Header>
 
@@ -250,9 +210,7 @@ const PlaceAd = () => {
               </Form.Group>
 
               <Form.Group>
-                <Form.Label className="fw-bold mb-2">
-                  คอลัมน์ที่จะแสดง
-                </Form.Label>
+                <Form.Label className="fw-bold mb-2">คอลัมน์ที่จะแสดง</Form.Label>
                 <div className="d-flex flex-column gap-2 p-2 border rounded shadow-sm">
                   {Object.keys(columns).map((col) => (
                     <Form.Check

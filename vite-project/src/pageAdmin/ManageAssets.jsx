@@ -280,11 +280,10 @@ const ManageAssets = () => {
                 </td>
                 <td>{p.datePosted}</td>
                 <td>
-                  <NavLink to={"/DetailProperty"}>
+                  
                     <button className="btn btn-primary btn-sm">
                       ดูรายละเอียด
                     </button>
-                  </NavLink>
                 </td>
               </tr>
             ))}

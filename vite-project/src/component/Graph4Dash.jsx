@@ -52,7 +52,6 @@ const GrapAll = () => {
     "รอชำระเงิน": "#FF8C00",
     "กำลังเผยแพร่": "#32CD32",
     "ประกาศหมดอายุ": "#A9A9A9",
-    "ยกเลิก": "#FF4C4C",
   };
 
   const requestDataNa = Object.keys(adStatusColors).map((status) => ({
