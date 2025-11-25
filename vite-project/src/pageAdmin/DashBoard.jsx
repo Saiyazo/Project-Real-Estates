@@ -14,6 +14,11 @@ const DashboardAdmin = () => {
   const totalProperties = properties?.length || 0;
   const totalComplaints = complaints?.length || 0;
   const totalAdRequests = adRequests?.length || 0;
+  
+  const totalComplaintsDone = complaints?.filter(
+    (c) => c.status === "เสร็จสิ้น"
+  ).length || 0;
+
   return (
     <div className="p-4 pageAll">
       <h1>แดชบอร์ด</h1>
@@ -50,7 +55,19 @@ const DashboardAdmin = () => {
             ดูคำร้องเรียน <i className="bi bi-arrow-right-short"></i>
           </NavLink>
         </div>
-
+         {/*อสงขัย at all */}
+        <div className="card-4">
+          <div className="card-header">
+            <div>
+              <h5>คำร้องเรียนที่เสร็จสิ้น</h5>
+              <h1>{totalComplaintsDone}</h1>
+            </div>
+            <i className="bi bi-check-circle-fill"></i>
+          </div>
+          <NavLink to="/ComplainUser">
+            ดูคำร้องเรียน <i className="bi bi-arrow-right-short"></i>
+          </NavLink>
+        </div>
         {/*อสงขัย at all */}
         <div className="card-3">
           <div className="card-header">
@@ -65,7 +82,7 @@ const DashboardAdmin = () => {
           </NavLink>
         </div>
         {/*อสงขัย at all */}
-        <div className="card-4">
+        <div className="card-5">
           <div className="card-header">
             <div>
               <h5>ติดต่อลงโฆษณาทั้งหมด</h5>

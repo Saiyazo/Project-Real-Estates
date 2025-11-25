@@ -63,12 +63,10 @@ const Blockcomplain = () => {
                 <span className="text-start">{boxComplain.date}</span>
                 <div className="text-end">
                   {/* ส่ง complaint ผ่าน state ไปยัง DetailCom */}
-                  <NavLink
-                    to="/DetailCom"
-                    state={{ complaint: boxComplain }}
+                  <a className="text-primary"
                   >
                     ดูรายละเอียดเพิ่มเติม
-                  </NavLink>
+                  </a>
                 </div>
               </div>
             </div>

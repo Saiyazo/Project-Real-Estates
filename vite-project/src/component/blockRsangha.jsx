@@ -82,7 +82,7 @@ const BlockAsang = () => {
               <div className="d-flex justify-content-between">
                 <span className="text-start">{boxProperty.datePosted}</span>
                 <div className="text-end">
-                <NavLink to={"/DetailProperty"}>ดูรายละเอียดเพิ่มเติม</NavLink>
+               <a className="text-primary">ดูรายละเอียดเพิ่มเติม</a>
               </div>
               </div>
             </div>

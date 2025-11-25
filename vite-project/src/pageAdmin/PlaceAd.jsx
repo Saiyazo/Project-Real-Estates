@@ -1,15 +1,29 @@
 import { useState, useEffect } from "react";
-import { useOutletContext, Link } from "react-router-dom";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-//import CalenderAM from "../component/CalenderAM.jsx";
-
+import { NavLink, useOutletContext } from "react-router-dom";
+import { Button, Modal, Form } from "react-bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./pageStyle/dash.css";
 
 const PlaceAd = () => {
   const { adRequests, setAdRequests } = useOutletContext();
-  const [searchText, setSearchText] = useState("");
+  const [search, setSearch] = useState("");
+  const [curPage, setCurPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [numPages, setNumPages] = useState(1);
+  const [showTableModal, setShowTableModal] = useState(false);
 
+  // ตั้งค่าคอลัมน์ (ค่าเริ่มต้นโชว์ทั้งหมด)
+  const [columns, setColumns] = useState({
+    id: true,
+    companyName: true,
+    contact: true,
+    adType: true,
+    status: true,
+    submittedAt: true,
+    actions: true,
+  });
+
+  // อัปเดตสถานะจาก sessionStorage
   useEffect(() => {
     const changedAd = JSON.parse(sessionStorage.getItem("changedAd"));
     if (changedAd) {
@@ -22,159 +36,247 @@ const PlaceAd = () => {
     }
   }, []);
 
-  const filteredAds = adRequests.filter(
-    (ad) =>
-      ad.contact.name.toLowerCase().includes(searchText.toLowerCase()) ||
-      ad.campaignDetails.toLowerCase().includes(searchText.toLowerCase())
+  // Filter data ตาม search
+  const filteredData = adRequests.filter(
+    (item) =>
+      item.companyName.toLowerCase().includes(search.toLowerCase()) ||
+      item.id.toLowerCase().includes(search.toLowerCase())
   );
 
-  const countByStatus = (status) =>
-    adRequests.filter((ad) => ad.status === status).length;
+  // Pagination
+  useEffect(() => {
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
+    setNumPages(totalPages);
+    if (curPage > totalPages) setCurPage(totalPages);
+  }, [filteredData, itemsPerPage, curPage]);
 
-  const statuses = [
-    "รอการตรวจสอบ",
-    "รอผู้ใช้แก้ไขข้อมูล",
-    "รอชำระเงิน",
-    "กำลังเผยแพร่",
-    "ประกาศหมดอายุ",
-    "ยกเลิก",
-  ];
+  const FirstPage = (curPage - 1) * itemsPerPage;
+  const LastPage = Math.min(curPage * itemsPerPage, filteredData.length);
+  const paginatedData = filteredData.slice(FirstPage, LastPage);
 
-  const statusColors = {
-    รอการตรวจสอบ: { color: "#b88a00", bg: "#fff4b3" },
-    รอผู้ใช้แก้ไขข้อมูล: { color: "#005c99", bg: "#cfefff" },
-    รอชำระเงิน: { color: "#c15a00", bg: "#ffe2c4" },
-    กำลังเผยแพร่: { color: "#17763a", bg: "#b8ffba" },
-    ประกาศหมดอายุ: { color: "#555555", bg: "#e8e8e8" },
-    ยกเลิก: { color: "#7a1a05", bg: "#ffcab8" },
+  // Map status ภาษาไทย -> CSS badge
+  const statusBadge = {
+    รอการตรวจสอบ: { color: "#b88a00", bg: "#fff1b9ff" },
+    รอผู้ใช้แก้ไขข้อมูล: { color: "#005c99", bg: "#c4f0ffff" },
+    รอชำระเงิน: { color: "#c15a00", bg: "#fcc99fff" },
+    กำลังเผยแพร่: { color: "#17763a", bg: "#d4ffd4" },
+    ประกาศหมดอายุ: { color: "#555555", bg: "#f0f0f0" },
+    ยกเลิก: { color: "#7a1a05", bg: "#ffc8c8ff" },
+  };
+
+  // ฟังก์ชันจัดการปุ่ม
+  const handleApprove = (id) => {
+    setAdRequests((prev) =>
+      prev.map((ad) => (ad.id === id ? { ...ad, status: "กำลังเผยแพร่" } : ad))
+    );
+  };
+  const handleReject = (id) => {
+    setAdRequests((prev) =>
+      prev.map((ad) => (ad.id === id ? { ...ad, status: "ยกเลิก" } : ad))
+    );
   };
 
   return (
-    <div className="m-2 p-2">
-      <h1 className="mb-5">ติดต่อลงโฆษณา</h1>
-      {/*<div className="border p-3 rounded-2 shadow-sm" style={{ height: "87vh" }}>
-          <h4>ปฏิทินคำขอลงโฆษณา</h4>
-          <div style={{ flexGrow: 1, overflowY: "auto" }}>
-            <CalenderAM adRequests={adRequests} />
-          </div>
-        </div> */}
-      {/* คำขอ */}
-      <div
-        className="border p-2 rounded-2 shadow-sm"
-        style={{ height: "87vh", width: "100%" }}
-      >
-        <form className="d-flex mb-2" role="search">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-          <button className="btn btn-outline-primary" type="button">
-            Search
-          </button>
-        </form>
+    <div>
+      <main className="flex-fill p-4 bg-light">
+        <h1 className="mb-4">คำขอลงโฆษณา</h1>
 
-        <Tabs id="ad-status-tabs" className="mb-3" fill>
-          {/* Tab ดูทั้งหมด */}
-          <Tab eventKey="ทั้งหมด" title={`ดูทั้งหมด (${filteredAds.length})`}>
-            <div className="miniOverflow bg-white">
-              {filteredAds.map((ad, index) => (
-                <div
-                  key={ad.id || index}
-                  className="border rounded-1 bg-white m-2 p-2"
-                >
-                  <div className="d-flex justify-content-between">
-                    <div className="text-dark">
-                      <div className="fs-5">{ad.campaignDetails}</div>
-                      <div className="fs-6">{ad.contact.name}</div>
-                    </div>
-                    <div className="text-end">
+        {/* Stats cards */}
+        <div className="row g-3 mb-4">
+          {[
+            "รอการตรวจสอบ",
+            "รอผู้ใช้แก้ไขข้อมูล",
+            "รอชำระเงิน",
+            "กำลังเผยแพร่",
+            "ประกาศหมดอายุ",
+          ].map((status) => (
+            <div className="col-md-2" key={status}>
+              <div className="card shadow-sm">
+                <div className="card-body text-center">
+                  <div className="text-muted small">{status}</div>
+                  <div className="fs-3 fw-bold">
+                    {adRequests.filter((ad) => ad.status === status).length}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          <div className="col-md-2">
+            <div className="card shadow-sm">
+              <div className="card-body text-center">
+                <div className="text-muted small">รวมทั้งหมด</div>
+                <div className="fs-3 fw-bold text-success">
+                  {adRequests.length}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Search + ปุ่ม */}
+        <div className="d-flex justify-content-between mb-3">
+          <input
+            type="text"
+            className="form-control w-50"
+            placeholder="ค้นหา ID หรือ ชื่อบริษัท"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <div className="btn-group">
+            <button
+              className="btn btn-outline-primary"
+            >
+              <i className="bi bi-calendar"></i>&nbsp;&nbsp;<span>ปฏิทิน</span>
+            </button>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => setShowTableModal(true)}
+            >
+              <i className="bi bi-gear"></i>&nbsp;&nbsp;
+              <span>ตั้งค่าตาราง</span>
+            </button>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => alert("คลิกเพิ่ม")}
+            >
+              <i className="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        {/* Table */}
+        <div className="table-responsive">
+          <table className="table table-hover align-middle">
+            <thead className="table-light">
+              <tr>
+                {columns.id && <th>ID</th>}
+                {columns.companyName && <th>ชื่อบริษัท</th>}
+                {columns.contact && <th>ติดต่อ</th>}
+                {columns.adType && <th>ประเภทโฆษณา</th>}
+                {columns.status && <th>สถานะ</th>}
+                {columns.submittedAt && <th>วันที่ส่งคำขอ</th>}
+                {columns.actions && <th>การจัดการ</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedData.map((item) => (
+                <tr key={item.id}>
+                  {columns.id && <td>{item.id}</td>}
+                  {columns.companyName && <td>{item.companyName}</td>}
+                  {columns.contact && (
+                    <td>
+                      {item.contact.name} <br /> {item.contact.email}
+                    </td>
+                  )}
+                  {columns.adType && <td>{item.adType}</td>}
+                  {columns.status && (
+                    <td>
                       <span
                         style={{
-                          color: statusColors[ad.status]?.color || "black",
-                          backgroundColor:
-                            statusColors[ad.status]?.bg || "white",
-                          padding: "5px 15px",
-                          borderRadius: "15px",
-                          fontWeight: "600",
-                          fontSize: "0.9rem",
+                          color: statusBadge[item.status].color,
+                          backgroundColor: statusBadge[item.status].bg,
+                          borderRadius: "8px",
+                          padding: "10px",
                           display: "inline-block",
+                          minWidth: "80px",
                         }}
                       >
-                        {ad.status}
+                        {item.status}
                       </span>
-                    </div>
-                  </div>
-                  <div className="d-flex justify-content-between mt-2">
-                    <p className="text-gray">{ad.submittedAt}</p>
-                    <Link to="/DetailAD" state={{ ad }}>
-                      <button className="btn btn-sm btn-outline-primary">
-                        ดูรายละเอียด
-                      </button>
-                    </Link>
-                  </div>
-                </div>
+                    </td>
+                  )}
+                  {columns.submittedAt && <td>{item.submittedAt}</td>}
+                  {columns.actions && (
+                    <td>
+                      <NavLink to={"/DetailProperty"}>
+                        <Button>ดูรายละเอียด</Button>
+                      </NavLink>
+                    </td>
+                  )}
+                </tr>
               ))}
-            </div>
-          </Tab>
 
-          {/* Tab ตามสถานะ */}
-          {statuses.map((status) => {
-            const adsByStatus = filteredAds.filter(
-              (ad) => ad.status === status
-            );
-            return (
-              <Tab
-                key={status}
-                eventKey={status}
-                title={`${status} (${countByStatus(status)})`}
-              >
-                <div className="miniOverflow bg-white">
-                  {adsByStatus.map((ad, index) => (
-                    <div
-                      key={ad.id || index}
-                      className="border rounded-1 bg-white m-2 p-2"
-                    >
-                      <div className="d-flex justify-content-between">
-                        <div className="text-dark">
-                          <div className="fs-5">{ad.campaignDetails}</div>
-                          <div className="fs-6">{ad.contact.name}</div>
-                        </div>
-                        <div className="text-end">
-                          <span
-                            style={{
-                              color: statusColors[ad.status]?.color || "black",
-                              backgroundColor:
-                                statusColors[ad.status]?.bg || "white",
-                              padding: "5px 15px",
-                              borderRadius: "15px",
-                              fontWeight: "600",
-                              fontSize: "0.9rem",
-                              display: "inline-block",
-                            }}
-                          >
-                            {ad.status}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="d-flex justify-content-between mt-2">
-                        <p className="text-gray">{ad.submittedAt}</p>
-                        <Link to="/DetailAD" state={{ ad }}>
-                          <button className="btn btn-sm btn-outline-primary">
-                            ดูรายละเอียด
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+              {/* Pagination */}
+              <tr>
+                <td
+                  colSpan={
+                    columns.id +
+                    columns.companyName +
+                    columns.contact +
+                    columns.adType +
+                    columns.status +
+                    columns.submittedAt +
+                    columns.actions
+                  }
+                >
+                  แสดง {FirstPage + 1} - {LastPage} จาก {filteredData.length}{" "}
+                  โฆษณา
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Modal ตั้งค่าตาราง */}
+        <Modal
+          show={showTableModal}
+          onHide={() => setShowTableModal(false)}
+          size="md"
+          centered
+          backdrop="static"
+        >
+          <Modal.Header closeButton className="bg-primary text-white">
+            <Modal.Title>
+              <i className="bi bi-table me-2"></i>
+              ตั้งค่าตาราง
+            </Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-4">
+                <Form.Label className="fw-bold">จำนวนรายการต่อหน้า</Form.Label>
+                <Form.Select
+                  value={itemsPerPage}
+                  onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                  className="shadow-sm"
+                >
+                  {[5, 10, 20, 50].map((num) => (
+                    <option key={num} value={num}>
+                      {num} รายการต่อหน้า
+                    </option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label className="fw-bold mb-2">
+                  คอลัมน์ที่จะแสดง
+                </Form.Label>
+                <div className="d-flex flex-column gap-2 p-2 border rounded shadow-sm">
+                  {Object.keys(columns).map((col) => (
+                    <Form.Check
+                      key={col}
+                      type="checkbox"
+                      label={col}
+                      checked={columns[col]}
+                      onChange={(e) =>
+                        setColumns({ ...columns, [col]: e.target.checked })
+                      }
+                    />
                   ))}
                 </div>
-              </Tab>
-            );
-          })}
-        </Tabs>
-      </div>
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => setShowTableModal(false)}>
+              บันทึกการตั้งค่า
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </main>
     </div>
   );
 };

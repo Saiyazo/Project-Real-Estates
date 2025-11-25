@@ -212,6 +212,20 @@ const ManageAssets = () => {
                   เดือนนี้
                 </Dropdown.Item>
               </DropdownButton>
+              <Form>
+                <Form.Select
+                  className="w-250"
+                  value={itemsPerPage}
+                  onChange={(e) => {
+                    setItemsPerPage(Number(e.target.value));
+                    setCurPage(1);
+                  }}
+                >
+                  <option value={10}>แสดงประกาศอสังหา 10 ประกาศ</option>
+                  <option value={50}>แสดงประกาศอสังหา 50 ประกาศ</option>
+                  <option value={100}>แสดงประกาศอสังหา 100 ประกาศ</option>
+                </Form.Select>
+              </Form>
             </div>
           </form>
         </div>
@@ -279,22 +293,8 @@ const ManageAssets = () => {
               <td colSpan={3}>
                 แสดง {FirstPage + 1} - {LastPage} จาก {filteredPropertys.length}{" "}
                 อสังหา
-              </td>{" "}
+              </td>
               <td colSpan={3} className="text-end">
-                <Form>
-                  <Form.Select
-                    className="w-25"
-                    value={itemsPerPage}
-                    onChange={(e) => {
-                      setItemsPerPage(Number(e.target.value));
-                      setCurPage(1);
-                    }}
-                  >
-                    <option value={10}>แสดงประกาศอสังหา 10 ประกาศ</option>
-                    <option value={50}>แสดงประกาศอสังหา 50 ประกาศ</option>
-                    <option value={100}>แสดงประกาศอสังหา 100 ประกาศ</option>
-                  </Form.Select>
-                </Form>
                 <Button
                   className="me-2"
                   variant="outline-primary"

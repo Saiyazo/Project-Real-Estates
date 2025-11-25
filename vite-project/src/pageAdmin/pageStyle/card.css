@@ -79,3 +79,31 @@
   background-color: #b3b3b3;
   
 }
+
+body {
+  font-family: 'Kanit', sans-serif;
+  background: #f4f8fb;
+}
+
+.sidebar {
+  min-width: 250px;
+  height: 100vh;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.badge {
+  font-size: 0.9rem;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}

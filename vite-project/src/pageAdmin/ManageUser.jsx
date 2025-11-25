@@ -13,7 +13,7 @@ const ManageUser = () => {
   const [statusFilter, setStatusFilter] = useState("ทั้งหมด");
 
   const [curPage, setCurPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage, setItemsPerPage] = useState(7);
   const [numPages, setNumPages] = useState(1);
 
   // ดึงข้อมูลผู้ใช้
@@ -70,56 +70,6 @@ const ManageUser = () => {
     <div className="p-4 pageAll">
       <h1>รายการบัญชีผู้ใช้</h1>
 
-      <nav className="navbar bg-light py-3 rounded-3 shadow-sm mb-3">
-        <div className="d-flex w-100 align-items-center justify-content-between flex-wrap gap-3">
-          <div className="flex-grow-1">
-            <div className="input-group">
-              <span className="input-group-text bg-white">
-                <i className="bi bi-search"></i>
-              </span>
-              <input
-                type="search"
-                className="form-control"
-                placeholder="ค้นหา ID , ชื่อ , อีเมล , หรือเบอร์โทร..."
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="d-flex gap-2">
-            <DropdownButton
-              variant="outline-secondary"
-              title={roleFilter === "ทั้งหมด" ? "บทบาทผู้ใช้" : roleFilter}
-              onSelect={(val) => setRoleFilter(val)}
-            >
-              <Dropdown.Item eventKey="ทั้งหมด">ทั้งหมด</Dropdown.Item>
-              <Dropdown.Item eventKey="ผู้ซื้อ/ผู้เช่า">
-                ผู้ซื้อ/ผู้เช่า
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="ผู้ขาย/นายหน้า">
-                ผู้ขาย/นายหน้า
-              </Dropdown.Item>
-            </DropdownButton>
-
-            <DropdownButton
-              variant="outline-secondary"
-              title={
-                statusFilter === "ทั้งหมด" ? "สถานะการใช้งาน" : statusFilter
-              }
-              onSelect={(val) => setStatusFilter(val)}
-            >
-              <Dropdown.Item eventKey="ทั้งหมด">ทั้งหมด</Dropdown.Item>
-              <Dropdown.Item eventKey="ปกติ">ปกติ</Dropdown.Item>
-              <Dropdown.Item eventKey="ถูกระงับการใช้งานชั่วคราว">
-                ถูกระงับชั่วคราว
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="ถูกแบน">ถูกแบน</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </div>
-      </nav>
-
       {/* Stats */}
       <div className="stats-container mb-3">
         <div className="stats-card total">
@@ -142,25 +92,77 @@ const ManageUser = () => {
           <h3>{allUsers.filter((u) => u.status !== "ปกติ").length}</h3>
         </div>
       </div>
+      <nav className="navbar bg-light py-3 rounded-3 shadow-sm mb-3">
+        <div className="d-flex w-100 align-items-center justify-content-between flex-wrap gap-3">
+          <div className="flex-grow-1">
+            <div className="input-group">
+              <span className="input-group-text bg-white">
+                <i className="bi bi-search"></i>
+              </span>
+              <input
+                type="search"
+                className="form-control"
+                placeholder="ค้นหา ID , ชื่อ , อีเมล , หรือเบอร์โทร..."
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+            </div>
+          </div>
 
-      {/* Table */}
+         
+            <DropdownButton
+              variant="outline-secondary"
+              title={roleFilter === "ทั้งหมด" ? "บทบาทผู้ใช้" : roleFilter}
+              onSelect={(val) => setRoleFilter(val)}
+              className="mb-0"
+              style={{ height: "38px" }} // เท่ากับความสูงปุ่ม default
+            >
+              <Dropdown.Item eventKey="ทั้งหมด">ทั้งหมด</Dropdown.Item>
+              <Dropdown.Item eventKey="ผู้ซื้อ/ผู้เช่า">
+                ผู้ซื้อ/ผู้เช่า
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="ผู้ขาย/นายหน้า">
+                ผู้ขาย/นายหน้า
+              </Dropdown.Item>
+            </DropdownButton>
+
+            <DropdownButton
+              variant="outline-secondary"
+              title={
+                statusFilter === "ทั้งหมด" ? "สถานะการใช้งาน" : statusFilter
+              }
+              onSelect={(val) => setStatusFilter(val)}
+              className="mb-0"
+              style={{ height: "38px" }}
+            >
+              <Dropdown.Item eventKey="ทั้งหมด">ทั้งหมด</Dropdown.Item>
+              <Dropdown.Item eventKey="ปกติ">ปกติ</Dropdown.Item>
+              <Dropdown.Item eventKey="ถูกระงับชั่วคราว">
+                ถูกระงับชั่วคราว
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="ถูกแบน">ถูกแบน</Dropdown.Item>
+            </DropdownButton>
+
+            <Form className="mb-0">
+              <Form.Select
+                value={itemsPerPage}
+                onChange={(e) => {
+                  setItemsPerPage(Number(e.target.value));
+                  setCurPage(1);
+                }}
+                style={{ height: "38px", width: "180px" }} // ความสูงเท่ากับปุ่ม
+              >
+                <option value={7}>แสดงผู้ใช้ 7 คน</option>
+                <option value={10}>แสดงผู้ใช้ 10 คน</option>
+                <option value={50}>แสดงผู้ใช้ 50 คน</option>
+                <option value={100}>แสดงผู้ใช้ 100 คน</option>
+              </Form.Select>
+            </Form>
+      
+        </div>
+      </nav>
+
       <div>
-        <Form className="mb-3">
-          <Form.Select
-            className="w-25"
-            value={itemsPerPage}
-            onChange={(e) => {
-              setItemsPerPage(Number(e.target.value));
-              setCurPage(1);
-            }}
-          >
-            <option value={6}>แสดงผู้ใช้ 6 คน</option>
-            <option value={10}>แสดงผู้ใช้ 10 คน</option>
-            <option value={50}>แสดงผู้ใช้ 50 คน</option>
-            <option value={100}>แสดงผู้ใช้ 100 คน</option>
-          </Form.Select>
-        </Form>
-
         <Table striped hover>
           <thead>
             <tr className="text-center align-middle">

@@ -1,0 +1,49 @@
+.pageAll {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.complaints-card-body {
+    height: 80vh;
+    overflow: auto;
+    padding-right: 0.5rem;
+    /* ไม่ให้เนื้อหาโดน scrollbar */
+}
+
+.complaint-card {
+    border-left: 4px solid #0d6efd;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.complaint-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+
+.btn-custom {
+    font-weight: 500;
+    border-radius: 12px;
+    padding: 0.55rem 1.4rem;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Active buttons */
+.active-status , .active-type  {
+    background: linear-gradient(45deg, #ffe9a9, #ffc0a7);
+    color: #212529;
+}
+
+.inactive {
+    background: #f1f3f5;
+    color: #495057;
+    border: 1px solid #ced4da;
+}
+
