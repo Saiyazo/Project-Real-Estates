@@ -20,7 +20,7 @@ const StepTwo = ({ setActiveStep }) => {
     setActiveStep(2); // กำหนดให้เป็น step 2
   }, [setActiveStep]);
 
-  const handleFiles = (event) => {
+  const Addimg = (event) => {
     const files = Array.from(event.target.files);
     const validFiles = files.filter(
       (file) => file.type === "image/jpeg" || file.type === "image/png"
@@ -70,7 +70,7 @@ const StepTwo = ({ setActiveStep }) => {
             multiple
             accept="image/png, image/jpeg"
             style={{ display: "none" }}
-            onChange={handleFiles}
+            onChange={Addimg}
           />
 
           <div

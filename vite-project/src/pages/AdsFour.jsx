@@ -1,19 +1,46 @@
-// src/components/AdsFour.js
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const AdsFour = () => {
+
+const AdsFour = ({ price, selectedDuration, startDate }) => {
   const navigate = useNavigate();
 
-  const handleNextStep = () => {
-    navigate("/step-5");
-  };
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + selectedDuration);
 
   return (
-    <div>
-      <h4>ชำระเงิน</h4>
-      <Button onClick={handleNextStep}>Next Step</Button>
+    <div className="py-4 m-auto" style={{ width: "800px" }}>
+      <div className="p-3">
+        <div className="fw-bolder fs-3 mb-2">Ad Summary</div>
+        <span>แพ็กเกจ:</span> <span className="fw-bolder">Premium Package</span>
+        <div>ระยะเวลา: {selectedDuration}</div>
+        <p>ราคา: {price} ฿</p>
+        {/* แสดงวันที่เริ่มและวันที่สิ้นสุดในรูปแบบ "วัน/เดือน/ปี" */}
+        <p>
+          วันที่เริ่มและสิ้นสุด{" "}
+          {new Date(startDate).toLocaleDateString("th-TH", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}{" "}
+          -{" "}
+          {endDate.toLocaleDateString("th-TH", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}
+        </p>
+        <p>สถานะ: รอการชำระ</p>
+      </div>
+      <div className="d-flex justify-content-end gap-2 mt-4">
+        <Button variant="secondary" onClick={() => navigate("/ads-three")}>
+          ยกเลิกคำขอ
+        </Button>
+        <Button variant="primary" onClick={() => alert("การชำระเงินสำเร็จ!")}>
+          ยืนยันและชำระเงิน
+        </Button>
+      </div>
     </div>
   );
 };

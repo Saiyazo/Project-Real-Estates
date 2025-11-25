@@ -10,7 +10,7 @@ const AdsStep = ({ StepAd = 1 }) => {
   ];
 
   return (
-    <Container className="my-4 mb-5">
+    <Container className="my-4 mb-4">
       <Row className="justify-content-center text-center">
         {steps.map((label, index) => {
           const stepNumber = index + 1;

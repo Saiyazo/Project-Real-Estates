@@ -1,73 +1,55 @@
 import React, { useState } from "react";
-import { Container, Button, Row, Col, Card } from "react-bootstrap";
+import { Container, Button, Row, Col, Card, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const AdsOne = ({ setAdStep }) => {
+// Import slotData จากไฟล์ JSON
+import { slotData } from "../data/DataAds"; // ปรับเส้นทางให้ตรงกับที่เก็บไฟล์
+
+const AdsOne = ({
+  setAdStep,
+  setPrice,
+  selectedDuration,
+  setSelectedDuration,
+}) => {
   const navigate = useNavigate();
 
-  const [selectedSlot, setSelectedSlot] = useState(null);
-  const [slotData, setSlotData] = useState([
-    {
-      id: 1,
-      name: "Slot 1",
-      image:
-        "https://i.pinimg.com/736x/d7/af/37/d7af37626ffb141124ebc74c0db9d4b1--construction-services-philippines.jpg",
-      availability: "Available",
-      prices: { 7: 2000, 14: 4000, 30: 10000 },
-      selectedDuration: 7,
-    },
-    {
-      id: 2,
-      name: "Slot 2",
-      image:
-        "https://tse1.mm.bing.net/th/id/OIP.dnjhHRgWhwfXIiMhCTQaWgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3",
-      availability: "Available",
-      prices: { 7: 2500, 14: 5000, 30: 12000 },
-      selectedDuration: 7,
-    },
-    {
-      id: 3,
-      name: "Slot 3",
-      image:
-        "https://www.infoyunik.com/wp-content/uploads/2016/04/RumahSehatKunciKebahagiaanKeluarga.jpg", // ใส่ URL ของรูปภาพที่ต้องการ
-      availability: "Reserved",
-      prices: { 7: 3000, 14: 6000, 30: 15000 },
-      selectedDuration: 7,
-    },
-    {
-      id: 4,
-      name: "Slot 4",
-      image:
-        "https://1.bp.blogspot.com/-B7CXSb96wog/WGilO7TbdAI/AAAAAAAAAKc/U806SL828bIokUOXL58NNtNH_uTQ5pX7gCLcB/s1600/Foto%2Brumah%2Bmewah%2Bminimalis.png", // ใส่ URL ของรูปภาพที่ต้องการ
-      availability: "Unavailable",
-      prices: { 7: 1800, 14: 3500, 30: 9000 },
-      selectedDuration: 7,
-    },
-  ]);
+  const [selectedSlot, setSelectedSlot] = useState(null); // เก็บ slot ที่เลือก
+  const [slotDataState, setSlotData] = useState(slotData); // ใช้ข้อมูลจาก JSON
 
-  const handleSlotSelect = (id) => {
-    const updatedSlots = slotData.map((slot) =>
+  // เมื่อคลิกเลือก Slot
+  const handleSlotSelect = (id, price, duration) => {
+    // อัปเดตสถานะของ slot
+    const updatedSlots = slotDataState.map((slot) =>
       slot.id === id
-        ? { ...slot, availability: "Selected" }
+        ? { ...slot, availability: "Selected", selectedDuration: duration }
         : { ...slot, availability: "Available" }
     );
     setSlotData(updatedSlots);
-    setSelectedSlot(id); // Set selected slot
+    setSelectedSlot(id); // เก็บ slot ที่เลือก
+    setPrice(price); // ส่งข้อมูลราคาที่เลือกไปที่ App.jsx
+  };
+
+  // เมื่อเลือก duration หรือระยะเวลา
+  const handleDurationSelect = (slot, duration) => {
+    const updatedSlot = { ...slot, selectedDuration: duration };
+    setSlotData(slotDataState.map((s) => (s.id === slot.id ? updatedSlot : s)));
+    setSelectedDuration(duration); // เก็บระยะเวลาที่เลือก
+    setPrice(updatedSlot.prices[duration]); // ส่งราคาไปที่ App.jsx
   };
 
   const handleNext = () => {
-    if (selectedSlot === null) {
-      alert("กรุณาเลือกแพ็กเกจ");
+    if (selectedSlot === null || selectedDuration === null) {
+      alert("กรุณาเลือกแพ็กเกจและระยะเวลา");
       return;
     }
-    setAdStep(2); // เปลี่ยนขั้นตอนเป็น Step 2
+    setAdStep(2);
     navigate("/ads-two"); // ไปยังหน้า AdsTwo
   };
 
   return (
-    <Container className="py-4">
+    <Container className="py-4" style={{ width: "1000px" }}>
       <Row className="g-4">
-        {slotData.map((slot) => (
+        {slotDataState.map((slot) => (
           <Col xs={12} md={4} key={slot.id}>
             <Card
               className={`shadow-sm ${
@@ -76,26 +58,22 @@ const AdsOne = ({ setAdStep }) => {
               style={{
                 cursor:
                   slot.availability === "Available" ? "pointer" : "not-allowed",
+                width: "300px",
               }}
             >
-              {/* ใส่รูปภาพใน Card */}
               <Card.Img
                 variant="top"
                 src={slot.image}
                 alt={slot.name}
-                style={{ height: "250px", objectFit: "cover" }}
+                style={{ height: "120px", objectFit: "cover" }}
               />
               <Card.Body>
-                <Card.Title>{slot.name}</Card.Title>
-                <Card.Text>สถานะ: {slot.availability}</Card.Text>
-                <Card.Text>
-                  Est. Visibility:{" "}
-                  {slot.availability === "Available" ? "100%" : "50%"}
-                </Card.Text>
+                <div className="d-flex justify-content-between align-items-center fs-5 mb-2 fw-bold">
+                  {slot.name}
+                  <Badge bg="success">{slot.availability}</Badge>
+                </div>
                 {Object.keys(slot.prices).map((duration) => (
                   <Row key={duration} className="mb-3">
-                    {" "}
-                    {/* เพิ่ม margin-bottom */}
                     <Col xs={12}>
                       <Button
                         variant={
@@ -103,23 +81,17 @@ const AdsOne = ({ setAdStep }) => {
                             ? "primary"
                             : "outline-secondary"
                         }
-                        className="w-100" // ทำให้ปุ่มเต็มความกว้าง
+                        className="w-100"
                         onClick={() => {
                           if (slot.availability === "Available") {
-                            setSlotData(
-                              slotData.map((s) =>
-                                s.id === slot.id
-                                  ? {
-                                      ...s,
-                                      selectedDuration: parseInt(duration),
-                                    }
-                                  : s
-                              )
-                            );
+                            handleDurationSelect(slot, parseInt(duration)); // เลือกระยะเวลา
                           }
                         }}
                       >
-                        {duration} Days - {slot.prices[duration]} ฿
+                        <div className="d-flex justify-content-between">
+                          <div>{duration} Days</div>{" "}
+                          <div>{slot.prices[duration]} ฿</div>
+                        </div>
                       </Button>
                     </Col>
                   </Row>
@@ -129,7 +101,13 @@ const AdsOne = ({ setAdStep }) => {
                     slot.availability === "Available" ? "success" : "secondary"
                   }
                   className="mt-2 w-100"
-                  onClick={() => handleSlotSelect(slot.id)}
+                  onClick={() =>
+                    handleSlotSelect(
+                      slot.id,
+                      slot.prices[slot.selectedDuration],
+                      slot.selectedDuration
+                    )
+                  }
                   disabled={slot.availability !== "Available"}
                 >
                   {slot.availability === "Selected"

@@ -14,17 +14,17 @@ const StepOne = ({ setActiveStep }) => {
 
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
+    console.log(`${field} changed to: ${value}`); // แสดงค่าที่เลือกใน console
   };
 
   const handleChangeProperty = (value) => {
     setFormData((prev) => {
       const alreadySelected = prev.propertyType.includes(value);
-      return {
-        ...prev,
-        propertyType: alreadySelected
-          ? prev.propertyType.filter((v) => v !== value)
-          : [...prev.propertyType, value],
-      };
+      const newPropertyType = alreadySelected
+        ? prev.propertyType.filter((v) => v !== value)
+        : [...prev.propertyType, value];
+      console.log("Property Type changed to: ", newPropertyType); // แสดงประเภทอสังหาฯ ที่เลือกใน console
+      return { ...prev, propertyType: newPropertyType };
     });
   };
 
@@ -35,6 +35,7 @@ const StepOne = ({ setActiveStep }) => {
       alert("กรุณากรอกข้อมูลให้ครบ");
       return;
     }
+    console.log("Form Submitted with data: ", formData); // แสดงข้อมูลทั้งหมดเมื่อกดปุ่ม submit
     // อัปเดต progress bar
     setActiveStep(2);
     // ไปหน้าถัดไป
@@ -128,30 +129,26 @@ const StepOne = ({ setActiveStep }) => {
           </Form.Group>
 
           <Form.Group className="mb-4">
-            <Form.Label className="fw-bold">
-            </Form.Label>
+            <Form.Label className="fw-bold"></Form.Label>
             <p className="text-secondary">เชิงพาณิชย์</p>
             <Row className="g-2">
-              {[
-                "Co-working space",
-                "ร้านค้า/ตลาด",
-                "โชว์รูม",
-                "สำนักงาน",
-              ].map((label, idx) => (
-                <Col xs={12} md={4} key={idx}>
-                  <Button
-                    variant={
-                      formData.propertyType.includes(label)
-                        ? "primary"
-                        : "outline-secondary"
-                    }
-                    className="w-100 rounded-pill"
-                    onClick={() => handleChangeProperty(label)}
-                  >
-                    {label}
-                  </Button>
-                </Col>
-              ))}
+              {["Co-working space", "ร้านค้า/ตลาด", "โชว์รูม", "สำนักงาน"].map(
+                (label, idx) => (
+                  <Col xs={12} md={4} key={idx}>
+                    <Button
+                      variant={
+                        formData.propertyType.includes(label)
+                          ? "primary"
+                          : "outline-secondary"
+                      }
+                      className="w-100 rounded-pill"
+                      onClick={() => handleChangeProperty(label)}
+                    >
+                      {label}
+                    </Button>
+                  </Col>
+                )
+              )}
             </Row>
           </Form.Group>
 

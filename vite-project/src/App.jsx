@@ -15,17 +15,57 @@ import AdsFive from "./pages/AdsFive";
 function App() {
   const [activeStep, setActiveStep] = useState(1);
   const [StepAd, setAdStep] = useState(1);
-
+  const [AdsData, setAdsData] = useState({}); //ใช้สำหรับเก็บข้อมูลที่กรอกในฟอร์ม
+  const [price, setPrice] = useState("");
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [selectedDuration, setSelectedDuration] = useState(7); 
   return (
     <BrowserRouter>
-      {/*    <StepHeader activeStep={activeStep} /> */}
+      {/* <StepHeader activeStep={activeStep} /> */}
       <AdsStep StepAd={StepAd} />
 
       <Routes>
-        <Route path="/ads-one" element={<AdsOne setAdStep={setAdStep} />} />
-        <Route path="/ads-two" element={<AdsTwo setAdStep={setAdStep} />} />
-        <Route path="/ads-three" element={<AdsThree setAdStep={setAdStep} />} />
-        {/* //     <Route 
+        <Route
+          path="/ads-one"
+          element={
+            <AdsOne
+              setAdStep={setAdStep}
+              setPrice={setPrice}
+              setSelectedSlot={setSelectedSlot}
+              setSelectedDuration={setSelectedDuration}
+            />
+          }
+        />
+        <Route
+          path="/ads-two"
+          element={
+            <AdsTwo
+              setAdStep={setAdStep}
+              AdsData={AdsData}
+              setAdsData={setAdsData}
+              startDate={startDate}
+              setStartDate={setStartDate}
+            />
+          }
+        />
+        <Route
+          path="/ads-three"
+          element={<AdsThree setAdStep={setAdStep} AdsData={AdsData} />}
+        />
+        <Route
+          path="/ads-four"
+          element={
+            <AdsFour
+              setAdStep={setAdStep}
+              price={price}
+              selectedSlot={selectedSlot}
+              startDate={startDate}
+              selectedDuration={selectedDuration}
+            />
+          }
+        />
+        {/* <Route 
            element={<StepOne setActiveStep={setActiveStep} />}
            path="/step-one"
          />
@@ -33,7 +73,6 @@ function App() {
            path="/step-two"
            element={<StepTwo setActiveStep={setActiveStep} />}
          />
-         // App.jsx
          <Route
            path="/step-three"
            element={<StepThree setActiveStep={setActiveStep} />}
