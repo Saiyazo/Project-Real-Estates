@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Card, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -6,12 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { slotData } from "../data/DataAds"; // ปรับเส้นทางให้ตรงกับที่เก็บไฟล์
 
 const AdsOne = ({
-  setAdStep,
+  setAdStep = 1,
   setPrice,
   selectedDuration,
   setSelectedDuration,
 }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+      setAdStep(1); 
+    },[setAdStep])
+  
 
   const [selectedSlot, setSelectedSlot] = useState(null); // เก็บ slot ที่เลือก
   const [slotDataState, setSlotData] = useState(slotData); // ใช้ข้อมูลจาก JSON

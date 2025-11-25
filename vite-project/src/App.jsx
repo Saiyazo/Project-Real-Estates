@@ -14,7 +14,7 @@ import AdsFive from "./pages/AdsFive";
 
 function App() {
   const [activeStep, setActiveStep] = useState(1);
-  const [StepAd, setAdStep] = useState(1);
+  const [StepAd, setAdStep] = useState(0);
   const [AdsData, setAdsData] = useState({}); //ใช้สำหรับเก็บข้อมูลที่กรอกในฟอร์ม
   const [price, setPrice] = useState("");
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -22,9 +22,13 @@ function App() {
   const [selectedDuration, setSelectedDuration] = useState(7);
   return (
     <BrowserRouter>
-      <StepHeader activeStep={activeStep} />
-      {/* <AdsStep StepAd={StepAd} /> */}
+      {/* แสดง StepHeader เฉพาะใน Step 1 - 4 */}
+      {activeStep >= 1 && activeStep <= 4 && (
+        <StepHeader activeStep={activeStep} />
+      )}
 
+      {/* แสดง AdsStep เฉพาะใน Step 1 - 5 */}
+      {StepAd >= 1 && StepAd <= 5 && <AdsStep StepAd={StepAd} />}
       <Routes>
         <Route
           path="/ads-one"
@@ -79,22 +83,22 @@ function App() {
           }
         />
 
-        <Route 
-           element={<StepOne setActiveStep={setActiveStep} />}
-           path="/step-one"
-         />
-         <Route
-           path="/step-two"
-           element={<StepTwo setActiveStep={setActiveStep} />}
-         />
-         <Route
-           path="/step-three"
-           element={<StepThree setActiveStep={setActiveStep} />}
-         />
-         <Route
-           path="/step-four"
-           element={<StepFour setActiveStep={setActiveStep} />}
-         />
+        <Route
+          element={<StepOne setActiveStep={setActiveStep} />}
+          path="/step-one"
+        />
+        <Route
+          path="/step-two"
+          element={<StepTwo setActiveStep={setActiveStep} />}
+        />
+        <Route
+          path="/step-three"
+          element={<StepThree setActiveStep={setActiveStep} />}
+        />
+        <Route
+          path="/step-four"
+          element={<StepFour setActiveStep={setActiveStep} />}
+        />
       </Routes>
     </BrowserRouter>
   );

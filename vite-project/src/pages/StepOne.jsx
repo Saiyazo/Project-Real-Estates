@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Form, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,10 @@ const StepOne = ({ setActiveStep }) => {
     propertyType: [],
     location: "",
   });
+
+  useEffect(() => {
+    setActiveStep(1); 
+  },[setActiveStep])
 
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
@@ -170,7 +174,7 @@ const StepOne = ({ setActiveStep }) => {
           </Form.Group>
 
           <div className="text-end">
-            <Button type="submit" variant="primary" className="px-4">
+            <Button type="submit" variant="primary" className="px-4" style={{width:"130px"}}>
               ถัดไป
             </Button>
           </div>

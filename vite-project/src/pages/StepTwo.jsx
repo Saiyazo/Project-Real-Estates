@@ -134,7 +134,7 @@ const StepTwo = ({ setActiveStep }) => {
           ย้อนกลับ
         </Button>
 
-        <div className="d-flex gap-2"> 
+        <div className="d-flex gap-2">
           <Button
             variant="outline-primary"
             className="px-4"
@@ -142,7 +142,12 @@ const StepTwo = ({ setActiveStep }) => {
           >
             บันทึกแบบร่าง
           </Button>{" "}
-          <Button variant="primary" className="px-4" onClick={handleNext}>
+          <Button
+            variant="primary"
+            className="px-4"
+            onClick={handleNext}
+            style={{ width: "150px" }}
+          >
             ถัดไป
           </Button>
         </div>
@@ -154,8 +159,10 @@ const StepTwo = ({ setActiveStep }) => {
         onHide={() => setShowSaveDraftModal(false)}
         centered
       >
-        <Modal.Header >
-          <Modal.Title className="m-auto fw-bolder">บันทึกแบบร่างสำเร็จ</Modal.Title>
+        <Modal.Header>
+          <Modal.Title className="m-auto fw-bolder">
+            บันทึกแบบร่างสำเร็จ
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="text-center">

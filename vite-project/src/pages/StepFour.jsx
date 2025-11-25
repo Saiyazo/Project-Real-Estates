@@ -39,8 +39,9 @@ const StepFour = ({ setActiveStep }) => {
 
   const handleCloseSuccessModal = (redirect) => {
     setShowSuccessModal(false);
+    setActiveStep(null);
     if (redirect) {
-      navigate("/"); // ปรับไปหน้าสำเร็จ (หรือหน้าถัดไปตามต้องการ)
+      navigate("/ads-one"); // ปรับไปหน้าสำเร็จ (หรือหน้าถัดไปตามต้องการ)
     }
   };
 
@@ -66,7 +67,7 @@ const StepFour = ({ setActiveStep }) => {
   };
 
   return (
-    <Container className="py-4">
+    <Container className="py-4" style={{ width: "60%" }}>
       <Card className="p-4 shadow-sm border-0">
         <Form onSubmit={handleSubmit}>
           {/* ตั้งราคาโปรโมชัน */}
@@ -119,10 +120,16 @@ const StepFour = ({ setActiveStep }) => {
                 variant="outline-primary"
                 className="px-4"
                 onClick={handleSaveDraft}
+                style={{ width: "150px" }}
               >
                 บันทึกแบบร่าง
               </Button>
-              <Button type="submit" variant="primary" className="px-4">
+              <Button
+                type="submit"
+                variant="primary"
+                className="px-4"
+                style={{ width: "150px" }}
+              >
                 ประกาศ
               </Button>
             </div>
@@ -188,16 +195,11 @@ const StepFour = ({ setActiveStep }) => {
             <div>ไหม ?</div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => handleCloseSuccessModal(false)}
-          >
-            ภายหลัง
-          </Button>
+        <Modal.Footer className="m-auto">
           <Button
             variant="primary"
             onClick={() => handleCloseSuccessModal(true)}
+            style={{ width: "450px" }}
           >
             ตกลง
           </Button>

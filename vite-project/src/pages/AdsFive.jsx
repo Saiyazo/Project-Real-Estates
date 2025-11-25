@@ -22,13 +22,14 @@ const AdsFive = ({ price, selectedDuration, startDate, setAdStep }) => {
 
   const handleCloseModal = () => {
     setShowModal(false); // ปิด Modal
-    navigate("/ads-one");
-    setAdStep(1); // กลับไปหน้าแรก
+    navigate("/step-one");
+    setAdStep(null);
   };
 
   const handleConfirmPayment = () => {
     setShowModal(false); // ปิด Modal
     navigate("/"); // ทำการยืนยันและไปหน้า
+    setAdStep(null);
   };
 
   return (
