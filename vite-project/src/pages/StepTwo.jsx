@@ -1,52 +1,33 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Card,
-  Button,
-  Form,
-  Row,
-  Col,
-  Modal,
-} from "react-bootstrap";
+import { Container, Card, Button, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const StepTwo = ({ setActiveStep }) => {
-  const [showModal, setShowModal] = useState(false); // สำหรับการแสดง Modal
-  const [showSaveDraftModal, setShowSaveDraftModal] = useState(false); // สำหรับแสดง modal เมื่อกดบันทึกแบบร่าง
-  const [images, setImages] = useState([]);
+const StepTwo = ({ setActiveStep, setAdStep }) => {
+  const [images, setImages] = useState([]); // เก็บไฟล์รูปภาพ
   const navigate = useNavigate();
 
+  // การเปลี่ยนแปลง activeStep
   useEffect(() => {
-    setActiveStep(2); // กำหนดให้เป็น step 2
-  }, [setActiveStep]);
+    setActiveStep(2);
+    setAdStep(0);
+  }, [setActiveStep, setAdStep]);
 
+  // ฟังก์ชันเพิ่มรูปภาพ
   const Addimg = (event) => {
-    const files = Array.from(event.target.files);
+    const files = Array.from(event.target.files); // เปลี่ยนไฟล์ที่เลือกเป็น Array
     const validFiles = files.filter(
       (file) => file.type === "image/jpeg" || file.type === "image/png"
     );
-    setImages((prev) => [...prev, ...validFiles]);
+    setImages((prev) => [...prev, ...validFiles]); // เพิ่มไฟล์ใหม่ไปยัง images
   };
 
+  // การไปหน้า Step ถัดไป
   const handleNext = () => {
     if (images.length === 0) {
       alert("กรุณาอัปโหลดรูปภาพ");
       return;
     }
-    // ไปยังหน้าถัดไป (StepThree)
     navigate("/step-three");
-  };
-
-  const handleSaveDraft = () => {
-    setShowSaveDraftModal(true); // แสดง Modal เมื่อกดบันทึกแบบร่าง
-  };
-
-  const handleCloseSaveDraftModal = (redirect) => {
-    setShowSaveDraftModal(false); // ปิด Modal
-    if (redirect) {
-      // หากเลือก "ภายหลัง", เปลี่ยนไปหน้าอื่นหรือทำอย่างอื่น
-      navigate("/step-three");
-    }
   };
 
   const handleBack = () => {
@@ -65,13 +46,14 @@ const StepTwo = ({ setActiveStep }) => {
             </span>
           </Form.Label>
 
+          {/* Input ซ่อนอยู่ ซึ่งจะถูกคลิกผ่าน JavaScript */}
           <input
             type="file"
             id="mainImages-input"
             multiple
             accept="image/png, image/jpeg"
             style={{ display: "none" }}
-            onChange={Addimg}
+            onChange={Addimg} // เมื่อเลือกไฟล์ใหม่
           />
 
           <div
@@ -81,34 +63,26 @@ const StepTwo = ({ setActiveStep }) => {
               backgroundColor: "#e6f0ff",
               cursor: "pointer",
             }}
-            onClick={() => document.getElementById("mainImages-input").click()}
+            onClick={() => document.getElementById("mainImages-input").click()} // เมื่อคลิกที่ div นี้จะไปคลิก input แทน
           >
             <i
               className="bi bi-image"
               style={{ fontSize: "2rem", color: "#0d6efd" }}
             ></i>
             <p className="mt-2 text-primary">เพิ่มรูปภาพ</p>
-            <Button
-              size="sm"
-              variant="outline-primary"
-              onClick={() =>
-                document.getElementById("mainImages-input").click()
-              }
-            >
-              เพิ่มรูป
-            </Button>
           </div>
 
+          {/* แสดงรูปที่เพิ่ม */}
           {images.length > 0 && (
             <Row className="mt-3">
               {images.map((img, idx) => (
-                <Col xs={4} md={2} key={idx} className="mb-2">
+                <Col xs={4} md={2} key={idx}>
                   <div
                     className="border rounded position-relative"
                     style={{ height: "100px", overflow: "hidden" }}
                   >
                     <img
-                      src={URL.createObjectURL(img)}
+                      src={URL.createObjectURL(img)} // แสดงรูปจาก URL ที่สร้างขึ้น
                       alt={img.name}
                       style={{
                         width: "100%",
@@ -134,63 +108,15 @@ const StepTwo = ({ setActiveStep }) => {
           ย้อนกลับ
         </Button>
 
-        <div className="d-flex gap-2">
-          <Button
-            variant="outline-primary"
-            className="px-4"
-            onClick={handleSaveDraft}
-          >
-            บันทึกแบบร่าง
-          </Button>{" "}
-          <Button
-            variant="primary"
-            className="px-4"
-            onClick={handleNext}
-            style={{ width: "150px" }}
-          >
-            ถัดไป
-          </Button>
-        </div>
+        <Button
+          variant="primary"
+          className="px-4"
+          onClick={handleNext}
+          style={{ width: "150px" }}
+        >
+          ถัดไป
+        </Button>
       </div>
-
-      {/* Modal สำหรับบันทึกแบบร่าง */}
-      <Modal
-        show={showSaveDraftModal}
-        onHide={() => setShowSaveDraftModal(false)}
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title className="m-auto fw-bolder">
-            บันทึกแบบร่างสำเร็จ
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="text-center">
-            ประกาศของคุณจะถูกเก็บไว้ในระบบ 30 วัน
-          </div>
-          <div className="text-center">คุณสามารถกลับมาแก้ไขได้ทุกเมื่อ</div>
-          <div className="d-flex justify-content-center gap-1">
-            <div>คุณต้องการกลับไปยังหน้า </div>
-            <div className="fw-bolder">ประกาศของฉัน </div>
-            <div>ไหม ?</div>
-          </div>
-        </Modal.Body>
-
-        <Modal.Footer className="d-flex justify-content-between">
-          <Button
-            variant="outline-secondary"
-            onClick={() => handleCloseSaveDraftModal(false)}
-          >
-            ภายหลัง
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => handleCloseSaveDraftModal(true)}
-          >
-            ดำเนินการต่อ
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </Container>
   );
 };

@@ -10,7 +10,7 @@ import {
   Modal,
 } from "react-bootstrap";
 
-const StepFour = ({ setActiveStep }) => {
+const StepFour = ({ setActiveStep, setAdStep }) => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false); // สำหรับแสดง modal เมื่อกดบันทึกแบบร่าง
@@ -45,9 +45,14 @@ const StepFour = ({ setActiveStep }) => {
     }
   };
 
-  useEffect(() => {
-    setActiveStep(4); // เปลี่ยนสถานะของ activeStep ไปยัง Step 4
-  }, [setActiveStep]);
+  useEffect(
+    () => {
+      setActiveStep(4); // เปลี่ยนสถานะของ activeStep ไปยัง Step 4
+    },
+    [setActiveStep],
+    setAdStep(0),
+    [setAdStep]
+  );
 
   const handleBack = () => {
     navigate("/step-three");

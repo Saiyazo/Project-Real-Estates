@@ -1,20 +1,34 @@
 import { Button, Badge } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import QRcode from "../data/img/QR.png";
 
-const AdsFour = ({ price, selectedDuration, startDate, setAdStep }) => {
+const AdsFour = ({
+  price,
+  selectedDuration,
+  startDate,
+  setAdStep,
+  setActiveStep,
+}) => {
   const navigate = useNavigate();
 
   const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + selectedDuration);
 
   const handleBack = () => {
-    setAdStep(3); // เปลี่ยนขั้นตอนกลับไปยังหน้า 3
     navigate("/ads-three");
   };
 
+useEffect(
+    () => {
+      setAdStep(4);
+    },
+    [setAdStep],
+    setActiveStep(0),
+    [setActiveStep]
+  );
+
   const handleSubmit = () => {
-    setAdStep(5); // ไปยังขั้นตอนถัดไป
     navigate("/ads-five");
   };
 

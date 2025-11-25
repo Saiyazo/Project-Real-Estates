@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const AdsThree = ({ setAdStep, AdsData }) => {
+const AdsThree = ({ setAdStep, AdsData, setActiveStep }) => {
   const navigate = useNavigate();
 
   const [imageError, setImageError] = useState(""); // เก็บข้อผิดพลาดของรูปภาพ
@@ -28,16 +28,23 @@ const AdsThree = ({ setAdStep, AdsData }) => {
   }, [AdsData.image]);
 
   const handleBack = () => {
-    setAdStep(2); // เปลี่ยนขั้นตอนกลับไปยังหน้า 2
     navigate("/ads-two");
   };
+
+  useEffect(
+    () => {
+      setAdStep(3);
+    },
+    [setAdStep],
+    setActiveStep(0),
+    [setActiveStep]
+  );
 
   const handleSubmit = () => {
     if (imageError) {
       alert("กรุณาตรวจสอบรูปภาพก่อนดำเนินการต่อ");
       return;
     }
-    setAdStep(4); // ไปยังขั้นตอนถัดไป
     navigate("/ads-four");
   };
 
@@ -72,7 +79,7 @@ const AdsThree = ({ setAdStep, AdsData }) => {
             {/* สถานะการตรวจสอบ */}
             <p
               style={{
-                fontSize:"15px",
+                fontSize: "15px",
                 fontWeight: "bold",
                 color: imageError ? "red" : "green", // เปลี่ยนสีตามสถานะ
               }}

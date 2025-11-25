@@ -20,6 +20,7 @@ function App() {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [selectedDuration, setSelectedDuration] = useState(7);
+  const [imgprop, setImgprop] = useState({})
   return (
     <BrowserRouter>
       {/* แสดง StepHeader เฉพาะใน Step 1 - 4 */}
@@ -38,6 +39,7 @@ function App() {
               setPrice={setPrice}
               setSelectedSlot={setSelectedSlot}
               setSelectedDuration={setSelectedDuration}
+              setActiveStep={setActiveStep}
             />
           }
         />
@@ -50,12 +52,19 @@ function App() {
               setAdsData={setAdsData}
               startDate={startDate}
               setStartDate={setStartDate}
+              setActiveStep={setActiveStep}
             />
           }
         />
         <Route
           path="/ads-three"
-          element={<AdsThree setAdStep={setAdStep} AdsData={AdsData} />}
+          element={
+            <AdsThree
+              setAdStep={setAdStep}
+              AdsData={AdsData}
+              setActiveStep={setActiveStep}
+            />
+          }
         />
         <Route
           path="/ads-four"
@@ -66,6 +75,7 @@ function App() {
               selectedSlot={selectedSlot}
               startDate={startDate}
               selectedDuration={selectedDuration}
+              setActiveStep={setActiveStep}
             />
           }
         />
@@ -79,25 +89,34 @@ function App() {
               selectedSlot={selectedSlot}
               startDate={startDate}
               selectedDuration={selectedDuration}
+              setActiveStep={setActiveStep}
             />
           }
         />
 
         <Route
-          element={<StepOne setActiveStep={setActiveStep} />}
+          element={
+            <StepOne setActiveStep={setActiveStep} setAdStep={setAdStep} />
+          }
           path="/step-one"
         />
         <Route
           path="/step-two"
-          element={<StepTwo setActiveStep={setActiveStep} />}
+          element={
+            <StepTwo setActiveStep={setActiveStep} setAdStep={setAdStep} />
+          }
         />
         <Route
           path="/step-three"
-          element={<StepThree setActiveStep={setActiveStep} />}
+          element={
+            <StepThree setActiveStep={setActiveStep} setAdStep={setAdStep} />
+          }
         />
         <Route
           path="/step-four"
-          element={<StepFour setActiveStep={setActiveStep} />}
+          element={
+            <StepFour setActiveStep={setActiveStep} setAdStep={setAdStep} />
+          }
         />
       </Routes>
     </BrowserRouter>

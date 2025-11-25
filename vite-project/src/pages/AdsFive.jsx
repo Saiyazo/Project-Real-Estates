@@ -3,7 +3,13 @@ import { Button, Badge, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import QRcode from "../data/img/QR.png";
 
-const AdsFive = ({ price, selectedDuration, startDate, setAdStep }) => {
+const AdsFive = ({
+  price,
+  selectedDuration,
+  startDate,
+  setAdStep,
+  setActiveStep,
+}) => {
   const [showModal, setShowModal] = useState(false); // ใช้สำหรับเปิด/ปิด Modal
   const navigate = useNavigate();
 
@@ -15,8 +21,16 @@ const AdsFive = ({ price, selectedDuration, startDate, setAdStep }) => {
     setShowModal(true);
   }, []); // [] ทำให้ใช้เพียงแค่ครั้งเดียวเมื่อคอมโพเนนต์นี้โหลด
 
+  useEffect(
+    () => {
+      setAdStep(5);
+    },
+    [setAdStep],
+    setActiveStep(0),
+    [setActiveStep]
+  );
+
   const handleBack = () => {
-    setAdStep(4); // เปลี่ยนขั้นตอนกลับไปยังหน้า 3
     navigate("/ads-four");
   };
 

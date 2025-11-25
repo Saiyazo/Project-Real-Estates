@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Container,
   Button,
@@ -19,6 +19,7 @@ const AdsTwo = ({
   setAdStep,
   AdsData,
   setAdsData,
+  setActiveStep,
 }) => {
   const navigate = useNavigate();
 
@@ -49,9 +50,17 @@ const AdsTwo = ({
       alert("กรุณาเลือกวันที่เริ่ม");
       return;
     }
-    setAdStep(3); // เปลี่ยนขั้นตอนเป็น Step 3
     navigate("/ads-three"); // ไปที่หน้า AdsThree
   };
+
+  useEffect(
+    () => {
+      setAdStep(2);
+    },
+    [setAdStep],
+    setActiveStep(0),
+    [setActiveStep]
+  );
 
   const handleBack = () => {
     setAdStep(1); // เปลี่ยนขั้นตอนกลับไปยังหน้า 2

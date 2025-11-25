@@ -6,17 +6,22 @@ import { useNavigate } from "react-router-dom";
 import { slotData } from "../data/DataAds"; // ปรับเส้นทางให้ตรงกับที่เก็บไฟล์
 
 const AdsOne = ({
-  setAdStep = 1,
+  setAdStep,
   setPrice,
   selectedDuration,
   setSelectedDuration,
+  setActiveStep,
 }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-      setAdStep(1); 
-    },[setAdStep])
-  
+  useEffect(
+    () => {
+      setAdStep(1);
+    },
+    [setAdStep],
+    setActiveStep(0),
+    [setActiveStep]
+  );
 
   const [selectedSlot, setSelectedSlot] = useState(null); // เก็บ slot ที่เลือก
   const [slotDataState, setSlotData] = useState(slotData); // ใช้ข้อมูลจาก JSON
@@ -47,7 +52,6 @@ const AdsOne = ({
       alert("กรุณาเลือกแพ็กเกจและระยะเวลา");
       return;
     }
-    setAdStep(2);
     navigate("/ads-two"); // ไปยังหน้า AdsTwo
   };
 

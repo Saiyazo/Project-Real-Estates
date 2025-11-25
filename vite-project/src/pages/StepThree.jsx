@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const StepThree = ({ setActiveStep }) => {
+const StepThree = ({ setActiveStep, setAdStep }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -43,9 +43,14 @@ const StepThree = ({ setActiveStep }) => {
     "ตู้เย็น",
   ];
 
-  useEffect(() => {
-    setActiveStep(3); // ให้ header ไปอยู่ step 3
-  }, [setActiveStep]);
+  useEffect(
+    () => {
+      setActiveStep(3); // ให้ header ไปอยู่ step 3
+    },
+    [setActiveStep],
+    setAdStep(0),
+    [setAdStep]
+  );
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
