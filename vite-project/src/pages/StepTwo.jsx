@@ -50,6 +50,7 @@ const StepTwo = ({ setActiveStep }) => {
   };
 
   const handleBack = () => {
+    setActiveStep(1);
     navigate("/step-one");
   };
 
@@ -153,8 +154,8 @@ const StepTwo = ({ setActiveStep }) => {
         onHide={() => setShowSaveDraftModal(false)}
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title>บันทึกแบบร่างสำเร็จ</Modal.Title>
+        <Modal.Header >
+          <Modal.Title className="m-auto fw-bolder">บันทึกแบบร่างสำเร็จ</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="text-center">

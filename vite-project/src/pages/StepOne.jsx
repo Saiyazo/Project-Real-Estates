@@ -42,8 +42,8 @@ const StepOne = ({ setActiveStep }) => {
     navigate("/step-two");
   };
 
-  return (
-    <Container className="py-4">
+  return (<div className="m-auto" style={{width:"50%"}}>
+    <Container className="py-">
       <Card className="p-4 shadow-sm border-0">
         <Form onSubmit={handleSubmit}>
           {/* สถานะผู้ประกาศ */}
@@ -176,7 +176,7 @@ const StepOne = ({ setActiveStep }) => {
           </div>
         </Form>
       </Card>
-    </Container>
+    </Container></div>
   );
 };
 

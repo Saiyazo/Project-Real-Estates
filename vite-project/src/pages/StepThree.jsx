@@ -106,6 +106,7 @@ const StepThree = ({ setActiveStep }) => {
   };
 
   return (
+    <div className="m-auto" style={{width:"58%"}}>
     <Container className="cont">
       <Card className="card" style={{ border: "none" }}>
         {" "}
@@ -257,8 +258,8 @@ const StepThree = ({ setActiveStep }) => {
                      onHide={() => setShowSaveDraftModal(false)}
                      centered
                    >
-                     <Modal.Header closeButton>
-                       <Modal.Title>บันทึกแบบร่างสำเร็จ</Modal.Title>
+                     <Modal.Header >
+                       <Modal.Title className="m-auto fw-bolder">บันทึกแบบร่างสำเร็จ</Modal.Title>
                      </Modal.Header>
                      <Modal.Body>
                        <div className="text-center">
@@ -301,7 +302,7 @@ const StepThree = ({ setActiveStep }) => {
           </Row>
         </Form>
       </Card>
-    </Container>
+    </Container></div>
   );
 };
 

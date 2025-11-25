@@ -40,7 +40,7 @@ const StepFour = ({ setActiveStep }) => {
   const handleCloseSuccessModal = (redirect) => {
     setShowSuccessModal(false);
     if (redirect) {
-      navigate("/completed"); // ปรับไปหน้าสำเร็จ (หรือหน้าถัดไปตามต้องการ)
+      navigate("/"); // ปรับไปหน้าสำเร็จ (หรือหน้าถัดไปตามต้องการ)
     }
   };
 
@@ -136,8 +136,10 @@ const StepFour = ({ setActiveStep }) => {
         onHide={() => setShowSaveDraftModal(false)}
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title>บันทึกแบบร่างสำเร็จ</Modal.Title>
+        <Modal.Header>
+          <Modal.Title className="m-auto fw-bolder">
+            บันทึกแบบร่างสำเร็จ
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="text-center">
@@ -150,6 +152,7 @@ const StepFour = ({ setActiveStep }) => {
             <div>ไหม ?</div>
           </div>
         </Modal.Body>
+
         <Modal.Footer className="d-flex justify-content-between">
           <Button
             variant="outline-secondary"
@@ -161,7 +164,7 @@ const StepFour = ({ setActiveStep }) => {
             variant="primary"
             onClick={() => handleCloseSaveDraftModal(true)}
           >
-            ตกลง
+            ดำเนินการต่อ
           </Button>
         </Modal.Footer>
       </Modal>
@@ -171,8 +174,8 @@ const StepFour = ({ setActiveStep }) => {
         onHide={() => setShowSuccessModal(false)}
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title >ประกาศสำเร็จ</Modal.Title>
+        <Modal.Header>
+          <Modal.Title className="m-auto fw-bolder">ประกาศสำเร็จ</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="text-center">

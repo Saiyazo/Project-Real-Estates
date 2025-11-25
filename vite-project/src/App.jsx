@@ -22,8 +22,8 @@ function App() {
   const [selectedDuration, setSelectedDuration] = useState(7);
   return (
     <BrowserRouter>
-      {/* <StepHeader activeStep={activeStep} /> */}
-      <AdsStep StepAd={StepAd} />
+      <StepHeader activeStep={activeStep} />
+      {/* <AdsStep StepAd={StepAd} /> */}
 
       <Routes>
         <Route
