@@ -53,6 +53,11 @@ const AdsTwo = ({
     navigate("/ads-three"); // ไปที่หน้า AdsThree
   };
 
+  const handleBack = () => {
+    setAdStep(1); // เปลี่ยนขั้นตอนกลับไปยังหน้า 2
+    navigate("/ads-one");
+  };
+
   return (
     <div className="m-auto" style={{ width: "30%" }}>
       <div>
@@ -106,14 +111,22 @@ const AdsTwo = ({
 
       <div className="text-end gap-2 d-flex justify-content-end">
         <div>
-          <Button variant="secondary" onClick={() => navigate("/")}>
+          <Button
+            variant="secondary"
+            onClick={handleBack}
+            style={{ width: "100px" }}
+          >
             กลับ
           </Button>
         </div>
         <div>
           {" "}
-          <Button variant="primary" onClick={handleNext}>
-            ถัดไป
+          <Button
+            variant="primary"
+            onClick={handleNext}
+            style={{ width: "100px" }}
+          >
+            ส่ง
           </Button>
         </div>
       </div>

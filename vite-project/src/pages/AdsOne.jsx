@@ -125,10 +125,15 @@ const AdsOne = ({
           variant="secondary"
           onClick={() => navigate("/")}
           className="me-2"
+          style={{ width: "100px" }}
         >
           กลับ
         </Button>
-        <Button variant="primary" onClick={handleNext}>
+        <Button
+          variant="primary"
+          onClick={handleNext}
+          style={{ width: "100px" }}
+        >
           ถัดไป
         </Button>
       </div>

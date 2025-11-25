@@ -19,7 +19,7 @@ function App() {
   const [price, setPrice] = useState("");
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [startDate, setStartDate] = useState(null);
-  const [selectedDuration, setSelectedDuration] = useState(7); 
+  const [selectedDuration, setSelectedDuration] = useState(7);
   return (
     <BrowserRouter>
       {/* <StepHeader activeStep={activeStep} /> */}
@@ -65,7 +65,21 @@ function App() {
             />
           }
         />
-        {/* <Route 
+
+        <Route
+          path="/ads-five"
+          element={
+            <AdsFive
+              setAdStep={setAdStep}
+              price={price}
+              selectedSlot={selectedSlot}
+              startDate={startDate}
+              selectedDuration={selectedDuration}
+            />
+          }
+        />
+
+        <Route 
            element={<StepOne setActiveStep={setActiveStep} />}
            path="/step-one"
          />
@@ -80,7 +94,7 @@ function App() {
          <Route
            path="/step-four"
            element={<StepFour setActiveStep={setActiveStep} />}
-         />*/}
+         />
       </Routes>
     </BrowserRouter>
   );
