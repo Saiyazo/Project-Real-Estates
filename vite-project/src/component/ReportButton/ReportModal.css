@@ -1,0 +1,187 @@
+/* ReportModal.css */
+
+:root {
+    --primary-red: #E63946;
+    --light-red-bg: #FFF5F5;
+    --text-dark: #1D3557;
+    --border-radius: 12px;
+}
+
+.modal {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999 !important; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-backdrop-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* ควรมี z-index ที่สูงกว่า Modal อื่นๆ แต่ปกติจะใช้ 1040/1050/1050+ */
+    z-index: 1050; 
+    background-color: rgba(0, 0, 0, 0.5); /* สีดำโปร่งแสง */
+}
+
+/* --- Modal Content --- */
+.modal-content {
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius);
+    box-shadow: none !important;
+}
+
+.modal-header {
+    background-color: var(--primary-red);
+    color: white;
+    padding: 20px 25px;
+    border-bottom: 1px solid  #b92b36;
+}
+
+.btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); }
+
+/* --- Target Card (Flat) --- */
+.target-card {
+    background-color: #F8F9FA;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+.target-icon-box {
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-red);
+    font-size: 1.2rem;
+    box-shadow: none;
+}
+.target-info h6 { margin: 0; font-weight: 600; color: var(--text-dark); }
+.target-info span { font-size: 0.85rem; color: #6c757d; }
+
+/* --- Inputs (No Transition) --- */
+.form-label { font-weight: 500; color: #495057; font-size: 0.95rem; margin-bottom: 8px; }
+
+.form-select, .form-control {
+    border-radius: 8px; 
+    border: 1px solid #ced4da; 
+    padding: 10px 15px; 
+    font-size: 0.95rem; 
+    background-color: #fff;
+    transition: none;
+    box-shadow: none !important;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: var(--primary-red);
+    outline: none;
+}
+
+/* --- "Other" Input (No Animation) --- */
+.other-input-container {
+    margin-top: 10px;
+}
+
+/* --- Upload Zone (Flat) --- */
+.upload-zone {
+    border: 2px dashed #ffb3b3; 
+    background-color: var(--light-red-bg); 
+    border-radius: 8px; 
+    padding: 24px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: none;
+}
+.upload-zone:hover { 
+    border-color: var(--primary-red); 
+    background-color: #ffeaea; 
+}
+.upload-text { color: var(--primary-red); font-weight: 500; margin-top: 8px; display: block; }
+
+
+
+.btn-submit {
+    background-color: #E63946 !important; 
+    color: white !important; 
+    width: 100% !important; 
+    padding: 0.5rem 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 0.25rem !important;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    
+}
+
+.btn-submit:hover {
+    background-color: #b92b36 !important; 
+}
+
+
+/* --- สำหรับปุ่ม 'ยกเลิก' (Secondary Action) --- */
+.btn-cancel {
+    background-color: #cfcfcf !important; 
+    color: white !important; 
+    width: 50% !important; 
+    padding: 0.5rem 1rem !important;
+    font-weight: 600 !important;
+    margin:10px ;
+    border-radius: 0.25rem !important;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    
+}
+
+.btn-cancel:hover {
+    background-color: #8e8e8e !important; /* สีเทาอ่อนเมื่อชี้ */
+}
+
+/* เพิ่ม z-index ให้ Modal Backdrop ที่สร้างเอง เพื่อให้แน่ใจว่ามันอยู่ด้านบน */
+.modal-backdrop-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1050; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.image-preview-report-container {
+    padding: 5px;
+    border: 1px dashed #ced4da;
+    border-radius: 5px;
+}
+
+/* ตำแหน่งปุ่มลบ */
+.preview-item-box .btn-remove-img {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545; /* Red */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    font-size: 14px;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
