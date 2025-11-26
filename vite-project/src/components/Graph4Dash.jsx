@@ -11,8 +11,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { fetchComplaints } from "../Data/DataComplaints.jsx";
-import { fetchAdRequests } from "../Data/adRequests.jsx";
+import { fetchComplaints } from "../data/DataComplaints.jsx";
+import { fetchAdRequests } from "../data/adRequests.jsx";
 
 const GrapAll = () => {
   const [complaints, setComplaints] = useState([]);

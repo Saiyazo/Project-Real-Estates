@@ -4,15 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 //data
-import { fetchBuyers } from "./Data/buyer.jsx";
-import { fetchPropertys } from "./Data/propertyS.jsx";
-import { fetchSellers } from "./Data/Sellers.jsx";
-import { fetchComplaints } from "./Data/DataComplaints.jsx";
-import { fetchAdRequests} from "./Data/adRequests.jsx"
+import { fetchBuyers } from "./data/buyer.jsx";
+import { fetchPropertys } from "./data/propertyS.jsx";
+import { fetchSellers } from "./data/Sellers.jsx";
+import { fetchComplaints } from "./data/DataComplaints.jsx";
+import { fetchAdRequests} from "./data/adRequests.jsx"
 
 import "./App.css";
 //page
-import AppRouter from "./Layout/AppRouter.jsx";
+import AppRouter from "./layouts/AppRouter.jsx";
 import DashboardAdmin from "./pageAdmin/DashBoard";
 import ManageAssets from "./pageAdmin/ManageAssets.jsx";
 import ManageUser from "./pageAdmin/ManageUser.jsx";

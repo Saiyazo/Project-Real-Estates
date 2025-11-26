@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchComplaints } from "../Data/DataComplaints";
+import { fetchComplaints } from "../data/DataComplaints";
 import { Modal, Button } from "react-bootstrap";
 import "./pageStyle/ComplaintBoard.css";
 

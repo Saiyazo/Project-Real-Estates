@@ -1,7 +1,6 @@
-import { NavLink } from "react-router-dom";
+
 import { useEffect, useState } from "react";
-import { fetchPropertys } from "../Data/propertyS.jsx";
-import { Button } from "react-bootstrap";
+import { fetchPropertys } from "../data/propertyS.jsx";
 import "./cssforBTN/Tab.css";
 
 const BlockAsang = () => {

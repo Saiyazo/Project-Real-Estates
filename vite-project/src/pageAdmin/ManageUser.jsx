@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table, Button, Dropdown, DropdownButton, Form } from "react-bootstrap";
-import { fetchSellers } from "../Data/Sellers";
-import { fetchBuyers } from "../Data/buyer";
+import { fetchSellers } from "../data/Sellers";
+import { fetchBuyers } from "../data/buyer";
 import "./pageStyle/dash.css";
 import "./pageStyle/card.css";
 

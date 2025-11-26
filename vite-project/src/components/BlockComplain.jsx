@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { fetchComplaints } from "../Data/DataComplaints.jsx";
+import { fetchComplaints } from "../data/DataComplaints.jsx";
 import "./cssforBTN/Tab.css";
 
 const Blockcomplain = () => {

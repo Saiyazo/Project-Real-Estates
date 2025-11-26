@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import SidebarAdmin from "../component/SidebarAdmin";
+import SidebarAdmin from "../components/SidebarAdmin";
 
 
 const AppRouter = ({ buyers, sellers, properties,complaints, adRequests,setAdRequests}) => {

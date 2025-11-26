@@ -1,10 +1,10 @@
 import { useOutletContext } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import GraphAll from "../component/Graph4Dash.jsx";
+import GraphAll from "../components/Graph4Dash.jsx";
 import "../pageAdmin/pageStyle/dash.css";
-import "../component/cssforBTN/Tab.css";
-import Blockcomplain from "../component/BlockComplain.jsx";
-import BlockAsang from "../component/blockRsangha.jsx";
+import "../components/cssforBTN/Tab.css";
+import Blockcomplain from "../components/BlockComplain.jsx";
+import BlockAsang from "../components/blockRsangha.jsx";
 
 const DashboardAdmin = () => {
   const { buyers, sellers, properties, complaints, adRequests } =

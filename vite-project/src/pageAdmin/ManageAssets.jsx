@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 import "./pageStyle/dash.css";
 import "./pageStyle/card.css";
 import { Button } from "react-bootstrap";
-import { fetchPropertys } from "../Data/propertyS";
+import { fetchPropertys } from "../data/propertyS";
 import { NavLink } from "react-router-dom";
 
 const ManageAssets = () => {
