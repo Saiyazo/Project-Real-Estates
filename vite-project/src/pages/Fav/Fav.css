@@ -1,45 +1,165 @@
+/* Container */
+.fav-list-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
 
+/* Card Styling */
 .fav-card {
-    border-radius: 8px;
-    transition: transform 0.2s;
-    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 1.2rem;
 }
 
 .fav-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
-/* ส่วนรูปภาพ */
+/* Image Placeholder */
 .fav-image-placeholder {
-    width: 120px; 
-    height: 120px; 
-    background-color: #e9ecef;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #adb5bd;
-    font-size: 3rem;
+    position: relative;
+    width: 140px;
+    height: 140px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #f8f9fa;
 }
 
-/* Icon หัวใจ */
+.fav-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.fav-card:hover .fav-image-placeholder img {
+    transform: scale(1.08);
+}
+
+/* Heart Icon (เรียบๆ ไม่เด้ง) */
 .fav-heart-icon {
-    color: #2D91F5; 
+    color: #dc3545;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: color 0.2s;
 }
 
-.badge-transaction-both {
-    background-color: #3FC553 !important;
-    color: white; /* ตัวอักษรสีขาว */
+.fav-heart-icon:hover {
+    color: #b02a37;
 }
 
-/* เช่า: #FFBC05 (เหลือง/ส้ม) */
-.badge-transaction-rent {
-    background-color: #FFBC05 !important;
-    color: black; /* ตัวอักษรสีดำเพื่อให้เห็นชัดบนพื้นหลังสีสว่าง */
+/* Tags */
+.fav-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
 }
 
-/* ขาย: #5A80FF (น้ำเงิน) */
-.badge-transaction-sale {
-    background-color: #5A80FF !important;
-    color: white; /* ตัวอักษรสีขาว */
+.fav-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Tag Colors */
+.fav-tag-type { background-color: #e7f1ff; color: #0d6efd; }
+.deal-sale { background-color: #0d6efd; color: white; }
+.deal-rent { background-color: #ffc107; color: #333; }
+.deal-sale-rent { background-color: #198754; color: white; }
+
+/* Text Styles */
+.fav-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.fav-location {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.fav-details-text {
+    font-size: 0.9rem;
+    color: #555;
+    background-color: #f8f9fa;
+    padding: 6px 10px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Price Styles */
+.price-container { text-align: right; }
+.price-label { font-size: 0.75rem; color: #888; margin-bottom: -4px; display: block; }
+
+.fav-price-buy {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0d6efd; /* ฟ้า */
+    line-height: 1.2;
+}
+
+.fav-price-rent {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #ffc107; /* ส้มเหลือง */
+    line-height: 1.2;
+}
+
+/* Undo Toast */
+.undo-toast-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 1050;
+    animation: slideUp 0.3s ease-out;
+    min-width: 300px;
+    justify-content: space-between;
+}
+
+@keyframes slideUp {
+    from { transform: translate(-50%, 100%); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.undo-btn {
+    background: none;
+    border: none;
+    color: #ffc107;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.undo-btn:hover {
+    text-decoration: underline;
+    color: #ffdb58;
 }

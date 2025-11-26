@@ -1,4 +1,4 @@
-const logouthpme = () => {
+const logouthome = () => {
     return (  
     <div>
         <h1>log out </h1>
@@ -6,4 +6,4 @@ const logouthpme = () => {
 );
 }
  
-export default logouthpme;
+export default logouthome;

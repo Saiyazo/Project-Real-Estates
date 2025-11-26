@@ -1,128 +1,224 @@
-import React, { useState } from 'react';
+import React, { useState,  useRef } from 'react';
 import { Card, Badge } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Fav.css'; 
-import initialFavoritesData from './FavData'; 
+import propertyListingData from '../../data/propertyListing'; 
 import BackButton from '../../component/BackButton/BackButton';
 
-// ฟังก์ชันสำหรับกำหนด Class CSS ตามประเภทธุรกรรม (เพื่อเปลี่ยนสีตามเงื่อนไข)
-const getTransactionBgClass = (transaction) => {
+const getDealClass = (transaction) => {
     switch (transaction) {
-        case 'ขายและเช่า':
-            // สีเขียวอมฟ้า: #3FC553
-            return 'badge-transaction-both'; 
-        case 'เช่า':
-            // สีเหลือง/ส้ม: #FFBC05
-            return 'badge-transaction-rent'; 
-        case 'ขาย':
-            // สีน้ำเงิน: #5A80FF
-            return 'badge-transaction-sale'; 
-        default:
-            return 'bg-secondary';
+        case 'ขาย': return 'deal-sale';
+        case 'เช่า': return 'deal-rent';
+        case 'ขายและเช่า': return 'deal-sale-rent';
+        default: return 'bg-secondary text-white';
     }
 };
 
-// สำหรับแสดง Badge ที่กำหนดสีตามเงื่อนไข
-const renderBadges = (item) => {
-    // กำหนด Class สำหรับปุ่มธุรกรรม (อันที่สอง)
-    const transactionClass = getTransactionBgClass(item.transaction);
-    
-    return (
-        <>
-            {/* Badge แรก (Type เช่น คอนโด) ยังคงใช้สี primary ของ Bootstrap */}
-            <Badge bg="primary" className="me-1">{item.type}</Badge>
-            
-            {/* Badge ที่สอง (Transaction เช่น ขาย/เช่า) ใช้ Class ที่สร้างขึ้นเพื่อให้ได้สีตามต้องการ */}
-            {/* **หมายเหตุ:** ลบ 'bg="info"' ออก เพื่อให้ class ที่เรากำหนดใน CSS ทำงาน */}
-            <Badge className={`me-2 ${transactionClass}`}>{item.transaction}</Badge>
-        </>
-    );
+const transformListings = (data) => {
+    if (!data || !data.listings) return [];
+
+    // กรองข้อมูล: เอาแค่รายการที่ 1-2 และ 12-13
+    const filteredData = data.listings.filter((_, index) => {
+        return index < 2 || index > 10;
+    });
+
+    return filteredData.map(item => {
+        const formattedPrice = item.price ? item.price.toLocaleString() : "-";
+        
+        // --- Logic หาราคาเช่า ---
+        let rentPriceVal = item.rentPrice || 0;
+
+        if (!rentPriceVal && item.dealType === 'ขายและเช่า' && item.descriptionSections) {
+            const priceSection = item.descriptionSections.find(s => s.sectionId === 'price_options');
+            if (priceSection) {
+                const rentMatch = priceSection.body.match(/ราคาเช่า:\s*([\d,]+)/);
+                if (rentMatch) {
+                    rentPriceVal = parseInt(rentMatch[1].replace(/,/g, ''));
+                }
+            }
+        }
+        const formattedRentPrice = rentPriceVal ? rentPriceVal.toLocaleString() : "-";
+        
+        // ข้อมูลห้อง
+        const bedMatch = item.description ? item.description.match(/(\d+)\s*ห้องนอน/) : null;
+        const bathMatch = item.description ? item.description.match(/(\d+)\s*ห้องน้ำ/) : null;
+        const bed = bedMatch ? bedMatch[1] : "-";
+        const bath = bathMatch ? bathMatch[1] : "-";
+
+        // จัดการราคา
+        let priceBuy = null;
+        let priceRent = null;
+
+        if (item.dealType === 'ขาย') {
+            priceBuy = `฿${formattedPrice}`;
+        } else if (item.dealType === 'เช่า') {
+            priceRent = `฿${formattedPrice} /ด.`;
+        } else if (item.dealType === 'ขายและเช่า') {
+            priceBuy = `฿${formattedPrice}`;
+            priceRent = `฿${formattedRentPrice} /ด.`;
+        }
+
+        return {
+            id: item.id,
+            type: item.propertyType,
+            transaction: item.dealType,
+            title: item.title,
+            // [แก้ไข] ดึงเฉพาะ district (เขต/อำเภอ) ไม่เอา address
+            location: item.location.district, 
+            priceBuy: priceBuy,
+            priceRent: priceRent,
+            details: `${bed} ห้องนอน ${bath} ห้องน้ำ | ${item.unitSizeSqm} ตร.ม.`,
+            imageUrl: item.thumbnail
+        };
+    });
 };
 
 const Fav = () => {
-    // 3. **ใช้ useState เพื่อสร้าง State สำหรับเก็บรายการโปรด**
-    const [favorites, setFavorites] = useState(initialFavoritesData);
+    const [favorites, setFavorites] = useState(transformListings(propertyListingData));
+    
+    // Undo State
+    const [removedItem, setRemovedItem] = useState(null);
+    const [removedIndex, setRemovedIndex] = useState(-1); 
+    const [showUndo, setShowUndo] = useState(false);
+    const undoTimeoutRef = useRef(null);
 
-    // 4. **ฟังก์ชันสำหรับลบรายการโปรด**
     const handleRemoveFavorite = (idToRemove) => {
-        // ใช้ filter เพื่อสร้าง Array ใหม่ โดยไม่รวมรายการที่มี id ตรงกัน
-        const newFavorites = favorites.filter(item => item.id !== idToRemove);
-        // อัปเดต State ซึ่งจะทำให้ Component ถูก Render ใหม่ และรายการที่ถูกลบจะหายไป
-        setFavorites(newFavorites);
+        const indexToRemove = favorites.findIndex(item => item.id === idToRemove);
+        
+        if (indexToRemove !== -1) {
+            const itemToRemove = favorites[indexToRemove];
+            
+            setRemovedItem(itemToRemove);
+            setRemovedIndex(indexToRemove);
+            
+            const newFavorites = [...favorites];
+            newFavorites.splice(indexToRemove, 1);
+            setFavorites(newFavorites);
+
+            setShowUndo(true);
+
+            if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
+            undoTimeoutRef.current = setTimeout(() => {
+                setShowUndo(false);
+                setRemovedItem(null);
+                setRemovedIndex(-1);
+            }, 4000);
+        }
+    };
+
+    const handleUndo = () => {
+        if (removedItem && removedIndex !== -1) {
+            const newFavorites = [...favorites];
+            newFavorites.splice(removedIndex, 0, removedItem);
+            setFavorites(newFavorites);
+            
+            setShowUndo(false);
+            setRemovedItem(null);
+            setRemovedIndex(-1);
+            if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
+        }
     };
 
     return (
         <div className="container py-4">
-            {/* Header & ปุ่ม BACK */}
             <div className="d-flex align-items-center mb-4">
                 <BackButton />
-                <h2 className="mb-0 mx-auto fw-normal text-center">รายการโปรด</h2>
             </div>
             
-            {/* List of Favorite Items */}
             <div className="fav-list-container">
-                {/* 5. **วนซ้ำรายการจาก State (favorites) แทน favoritesData เดิม** */}
                 {favorites.map((item) => (
-                    <Card key={item.id} className="mb-3 fav-card shadow-sm border-0">
+                    <Card key={item.id} className="fav-card">
                         <Card.Body className="d-flex p-3">
-                            {/* 1. ส่วนรูปภาพ (ซ้าย) */}
+                            
                             <div className="fav-image-placeholder me-3 flex-shrink-0">
-                                <i className="bi bi-image"></i>
+                                {item.imageUrl ? (
+                                    <img 
+                                        src={item.imageUrl} 
+                                        alt={item.title} 
+                                        onError={(e) => {e.target.style.display='none'; e.target.nextSibling.style.display='flex'}}
+                                    />
+                                ) : null}
+                                <div style={{ width: '100%', height: '100%', display: item.imageUrl ? 'none' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <i className="bi bi-image text-muted fs-2"></i>
+                                </div>
                             </div>
 
-                            {/* 2. ส่วนรายละเอียด (ขวา) */}
-                            <div className="fav-details flex-grow-1">
-                                <div className="d-flex justify-content-between align-items-start mb-1">
-                                    
-                                    {/* Badges */}
-                                    <div>{renderBadges(item)}</div>
-
-                                    {/* Icon หัวใจ - 6. **เพิ่ม onClick event** */}
+                            <div className="fav-details flex-grow-1 d-flex flex-column justify-content-between">
+                                
+                                <div className="d-flex justify-content-between align-items-start">
+                                    <div className="fav-tags-container">
+                                        <span className="fav-tag fav-tag-type">{item.type}</span>
+                                        <span className={`fav-tag ${getDealClass(item.transaction)}`}>
+                                            {item.transaction}
+                                        </span>
+                                    </div>
                                     <i 
                                         className="bi bi-heart-fill fs-5 fav-heart-icon"
-                                        onClick={() => handleRemoveFavorite(item.id)} // เรียกใช้ฟังก์ชัน handleRemoveFavorite และส่ง id ของ item นี้ไป
+                                        onClick={() => handleRemoveFavorite(item.id)}
+                                        title="ลบรายการ"
                                     ></i>
                                 </div>
                                 
-                                <h6 className="fw-semibold mb-1">{item.title}</h6>
-                                
-                                {/* Location */}
-                                <div className="text-muted small mb-2">
-                                    <i className="bi bi-geo-alt me-1"></i>
-                                    {item.location}
+                                <div>
+                                    <h6 className="fav-title text-truncate">{item.title}</h6>
+                                    <div className="fav-location">
+                                        <i className="bi bi-geo-alt-fill text-primary"></i>
+                                        {item.location}
+                                    </div>
                                 </div>
 
-                                {/* Price Details */}
-                                <div className="mb-1">
-                                    {item.priceBuy && 
-                                        <span className="fw-bold me-2" style={{color: '#495057'}}>
-                                            ซื้อ {item.priceBuy}
-                                        </span>
-                                    }
-                                    {item.priceRent && 
-                                        <span className="text-muted fw-bold">
-                                            เช่า {item.priceRent}
-                                        </span>
-                                    }
+                                <div className="d-flex justify-content-between align-items-end mt-2">
+                                    <div className="fav-details-text">
+                                        <i className="bi bi-house-door me-1"></i>{item.details}
+                                    </div>
+                                    
+                                    <div className="price-container">
+                                        {item.transaction === 'ขายและเช่า' ? (
+                                            <div className="d-flex flex-column align-items-end">
+                                                <div>
+                                                    <span className="price-label">ราคาขาย</span>
+                                                    <span className="fav-price-buy">{item.priceBuy}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="price-label">ราคาเช่า</span>
+                                                    <span className="fav-price-rent">{item.priceRent}</span>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                {item.transaction === 'เช่า' ? (
+                                                    <span className="fav-price-rent">{item.priceRent}</span>
+                                                ) : (
+                                                    <span className="fav-price-buy">{item.priceBuy}</span>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
 
-                                {/* Detail Line */}
-                                <div className="text-muted small">
-                                    {item.details}
-                                </div>
                             </div>
                         </Card.Body>
                     </Card>
                 ))}
             </div>
 
-            {/* **แสดงข้อความเมื่อไม่มีรายการโปรด** */}
             {favorites.length === 0 && (
-                <div className="text-center text-muted mt-5">
-                    <i className="bi bi-heartbreak fs-1 mb-3"></i>
+                <div className="text-center text-muted mt-5 py-5">
+                    <i className="bi bi-heartbreak fs-1 mb-3 d-block" style={{opacity: 0.5}}></i>
                     <p className="lead">ไม่มีรายการโปรด</p>
                 </div>
             )}
+
+            {showUndo && (
+                <div className="undo-toast-container">
+                    <span>ลบรายการเรียบร้อยแล้ว</span>
+                    <button className="undo-btn" onClick={handleUndo}>
+                        <i className="bi bi-arrow-counterclockwise me-1"></i>
+                        เลิกทำ
+                    </button>
+                </div>
+            )}
+
         </div>
     );
 };

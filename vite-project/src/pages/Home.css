@@ -1,10 +1,12 @@
-
+/* GLOBAL LAYOUT */
 .listing-page-container { 
     max-width: 1300px; 
     margin: 0 auto; 
     padding: 20px; 
     font-family: 'Sukhumvit Set', Arial, sans-serif; 
 }
+
+/* Banner & Filter */
 .banner-carousel { 
     height: 250px; 
     background: linear-gradient(135deg, #007bff, #0056b3); 
@@ -31,6 +33,12 @@
 }
 
 /* GRID & CARD STYLING */
+.listing-grid-section h2 {
+    font-size: 1.2em;
+    margin-bottom: 15px; 
+    font-weight: 600;
+}
+
 .property-grid-4-col {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
@@ -53,21 +61,21 @@
 }
 
 .card-thumbnail-container { 
-  position: relative; 
+    position: relative; 
     width: 100%; 
     height: 180px; 
     overflow: hidden; 
     border-top-left-radius: 10px; 
     border-top-right-radius: 10px;
 }
-
-/* THUMBNAIL */
 .card-thumbnail {
     width: 100%;
     height: 180px; 
     object-fit: cover; 
     display: block;
 }
+
+/* ------------------------------------------- */
 
 /* CARD INFO & TEXT */
 .card-info { 
@@ -89,14 +97,19 @@
     margin-bottom: 10px; 
 }
 
+/* TAGS: BASE & LAYOUT */
 .main-tags-row { 
     display: flex; 
     flex-wrap: wrap; 
     gap: 5px; 
-    margin: 10px 0 15px; 
-    padding-top: 10px;
-    border-top: 1px solid #f0f0f0;
+    margin: 0; 
+    padding-top: 0; 
+    border-top: none; 
 }
+.main-tags-row.tags-row-1 { margin: 10px 0 5px 0; }
+.main-tags-row.tags-row-2 { margin: 5px 0 5px 0; }
+.main-tags-row.tags-row-3 { margin: 5px 0 15px 0; }
+
 .tag {
     padding: 6px 10px;
     border-radius: 15px;
@@ -110,15 +123,15 @@
 }
 .tag span[role="img"] { margin-right: 5px; font-size: 1.1em; }
 
-
 /* CONDITIONAL DEAL TYPE COLORS */
 .tag.deal-type-tag.sale { background-color: #007bff; color: white; }
 .tag.deal-type-tag.rent { background-color: #ffbb00; color: #333; }
 .tag.deal-type-tag.sale-rent { background-color: #28a745; color: white; }
 
+/* PRICING */
 .pricing { 
     margin-top: auto; 
-    border-top: 1px solid #eee; 
+    border-top: none; 
     padding-top: 10px; 
 }
 
@@ -132,8 +145,6 @@
     color:#ffbb00;
     font-weight: 800;
 }
-
-/* price-header (หัวข้อ ราคาขาย/ราคาเช่า) */
 .price-header {
     font-size: 0.9em; 
     color: #666;
@@ -144,15 +155,13 @@
 
 /* DUAL PRICE LAYOUT */
 .dual-price-container {
-    /* 🔥 เปลี่ยนให้กลับมาเป็นแนวตั้ง */
     display: flex; 
     flex-direction: column; 
-    justify-content: flex-start; /* ไม่ต้องเว้นระยะห่าง */
-    gap: 5px; /* เพิ่มระยะห่างระหว่าง Sale/Rent */
+    justify-content: flex-start; 
+    gap: 5px; 
     width: 100%;
 }
 .price-column {
-    /* 🔥 ให้คอลัมน์ราคาแต่ละอันแสดงเต็มบรรทัด */
     width: 100%; 
     display: flex;
     flex-direction: column;

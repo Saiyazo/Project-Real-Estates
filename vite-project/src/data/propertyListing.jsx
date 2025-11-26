@@ -1,8 +1,6 @@
 const propertyListing = {
   "listings": [
-    // ------------------------------------------------------------------
-    // 1. ไลฟ์ แอท รัชดา-สุทธิสาร (CONDO-001)
-    // ------------------------------------------------------------------
+    // 1. ไลฟ์ แอท รัชดา-สุทธิสาร (ขาย)
     {
       "id": "CONDO-001",
       "title": "ไลฟ์ แอท รัชดา-สุทธิสาร",
@@ -10,11 +8,10 @@ const propertyListing = {
       "propertyType": "คอนโด",
       "dealType": "ขาย",
       "isRented": false,
-
       "thumbnail": "/img/propertyImg/lifeRatchada.jpg",
       "images": [],
-      "price": 3750000,
-
+      "price": 3750000,      
+      "sellPrice": 3750000,  
       "location": {
         "province": "กรุงเทพมหานคร",
         "district": "ห้วยขวาง",
@@ -22,7 +19,6 @@ const propertyListing = {
         "address": "ใกล้ MRT สุทธิสาร",
         "coordinates": { "lat": null, "lng": null }
       },
-
       "mapEmbed": " ",
       "nearbyStationTags": [
         { "station": "MRT สุทธิสาร", "stationImage": "/img/nearLogo/blueBus.png", "distanceKm": 0.1 },
@@ -42,9 +38,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T10:35:00Z",
       "updatedAt": "2025-11-25T10:35:00Z"
     },
-    // ------------------------------------------------------------------
-    // 2. อมันตา ลุมพินี (CONDO-002)
-    // ------------------------------------------------------------------
+    // 2. อมันตา ลุมพินี (เช่า)
     {
       "id": "CONDO-002",
       "title": "อมันตา ลุมพินี - ใกล้ MRT คลองเตย",
@@ -54,7 +48,8 @@ const propertyListing = {
       "isRented": false,
       "thumbnail": "/img/propertyImg/amantaLumpini.jpg",
       "images": [],
-      "price": 35000,
+      "price": 35000,     
+      "rentPrice": 35000,   
       "location": { "province": "กรุงเทพมหานคร", "district": "สาทร", "subdistrict": "ทุ่งมหาเมฆ", "address": "ใกล้ MRT คลองเตย, ชั้น 14", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -74,10 +69,9 @@ const propertyListing = {
       "status": "active",
       "createdAt": "2025-11-25T21:40:00Z",
       "updatedAt": "2025-11-25T21:40:00Z"
-    },
-    // ------------------------------------------------------------------
-    // 3. ไนท์บริดจ์ ไพร์ม อ่อนนุช (CONDO-003)
-    // ------------------------------------------------------------------
+    }
+    ,
+    // 3. ไนท์บริดจ์ ไพร์ม อ่อนนุช (ขาย)
     {
       "id": "CONDO-003",
       "title": "ไนท์บริดจ์ ไพร์ม อ่อนนุช - ห้อง Built-in เพดานสูง",
@@ -88,6 +82,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/knightbridgePrimeOnnut.jpg",
       "images": [],
       "price": 4690000,
+      "sellPrice": 4690000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "วัฒนา", "subdistrict": "พระโขนงเหนือ", "address": "ปากซอยสุขุมวิท 77 (อ่อนนุช), ชั้น 17", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -109,9 +104,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T22:20:00Z",
       "updatedAt": "2025-11-25T22:20:00Z"
     },
-    // ------------------------------------------------------------------
-    // 4. ชาโตว์ อินทาวน์ รัชดา 13 (CONDO-004)
-    // ------------------------------------------------------------------
+    // 4. ชาโตว์ อินทาวน์ รัชดา 13 (ขาย)
     {
       "id": "CONDO-004",
       "title": "ชาโตว์ อินทาวน์ รัชดา 13",
@@ -122,6 +115,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/chateauInTownRatchada13.jpg",
       "images": [],
       "price": 1960000,
+      "sellPrice": 1960000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "ห้วยขวาง", "subdistrict": "ห้วยขวาง", "address": "ซ. รัชดา 13, ชั้น 7", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -142,9 +136,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T23:15:00Z",
       "updatedAt": "2025-11-25T23:15:00Z"
     },
-    // ------------------------------------------------------------------
-    // 5. ฟอร์จูน คอนโด ทาวน์ (CONDO-005)
-    // ------------------------------------------------------------------
+    // 5. ฟอร์จูน คอนโด ทาวน์ (ขาย)
     {
       "id": "CONDO-005",
       "title": "ฟอร์จูน คอนโด ทาวน์ - 2 ห้องนอน ติด BRT ถนนจันทน์",
@@ -155,6 +147,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/fortuneCondoTown.jpg",
       "images": [],
       "price": 6500000,
+      "sellPrice": 6500000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "ยานนาวา", "subdistrict": "ช่องนนทรี", "address": "ใกล้ BRT ถนนจันทน์", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -177,9 +170,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T22:29:00Z",
       "updatedAt": "2025-11-25T22:29:00Z"
     },
-    // ------------------------------------------------------------------
-    // 6. แบงค็อก ฮอไรซอน สาทร (CONDO-006)
-    // ------------------------------------------------------------------
+    // 6. แบงค็อก ฮอไรซอน สาทร (ขาย)
     {
       "id": "CONDO-006",
       "title": "แบงค็อก ฮอไรซอน สาทร - ชั้น 10 วิวเมือง",
@@ -190,7 +181,8 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/bangkokHorizonSathorn.jpg",
       "images": [],
       "price": 3500000,
-      "location": { "province": "กรุงเทพมหานคร", "district": "สาทร", "subdistrict": "ทุ่งวัดดอน", "address": "ใกล้ BRT เทคนิคกรุงเทพ, ชั้น 10", "coordinates": { "lat": null, "lng": null } },
+      "sellPrice": 3500000, 
+      "location": { "province": "กรุงเทพมหานคร", "district": "สาทร", "subdistrict": "ทุ่งวัดดอน", "address": "ใกล้ BRT เทคนิคกรุงเทพ", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
         { "station": "BRT เทคนิคกรุงเทพ", "stationImage": "/img/nearLogo/greenBus.png", "distanceKm": 0.2 },
@@ -209,10 +201,9 @@ const propertyListing = {
       "status": "active",
       "createdAt": "2025-11-25T22:35:00Z",
       "updatedAt": "2025-11-25T22:35:00Z"
-    },
-    // ------------------------------------------------------------------
-    // 7. แอสปาย พระราม 4 (CONDO-007)
-    // ------------------------------------------------------------------
+    }
+    ,
+    // 7. แอสปาย พระราม 4 (ขาย)
     {
       "id": "CONDO-007",
       "title": "แอสปาย พระราม 4 - ชั้น 21 ใกล้ BTS เอกมัย",
@@ -223,6 +214,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/aspireRama4.jpg",
       "images": [],
       "price": 2200000,
+      "sellPrice": 2200000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "คลองเตย", "subdistrict": "พระโขนง", "address": "ซอยกล้วยน้ำไท ถนนพระราม 4 อาคาร B ชั้น 21", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -244,9 +236,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T22:38:00Z",
       "updatedAt": "2025-11-25T22:38:00Z"
     },
-    // ------------------------------------------------------------------
-    // 8. ทรู ทองหล่อ (CONDO-008)
-    // ------------------------------------------------------------------
+    // 8. ทรู ทองหล่อ (ขาย)
     {
       "id": "CONDO-008",
       "title": "ทรู ทองหล่อ - ชั้น 29 วิวดี ไม่มีตึกบัง",
@@ -257,6 +247,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/trueThonglor.jpg",
       "images": [],
       "price": 2500000,
+      "sellPrice": 2500000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "ห้วยขวาง", "subdistrict": "บางกะปิ", "address": "โครงการติดถนนเพชรบุรีตัดใหม่ ใกล้ BTS ทองหล่อ, ชั้น 29", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -279,9 +270,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T22:42:00Z",
       "updatedAt": "2025-11-25T22:42:00Z"
     },
-    // ------------------------------------------------------------------
-    // 9. ไดมอนด์ สุขุมวิท (CONDO-009)
-    // ------------------------------------------------------------------
+    // 9. ไดมอนด์ สุขุมวิท (ขาย)
     {
       "id": "CONDO-009",
       "title": "ไดมอนด์ สุขุมวิท",
@@ -292,6 +281,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/diamondSukhumvit.jpg",
       "images": [],
       "price": 3050000,
+      "sellPrice": 3050000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "คลองเตย", "subdistrict": "พระโขนง", "address": "สุขุมวิท, ชั้น 29 ทิศใต้", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -313,9 +303,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T23:18:00Z",
       "updatedAt": "2025-11-25T23:18:00Z"
     },
-    // ------------------------------------------------------------------
-    // 10. บ้านเดี่ยว หมู่บ้านลัคกี้เฮาส์ (HOUSE-001)
-    // ------------------------------------------------------------------
+    // 10. บ้านเดี่ยว หมู่บ้านลัคกี้เฮาส์ (ขาย)
     {
       "id": "HOUSE-001",
       "title": "บ้านเดี่ยว หมู่บ้านลัคกี้เฮาส์ - รีโนเวทใหม่ทั้งหลัง",
@@ -326,6 +314,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/luckyHouse.jpg",
       "images": [],
       "price": 13000000,
+      "sellPrice": 13000000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "จตุจักร", "subdistrict": "จอมพล", "address": "ถนน วิภาวดี 16 ซ. โชคชัยร่วมมิตร", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -347,9 +336,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T22:50:00Z",
       "updatedAt": "2025-11-25T22:50:00Z"
     },
-    // ------------------------------------------------------------------
-    // 11. บ้านกลางเมือง ลาดพร้าว 71 (HOUSE-002)
-    // ------------------------------------------------------------------
+    // 11. บ้านกลางเมือง ลาดพร้าว 71 (ขาย)
     {
       "id": "HOUSE-002",
       "title": "บ้านกลางเมือง ลาดพร้าว 71 - ขายพร้อมผู้เช่า",
@@ -360,6 +347,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/baanKlangMuang.jpg",
       "images": [],
       "price": 5200000,
+      "sellPrice": 5200000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "ลาดพร้าว", "subdistrict": "ลาดพร้าว", "address": "ซอยนาคนิวาส 34", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -381,9 +369,7 @@ const propertyListing = {
       "createdAt": "2025-11-25T23:01:00Z",
       "updatedAt": "2025-11-25T23:01:00Z"
     },
-    // ------------------------------------------------------------------
-    // 12. บ้านแฝด อารีย์สัมพันธ์ 6 (HOUSE-003)
-    // ------------------------------------------------------------------
+    // 12. บ้านแฝด อารีย์สัมพันธ์ 6 (ขาย)
     {
       "id": "HOUSE-003",
       "title": "บ้านแฝด อารีย์สัมพันธ์ 6 - Smart Home หินอ่อนทั้งหลัง",
@@ -394,6 +380,7 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/ariSamphan6.jpg",
       "images": [],
       "price": 35000000,
+      "sellPrice": 35000000, 
       "location": { "province": "กรุงเทพมหานคร", "district": "พญาไท", "subdistrict": "สามเสนใน", "address": "ซอย อารีย์สัมพันธ์ 6", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
@@ -415,12 +402,10 @@ const propertyListing = {
       "createdAt": "2025-11-25T23:05:00Z",
       "updatedAt": "2025-11-25T23:05:00Z"
     },
-    // ------------------------------------------------------------------
-    // 13. Supalai Loft แยกไฟฉาย (CONDO-010) - รายการสุดท้าย
-    // ------------------------------------------------------------------
+    // 13. Supalai Loft แยกไฟฉาย (ขายและเช่า)
     {
       "id": "CONDO-010",
-      "title": "Supalai Loft แยกไฟฉาย - 2 ห้องนอน ที่จอดรถ Fixed",
+      "title": "Supalai Loft แยกไฟฉาย - 2 ห้องนอน",
       "type": "condo",
       "propertyType": "คอนโด",
       "dealType": "ขายและเช่า",
@@ -428,23 +413,19 @@ const propertyListing = {
       "thumbnail": "/img/propertyImg/supalaiLoftYaekFaiChai.jpg",
       "images": [],
       "price": 6650000,
-      "location": { "province": "กรุงเทพมหานคร", "district": "บางกอกน้อย", "subdistrict": "บางกอกน้อย", "address": "ใกล้ MRT แยกไฟฉาย, ชั้น 22", "coordinates": { "lat": null, "lng": null } },
+      "sellPrice": 6650000, 
+      "rentPrice": 33500,   
+      "location": { "province": "กรุงเทพมหานคร", "district": "บางกอกน้อย", "subdistrict": "บางกอกน้อย", "address": "ใกล้ MRT แยกไฟฉาย", "coordinates": { "lat": null, "lng": null } },
       "mapEmbed": " ",
       "nearbyStationTags": [
         { "station": "MRT แยกไฟฉาย", "stationImage": "/img/nearLogo/blueBus.png", "distanceKm": 0.4 },
-        { "station": "รพ.วิชัยเวช อินเตอร์ฯ แยกไฟฉาย", "stationImage": "/img/nearLogo/hospital.png", "distanceKm": 0.4 },
-        { "station": "รพ.ศรีวิชัย", "stationImage": "/img/nearLogo/hospital.png", "distanceKm": 0.4 },
-        { "station": "แม็คโคร จรัญสนิทวงศ์", "stationImage": "/img/nearLogo/store.png", "distanceKm": 1.0 },
-        { "station": "รร.นายเรืออากาศนวมินทกษัตริยาธิราช", "stationImage": "/img/nearLogo/school.png", "distanceKm": 1.3 }
       ],
       "unitSizeSqm": 88.58,
-      "description": "ขาย/เช่า Supalai Loft แยกไฟฉาย 2 ห้องนอน 2 ห้องน้ำ ขนาด 88.58 ตร.ม. ชั้น 22 วิวเมืองโล่ง พร้อมที่จอดรถ Fixed และบิวอินทั้งห้อง ใกล้ MRT แยกไฟฉาย",
+      "description": "ขาย/เช่า Supalai Loft...",
       "descriptionSections": [
-        { "sectionId": "room_details", "header": "รายละเอียดห้อง", "body": "ห้องเลขที่ 351/339 ชั้น 22 พื้นที่ 88.58 ตร.ม. 2 ห้องนอน 2 ห้องน้ำ (2Bed/2Bath) มีห้องนั่งเล่นขนาดใหญ่พร้อมระเบียง ครัวแยกเป็นสัดส่วน มีห้องเก็บของ และบิวอินทั้งห้อง" },
-        { "sectionId": "parking_and_facilities", "header": "จุดเด่นและส่วนกลาง", "body": "1 ที่จอดรถ Fixed วิวเมืองโล่ง สิ่งอำนวยความสะดวก: ระบบรักษาความปลอดภัย, คลับเฮาส์, ที่จอดรถ, ฟิตเนส, ห้องประชุม, ซาวน่า, สระว่ายน้ำ, สระเด็ก, สวนหย่อม" },
-        { "sectionId": "price_options", "header": "ตัวเลือกราคา", "body": "ราคาขาย: 6,650,000 บาท / ราคาเช่า: 33,500 บาทต่อเดือน (พร้อมโควต้าต่างชาติ และจดทะเบียนบริษัทได้)" }
+        { "sectionId": "price_options", "header": "ตัวเลือกราคา", "body": "ราคาขาย: 6,650,000 บาท / ราคาเช่า: 33,500 บาทต่อเดือน" }
       ],
-      "propertyHighlights": ["โควต้าต่างชาติ", "จดทะเบียนบริษัทได้", "ที่จอดรถ Fixed", "วิวเมืองโล่ง", "บิวอินทั้งห้อง", "ครัวแยกส่วน", "เตียงนอน", "ทีวี", "ตู้เย็น", "เครื่องปรับอากาศ", "เครื่องทำน้ำอุ่น", "ระบบรักษาความปลอดภัย", "คลับเฮาส์", "ฟิตเนส / ยิม", "ห้องประชุม", "ซาวน่า", "สระว่ายน้ำ", "สระเด็ก", "สวนขนาดย่อม"],
+      "propertyHighlights": ["โควต้าต่างชาติ"],
       "status": "active",
       "createdAt": "2025-11-25T23:10:00Z",
       "updatedAt": "2025-11-25T23:10:00Z"

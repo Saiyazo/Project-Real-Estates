@@ -16,7 +16,6 @@ const NotificationsPage = () => {
       {/* === ส่วนหัว: ปุ่ม BACK และหัวข้อ === */}
       <div className="d-flex align-items-center mb-4">
         <BackButton />
-        <h2 className="mb-0 mx-auto fw-normal text-center">การแจ้งเตือน</h2>
       </div>
 
       {/* === รายการแจ้งเตือน (ใช้โครงสร้าง Card) === */}

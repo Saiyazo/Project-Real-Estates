@@ -1,0 +1,116 @@
+
+.filter-bar-wrapper {
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    gap: 10px; /* ลดช่องว่างเล็กน้อย */
+    padding: 20px; 
+    background-color: #ffffff; /* *** พื้นหลังขาวล้วน *** */
+    align-items: center; 
+    position: relative;
+    z-index: 100;
+    justify-content: space-between; /* กระจาย Dropdown ให้เท่าๆ กัน */
+}
+
+/* --- Dropdown Container (ยืดหยุ่นและขยายเท่ากัน) --- */
+.dropdown-container {
+    position: relative;
+    flex-grow: 1; /* ให้ Dropdown ขยายเท่ากัน */
+    flex-basis: 18%; /* กำหนดฐานความกว้างเริ่มต้น */
+    min-width: 120px; 
+    max-width: 250px; 
+}
+
+/* 2. BUTTONS (Toggle) */
+
+/* --- ปุ่ม Dropdown หลัก (.filter-button) --- */
+.filter-button {
+    width: 100%;
+    padding: 10px 14px; 
+    border: 1px solid #d1d5db; 
+    border-radius: 6px;
+    font-size: 0.95rem; 
+    cursor: pointer;
+    background-color: white; 
+    color: #333;
+    transition: all 0.2s ease-in-out;
+    
+    text-align: center; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.filter-button:hover {
+    background-color: #f3f4f6; /* สีเทาอ่อน */
+    border-color: #9ca3af;
+}
+
+/* --- ปุ่ม Disabled --- */
+.filter-button:disabled {
+    background-color: #e5e7eb; 
+    color: #9ca3af; 
+    cursor: not-allowed;
+    opacity: 1; 
+}
+
+.dropdown-menu {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); 
+    z-index: 900; 
+    max-height: 250px; 
+    overflow-y: auto;
+    margin-top: 4px;
+    border-radius: 6px;
+    padding: 4px 0; 
+}
+
+.dropdown-item {
+    padding: 10px 16px; 
+    cursor: pointer;
+    font-size: 0.9rem; 
+    text-align: left;
+    transition: background-color 0.1s;
+    color: #374151; 
+}
+
+.dropdown-item:hover, 
+.dropdown-item.active { 
+    background-color: #f3f4f6; 
+    color: #374151; 
+}
+
+.custom-checkbox {
+    width: 18px; 
+    height: 18px; 
+    border-radius: 4px;
+    border: 1px solid #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.custom-checkbox-checked {
+    background-color: #1d4ed8; 
+    border-color: #1d4ed8;
+}
+
+.clear-button-small {
+    width: auto; 
+    padding: 10px 12px; 
+    font-size: 0.85rem;
+    text-align: center; 
+    
+    background-color: white; 
+    color: #6c757d; 
+    border: 1px solid #ced4da; 
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
