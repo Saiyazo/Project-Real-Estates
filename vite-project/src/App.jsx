@@ -19,11 +19,12 @@ import ManageUser from "./pageAdmin/ManageUser.jsx";
 import ComplainUser from "./pageAdmin/ComplaintsUser";
 import PlaceAd from "./pageAdmin/PlaceAd.jsx";
 import SettingAdmin from './pageAdmin/SettingAdmin.jsx'
-
+import Login from "./pageAdmin/login.jsx";
 import DetailAD from "./pageAdmin/DetailAD.jsx";
 
 function App() {
-  
+  const [token, setToken] = useState('')
+  const [role,setRole] = useState('')
   const [sellers, setSellers] = useState([]);
   const [buyers, setBuyers] = useState([]);
   const [properties, setProperties] = useState([]);
@@ -35,6 +36,9 @@ function App() {
   useEffect(() => setSellers(fetchSellers()), []);
   useEffect(() => setProperties(fetchPropertys()), []);
   useEffect(() => setAdRequests(fetchAdRequests()), [])
+    if (token === '') {
+    return <Login  setToken={setToken} setRole={setRole}/>
+  } else {
   return (
     <>
       <BrowserRouter basename="/AdminPage/">
@@ -53,18 +57,18 @@ function App() {
           >
             <Route index element={<DashboardAdmin />} />
             
-            <Route path="/DashboardAdmin" element={<DashboardAdmin />} />
-            <Route path="/ManageAssets" element={<ManageAssets />} />
-            <Route path="/ComplainUser" element={<ComplainUser />} />
-            <Route path="/ManageUser" element={<ManageUser />} />
-            <Route path="/PlaceAd" element={<PlaceAd />} />
-            <Route path="/SettingAdmin" element={<SettingAdmin />} />
-            <Route path="/DetailAD" element={<DetailAD />} />
+            <Route path="DashboardAdmin" element={<DashboardAdmin />} />
+            <Route path="ManageAssets" element={<ManageAssets />} />
+            <Route path="ComplainUser" element={<ComplainUser />} />
+            <Route path="ManageUser" element={<ManageUser />} />
+            <Route path="PlaceAd" element={<PlaceAd />} />
+            <Route path="SettingAdmin" element={<SettingAdmin />} />
+            <Route path="DetailAD" element={<DetailAD />} />
           </Route>
         </Routes>
       </BrowserRouter>
     </>
-  );
+  );}
 }
 
 export default App;

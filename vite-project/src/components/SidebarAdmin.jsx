@@ -6,7 +6,7 @@ import Raccoon from "../IMG/Raccoon.jpg";
 
 import "./cssforBTN/Tab.css";
 
-const SidebarAdmin = () => {
+const SidebarAdmin = ({setToken }) => {
   // เมนู
   const menuItems = [
     {
@@ -36,12 +36,7 @@ const SidebarAdmin = () => {
     { path: "/PlaceAd", label: "ติดต่อลงโฆษณา", icon: "bi-megaphone" },
     //{ path: "/SettingAdmin", label: "ตั้งค่า", icon: "bi-gear" },
 
-    {
-      path: "/Logout",
-      label: "ออกจากระบบ",
-      icon: "bi-box-arrow-left",
-      variant: "danger",
-    },
+    
   ];
 
   return (
@@ -100,6 +95,8 @@ const SidebarAdmin = () => {
             {item.label}
           </NavLink>
         ))}
+        <Button variant="outline-danger text-start" onClick={() => {setToken('')}}><h6 className="mt-2"><i className="bi bi-box-arrow-left me-2 ms-3"></i>
+          ออกจากระบบ</h6></Button>
       </div>
     </div>
   );

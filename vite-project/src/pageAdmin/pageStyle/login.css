@@ -1,0 +1,78 @@
+/* Wrapper หน้าเต็มจอ */
+.Login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a8dadc, #457b9d); /* โทนฟ้าไล่ gradient */
+  background-size: cover;
+  background-position: center;
+}
+
+/* กล่อง login */
+.Login-container {
+  color: #1d3557; /* สีตัวอักษรน้ำเงินเข้ม */
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  width: 400px;
+  margin: 2rem auto;
+  background-color: rgba(255, 255, 255, 0.15); /* สีขาวโปร่งใส */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.Login-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Input ฟอร์ม */
+.text-blur {
+  width: 100%;
+  color: #1d3557; /* ตัวอักษรน้ำเงินเข้ม */
+  font-size: 1rem;
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-blur:focus {
+  border-color: #1d3557;
+  box-shadow: 0 0 8px rgba(29, 53, 87, 0.5);
+}
+
+/* ปุ่ม login */
+button.login-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #9fdaff, #4a7abd);
+  color: #f1faee;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button.login-btn:hover {
+  background: linear-gradient(135deg, #1d3557, #457b9d);
+  transform: translateY(-2px);
+}
+
+/* ข้อความลิงก์ หรือ block-text */
+.block-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #f1faee;
+  margin-top: 1rem;
+}
