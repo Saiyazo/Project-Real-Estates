@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import propertyListing from '../data/propertyListing';
-import './Home.css';
+import './BuyerHome.css';
 import FilterBar from '../component/FilterBar/FilterBar';
 import AdsBanner from '../component/AdsBanner/AdsBanner';
 const formatPrice = (price) => {
