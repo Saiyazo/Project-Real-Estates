@@ -1,0 +1,227 @@
+/* ---------- Layout Basics ---------- */
+.page-wrapper {
+  background-color: var(--background-light);
+}
+
+.home-page {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.left-panel,
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.left-panel {
+  flex: 1;
+}
+
+.right-panel {
+  flex: 2;
+}
+
+
+/* ---------- Card ---------- */
+.card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ---------- Avatar & Cover ---------- */
+.cover-image {
+  height: 16rem;
+  background: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEba_ZXAZOzpRSbhRBe-ZQbvTsxTk0C1f-1K8b0_jM4OvgjBngJsqa3Lku1ibIQ85gt5rS6qEz-R5DEA6SptkDdAsTLcYBZe1ZCeU9uZXUaeOHlaowP3mE3LwHwuojs7vqvubG7AMHD3MC8muc5QWhLlpjKiEDHWudqKcChnd-hUzjHys8uPGBwdlRpTAfupfKZN8COLMBdv1nuWfmSGe46waoUCd3mzNAHLPeoV9A12-H0HRZgHw2b95l_OfaJ8lM5-8ylCPKzgVw")
+    center/cover no-repeat;
+}
+
+.profile-section {
+  margin-top: -6rem;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.avatar-wrapper {
+  width: 11rem;
+  height: 11rem;
+  margin: 0 auto 1rem;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  border: 4px solid white;
+  object-fit: cover;
+}
+
+/* ---------- Text & Info ---------- */
+.name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.verified-row,
+.rating-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-list li {
+  margin-bottom: 4px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  padding: 24px;
+}
+
+/* ---------- Buttons ---------- */
+.action-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 0.875rem;
+  text-decoration: none; /* <-- ป้องกันลิงก์สีน้ำเงิน */
+  color: inherit;         /* <-- ใช้สีตามปุ่ม */
+}
+
+
+.normal-btn {
+  border: 1px solid #d1d5db;
+  background: white;
+}
+
+.danger-btn {
+  border: 1px solid #fca5a5;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.btn-write-review {
+  border: 1px solid #007bff;
+  color: #007bff;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn-write-review:hover {
+  background: #f0f8ff;
+}
+
+/* ---------- Stats ---------- */
+.stats-container {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.stat-number {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.stat-sale {
+  background-color: #ffcaca;
+}
+
+.stat-rent {
+  background-color: #b5caff;
+}
+
+.stat-sold {
+  background-color: #95ffc0;
+}
+
+/* ---------- Other ---------- */
+.material-icons {
+  font-size: inherit;
+  vertical-align: middle;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ---------- Responsive Grid ---------- */
+@media (min-width: 1024px) {
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+}
+
+.reviews {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews .empty-state {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-icon {
+  color: #007bff;
+}
