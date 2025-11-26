@@ -4,15 +4,15 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './buyer-profile.css'; 
 import BackButton from '../../component/BackButton/BackButton';
 
-import coverImage from '../../img/grey-bg.jpg'; 
-import profileAvatar from '../../img/Buyer.jpg'; 
+import coverImage from '/img/personImg/grey-bg.jpg'; 
+import profileAvatar from '/img/personImg/Buyer.jpg'; 
 
 const BuyerProfile = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     console.log('Logging out...');
-    navigate('/login'); //รอเขื่อมหน้าล็อกอิน
+    navigate('/LogoutHome'); //รอเขื่อมหน้าล็อกเอาท์
   };
 
   return (
@@ -45,15 +45,7 @@ const BuyerProfile = () => {
         <hr /> 
         <button 
           onClick={handleLogout} 
-          className="menu-item" 
-          style={{ 
-            width: '100%', 
-            textAlign: 'left', 
-            border: 'none', 
-            background: 'none',
-            color: '#dc3545', // สีแดง
-            cursor: 'pointer'
-          }}
+          className="logout-button" 
         >
           ออกจากระบบ
         </button>

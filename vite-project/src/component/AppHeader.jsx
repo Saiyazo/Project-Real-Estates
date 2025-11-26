@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 import './AppHeader.css'; 
 
-import buyerAvatar from '../img/Buyer.jpg'; 
+import buyerAvatar from "/img/personImg/Buyer.jpg"
+
 
 const AppHeader = () => {
 

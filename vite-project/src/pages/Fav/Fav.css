@@ -24,6 +24,22 @@
 
 /* Icon หัวใจ */
 .fav-heart-icon {
-    cursor: pointer;
-    color: #dc3545; 
+    color: #2D91F5; 
+}
+
+.badge-transaction-both {
+    background-color: #3FC553 !important;
+    color: white; /* ตัวอักษรสีขาว */
+}
+
+/* เช่า: #FFBC05 (เหลือง/ส้ม) */
+.badge-transaction-rent {
+    background-color: #FFBC05 !important;
+    color: black; /* ตัวอักษรสีดำเพื่อให้เห็นชัดบนพื้นหลังสีสว่าง */
+}
+
+/* ขาย: #5A80FF (น้ำเงิน) */
+.badge-transaction-sale {
+    background-color: #5A80FF !important;
+    color: white; /* ตัวอักษรสีขาว */
 }

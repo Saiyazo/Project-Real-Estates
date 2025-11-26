@@ -1,0 +1,160 @@
+
+.listing-page-container { 
+    max-width: 1300px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    font-family: 'Sukhumvit Set', Arial, sans-serif; 
+}
+.banner-carousel { 
+    height: 250px; 
+    background: linear-gradient(135deg, #007bff, #0056b3); 
+    color: white; 
+    text-align: center; 
+    line-height: 250px; 
+    margin-bottom: 20px; 
+    border-radius: 10px; 
+}
+.filter-bar { 
+    display: flex; 
+    gap: 10px; 
+    padding: 10px 0; 
+    justify-content: flex-start; 
+}
+.filter-button { 
+    padding: 8px 15px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    color: white;
+    font-weight: bold;
+    background-color: #007bff;
+}
+
+/* GRID & CARD STYLING */
+.property-grid-4-col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+}
+.property-card-item {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 420px;
+}
+
+.property-card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-thumbnail-container { 
+  position: relative; 
+    width: 100%; 
+    height: 180px; 
+    overflow: hidden; 
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px;
+}
+
+/* THUMBNAIL */
+.card-thumbnail {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover; 
+    display: block;
+}
+
+/* CARD INFO & TEXT */
+.card-info { 
+    padding: 15px; 
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-title { 
+    font-size: 1.1em; 
+    margin-top: 0; 
+    margin-bottom: 5px; 
+    font-weight: 600; 
+}
+.card-location { 
+    font-size: 0.85em; 
+    color: #666; 
+    margin-bottom: 10px; 
+}
+
+.main-tags-row { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 5px; 
+    margin: 10px 0 15px; 
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+.tag {
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    background-color: #f0f4ff;
+    color: #007bff;
+}
+.tag span[role="img"] { margin-right: 5px; font-size: 1.1em; }
+
+
+/* CONDITIONAL DEAL TYPE COLORS */
+.tag.deal-type-tag.sale { background-color: #007bff; color: white; }
+.tag.deal-type-tag.rent { background-color: #ffbb00; color: #333; }
+.tag.deal-type-tag.sale-rent { background-color: #28a745; color: white; }
+
+.pricing { 
+    margin-top: auto; 
+    border-top: 1px solid #eee; 
+    padding-top: 10px; 
+}
+
+.single-price, .sale-price {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #007bff;
+}
+.rent-price {
+    font-size: 1.3em; 
+    color:#ffbb00;
+    font-weight: 800;
+}
+
+/* price-header (หัวข้อ ราคาขาย/ราคาเช่า) */
+.price-header {
+    font-size: 0.9em; 
+    color: #666;
+    margin: 0 0 2px 0;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+/* DUAL PRICE LAYOUT */
+.dual-price-container {
+    /* 🔥 เปลี่ยนให้กลับมาเป็นแนวตั้ง */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; /* ไม่ต้องเว้นระยะห่าง */
+    gap: 5px; /* เพิ่มระยะห่างระหว่าง Sale/Rent */
+    width: 100%;
+}
+.price-column {
+    /* 🔥 ให้คอลัมน์ราคาแต่ละอันแสดงเต็มบรรทัด */
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

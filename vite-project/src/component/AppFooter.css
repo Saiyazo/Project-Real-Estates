@@ -1,0 +1,84 @@
+
+.text-blue-theme { 
+    color: #003CFF !important; 
+}
+.btn-blue-theme { 
+    background-color: #003CFF !important; 
+    color: white; 
+    border: none; 
+    font-weight: 500; 
+}
+.btn-blue-theme:hover { 
+    background-color: #002ab3 !important; 
+}
+
+
+
+
+body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #f0f2f5; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* สีธีมสำหรับหัวข้อ/เนื้อหาที่ไม่ใช่สีน้ำเงิน */
+.text-theme { 
+    color: #212529 !important; 
+}
+.bg-theme { 
+    background-color: #212529 !important; 
+    color: white; 
+}
+
+/* สไตล์ Button ภายใน Modal ที่ใช้สีดำ */
+.btn-theme { 
+    background-color: #212529; 
+    color: white; 
+    border: none; 
+    font-weight: 500; 
+}
+.btn-theme:hover { 
+    background-color: #333; 
+    color: white; 
+}
+
+/* สไตล์ Footer Link */
+.footer-link {
+    text-decoration: none;
+    color: #6c757d; 
+    font-weight: 500; 
+    font-size: 0.95rem;
+    transition: color 0.2s; 
+}
+.footer-link:hover { 
+    color: #003CFF; 
+}
+
+/* กล่องข้อมูลติดต่อ Contact Us (Minimalist) */
+.contact-pill {
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.contact-pill i { 
+    color: #003CFF !important; /* ไอคอนติดต่อเป็นสีน้ำเงิน */
+}
+
+/* ปรับ Modal Title */
+.modal-title { 
+    font-weight: 600; 
+    font-size: 1.25rem; 
+}
+
+
+.modal-header-white {
+    background-color: white !important; 
+    border-bottom: none !important; 
+}

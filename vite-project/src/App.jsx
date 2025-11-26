@@ -8,6 +8,7 @@ import ForwardToHome from './pages/ForwardToHome'
 import BuyerProfile from './pages/buyer-profile/buyer-profile'
 import EditProfile from './pages/buyer-profile/edit-profile'
 import ChangePass from './pages/buyer-profile/change-password'  
+import LogoutHome from './LogoutHome'
 
 
 import './App.css'
@@ -24,6 +25,7 @@ function App() {
             <Route path="/Noti" element={<Noti />} />
              <Route path="/Chat" element={<Chat />} />
             <Route path="/Home" element={<Home />} />
+            <Route path="/LogoutHome" element={<LogoutHome />} />
           <Route path="/Fav" element={<Fav />} />
                <Route path="/buyer-profile" element={<BuyerProfile />} /> 
                <Route path="/edit-profile" element={<EditProfile />} /> 
