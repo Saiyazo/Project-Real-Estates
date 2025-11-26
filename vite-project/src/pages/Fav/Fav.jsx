@@ -53,7 +53,7 @@ const Fav = () => {
 
     return (
         <div className="container py-4">
-            {/* Header ส่วนบน: ปุ่ม BACK และหัวข้อ */}
+            {/* Header & ปุ่ม BACK */}
             <div className="d-flex align-items-center mb-4">
                 <BackButton />
                 <h2 className="mb-0 mx-auto fw-normal text-center">รายการโปรด</h2>

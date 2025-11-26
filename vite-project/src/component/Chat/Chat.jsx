@@ -177,8 +177,13 @@ const Chat = ({ onHide }) => {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [showSuccessToast, setShowSuccessToast] = useState(false);
 
-    const activeChat = numChat.find(chat => chat.id === activeChatId);
+    // *** แก้ไข: ลบบรรทัดที่ประกาศ activeChatId ซ้ำซ้อนออกไป ***
+    // const [activeChatId, setActiveChatId] = useState(numChat[0].id); 
 
+    const activeChat = numChat.find(chat => chat.id === activeChatId);
+    //ใช้ .find() → เพราะอยากได้ chat object ตัวเดียวที่ตรงกับ activeChatId
+
+    //กดคลิกเลือกแชตแล้วมันจะเปลี่ยนid ของแชตที่เราเลือก เพื่อไปactiveแล้วแสดงข้อมูล
     const handleChatClick = (id) => {
         setActiveChatId(id);
     };
