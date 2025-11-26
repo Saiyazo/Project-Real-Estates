@@ -1,13 +1,8 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import propertyListing from '../data/propertyListing'; // ต้องมั่นใจว่า path นี้ถูกต้อง
-import './Home.css'; // ไฟล์ CSS สำหรับ HomeListing
-import FilterBar from '../component/FilterBar/FilterBar'; // ต้องมั่นใจว่า path นี้ถูกต้อง
-import AdsBanner from '../component/AdsBanner/AdsBanner'; // ต้องมั่นใจว่า path นี้ถูกต้อง
-
-// =========================================================================
-// --- Helper Functions Grouped ---
-// =========================================================================
-
+import propertyListing from '../data/propertyListing';
+import './Home.css';
+import FilterBar from '../component/FilterBar/FilterBar';
+import AdsBanner from '../component/AdsBanner/AdsBanner';
 const formatPrice = (price) => {
     if (price === null) return 'N/A';
     return price.toLocaleString('th-TH', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -40,7 +35,6 @@ const getDealTypeClass = (dealType) => {
 
 const parsePriceRange = (rangeStr) => {
     if (!rangeStr) return { min: 0, max: Infinity };
-
     const cleanStr = rangeStr.replace(/,/g, '').toLowerCase();
 
     if (cleanStr.includes('น้อยกว่า')) {
@@ -66,16 +60,13 @@ const parsePriceRange = (rangeStr) => {
 
         return { min, max };
     }
-
     return { min: 0, max: Infinity };
 };
 
 
-// =========================================================================
-// --- CARD COMPONENT ---
-// =========================================================================
+//  CARD 
 
-const PropertyCard = ({ property }) => {
+const PropertyCard = ({ property }) => { // 🚨 ลบ navigate ออก
     const { bedrooms, bathrooms } = useMemo(() => extractRoomInfo(property), [property]);
 
     const rawPricePerSqm = calculatePricePerSqm(property.price, property.unitSizeSqm);
@@ -101,8 +92,11 @@ const PropertyCard = ({ property }) => {
     const priceDisplay = formatPrice(property.price);
     const dealTypeClass = getDealTypeClass(dealTypeStr);
 
+
     return (
-        <div className="property-card-item styled-card">
+        <div 
+            className="property-card-item styled-card"
+        >
             <div className="card-thumbnail-container">
                 <img src={property.thumbnail} alt={property.title} className="card-thumbnail" />
             </div>
@@ -160,11 +154,10 @@ const PropertyCard = ({ property }) => {
 };
 
 
-// =========================================================================
-// --- MAIN COMPONENT: HomeListing (Home Listing) ---
-// =========================================================================
+//  HomeListing
 
 function HomeListing() {
+    // 🚨 ลบ const navigate = useNavigate(); ออก 
     const allListings = useMemo(() => propertyListing.listings, []);
 
     const initialFilterCriteria = useMemo(() => ({
@@ -196,7 +189,6 @@ function HomeListing() {
     const filteredProperties = useMemo(() => {
         let intermediateListings = allListings.filter(item => {
             
-            // 1. กรองตาม FilterBar (ทำเล/ประเภท/DealType)
             if (filterCriteria.province && item.location.province !== filterCriteria.province) return false;
             if (filterCriteria.district && item.location.district !== filterCriteria.district) return false;
             if (filterCriteria.propertyType && item.propertyType !== filterCriteria.propertyType) return false;
@@ -211,10 +203,8 @@ function HomeListing() {
                 if (!isMatch) return false;
             }
 
-            // 2. กรองตามช่วงราคา (Price Range)
             if (filterCriteria.priceRange) {
                 const { min, max } = parsePriceRange(filterCriteria.priceRange);
-
                 let priceToCheck = item.price;
                 const isDualPrice = item.dealType === 'ขายและเช่า';
 
@@ -242,7 +232,6 @@ function HomeListing() {
             return true;
         });
 
-        // 3. กรองด้วย SearchBar keyword ต่อ (ใช้ currentKeyword)
         if (currentKeyword.trim() !== "") {
             const k = currentKeyword.toLowerCase(); 
             intermediateListings = intermediateListings.filter(
@@ -260,7 +249,6 @@ function HomeListing() {
     return (
         <div className="listing-page-container">
 
-            {/* --- SEARCH BAR --- */}
             <div className="mb-3 d-flex">
                 <div className="input-group">
                     <span className="input-group-text bg-white">
@@ -309,6 +297,7 @@ function HomeListing() {
                             <PropertyCard
                                 key={propertyItem.id}
                                 property={propertyItem}
+                                // 🚨 ไม่มีการส่ง navigate prop อีกต่อไป
                             />
                         ))}
                     </div>
