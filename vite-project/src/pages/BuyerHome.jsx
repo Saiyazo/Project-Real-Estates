@@ -3,17 +3,18 @@ import propertyListing from '../data/propertyListing';
 import './BuyerHome.css';
 import FilterBar from '../component/FilterBar/FilterBar';
 import AdsBanner from '../component/AdsBanner/AdsBanner';
+import { useNavigate } from 'react-router-dom';
+
+// --- Helper Functions Grouped --- 
 const formatPrice = (price) => {
     if (price === null) return 'N/A';
     return price.toLocaleString('th-TH', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 };
-
 const calculatePricePerSqm = (price, size) => {
     if (!price || !size) return 'N/A';
     const rawPrice = price / size;
     return Number.isFinite(rawPrice) ? rawPrice.toFixed(0) : 'N/A';
 };
-
 const extractRoomInfo = (listing) => {
     const roomDetails = listing.descriptionSections.find(s => s.sectionId === 'room_details');
     if (!roomDetails) return { bedrooms: '1', bathrooms: '1' };
@@ -25,14 +26,12 @@ const extractRoomInfo = (listing) => {
         bathrooms: bathroomMatch ? bathroomMatch[1] : '1'
     };
 };
-
 const getDealTypeClass = (dealType) => {
     if (dealType === 'ขาย') return 'sale';
     if (dealType === 'เช่า') return 'rent';
     if (dealType === 'ขายและเช่า') return 'sale-rent';
     return 'default';
 }
-
 const parsePriceRange = (rangeStr) => {
     if (!rangeStr) return { min: 0, max: Infinity };
     const cleanStr = rangeStr.replace(/,/g, '').toLowerCase();
@@ -64,9 +63,8 @@ const parsePriceRange = (rangeStr) => {
 };
 
 
-//  CARD 
-
-const PropertyCard = ({ property }) => { // 🚨 ลบ navigate ออก
+// --- CARD COMPONENT ---
+const PropertyCard = ({ property, navigate }) => { 
     const { bedrooms, bathrooms } = useMemo(() => extractRoomInfo(property), [property]);
 
     const rawPricePerSqm = calculatePricePerSqm(property.price, property.unitSizeSqm);
@@ -92,10 +90,16 @@ const PropertyCard = ({ property }) => { // 🚨 ลบ navigate ออก
     const priceDisplay = formatPrice(property.price);
     const dealTypeClass = getDealTypeClass(dealTypeStr);
 
+    const handleCardClick = () => {
+        //  นำทางไปยัง /property/ID
+     navigate(`/property/${property.id}`);
+    };
 
     return (
         <div 
             className="property-card-item styled-card"
+            onClick={handleCardClick}
+            style={{ cursor: 'pointer' }}
         >
             <div className="card-thumbnail-container">
                 <img src={property.thumbnail} alt={property.title} className="card-thumbnail" />
@@ -154,10 +158,9 @@ const PropertyCard = ({ property }) => { // 🚨 ลบ navigate ออก
 };
 
 
-//  HomeListing
-
-function HomeListing() {
-    // 🚨 ลบ const navigate = useNavigate(); ออก 
+// --- MAIN COMPONENT: Home ---
+function Home() {
+    const navigate = useNavigate(); 
     const allListings = useMemo(() => propertyListing.listings, []);
 
     const initialFilterCriteria = useMemo(() => ({
@@ -246,9 +249,10 @@ function HomeListing() {
         return intermediateListings;
     }, [filterCriteria, currentKeyword, allListings]); 
 
+
     return (
         <div className="listing-page-container">
-
+            {/* ... (Search Bar และ Filter Bar) ... */}
             <div className="mb-3 d-flex">
                 <div className="input-group">
                     <span className="input-group-text bg-white">
@@ -297,7 +301,7 @@ function HomeListing() {
                             <PropertyCard
                                 key={propertyItem.id}
                                 property={propertyItem}
-                                // 🚨 ไม่มีการส่ง navigate prop อีกต่อไป
+                                navigate={navigate} 
                             />
                         ))}
                     </div>
@@ -313,4 +317,4 @@ function HomeListing() {
     );
 }
 
-export default HomeListing;
+export default Home;

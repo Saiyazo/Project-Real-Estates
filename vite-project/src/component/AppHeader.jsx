@@ -44,7 +44,7 @@ const AppNavbar = () => {
                 <div className="d-flex align-items-center flex-grow-1 mx-4 gap-1">
                     
                     <div className="flex-fill">
-                        <Link to={'/Home'}>
+                        <Link to={'/'}>
                             <Button className={primaryButtonClasses}>หน้าแรก</Button>
                         </Link>
                     </div>
