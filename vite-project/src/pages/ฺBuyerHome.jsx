@@ -66,7 +66,7 @@ const parsePriceRange = (rangeStr) => {
 
 //  CARD 
 
-const PropertyCard = ({ property }) => { // 🚨 ลบ navigate ออก
+const PropertyCard = ({ property }) => { 
     const { bedrooms, bathrooms } = useMemo(() => extractRoomInfo(property), [property]);
 
     const rawPricePerSqm = calculatePricePerSqm(property.price, property.unitSizeSqm);
@@ -157,7 +157,6 @@ const PropertyCard = ({ property }) => { // 🚨 ลบ navigate ออก
 //  HomeListing
 
 function HomeListing() {
-    // 🚨 ลบ const navigate = useNavigate(); ออก 
     const allListings = useMemo(() => propertyListing.listings, []);
 
     const initialFilterCriteria = useMemo(() => ({
@@ -297,7 +296,6 @@ function HomeListing() {
                             <PropertyCard
                                 key={propertyItem.id}
                                 property={propertyItem}
-                                // 🚨 ไม่มีการส่ง navigate prop อีกต่อไป
                             />
                         ))}
                     </div>
