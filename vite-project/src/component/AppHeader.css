@@ -1,16 +1,20 @@
-/* สไตล์สำหรับ Modal Chat: จำเป็นเพื่อให้ Modal เต็มจอ */
-.full-height-chat-modal .modal-dialog {
-    height: 100vh; 
-    margin: 0; 
-    max-width: 100%; 
+/* 🚨 สไตล์สำหรับ Modal Chat (แก้ไขให้เต็มจอ 100% / 100vh) */
+/* ใช้ .modal-fullscreen ในการกำหนดขนาด */
+.modal-fullscreen .modal-dialog {
+    /* บังคับให้ใช้ Viewport width/height 100% */
+    max-width: 100vw !important; 
+    width: 100vw !important; 
+    height: 100vh !important;
+    margin: 0 !important; 
+    padding: 0 !important; 
 }
 
-.full-height-chat-modal .modal-content {
+.modal-fullscreen .modal-content {
     height: 100%;
     border-radius: 0;
 }
 
-/* === สไตล์ส่วนโปรไฟล์: สำหรับ Hover Effect และการกำหนดขนาดเฉพาะ === */
+/* === สไตล์ส่วนโปรไฟล์ (โค้ดเดิม) === */
 
 .buyer-profile-link {
     /* กำหนด padding และ border-radius ที่ต้องการเพื่อให้เกิดพื้นที่สำหรับ hover */

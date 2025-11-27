@@ -6,7 +6,7 @@ const ForwardToHome = () => {
     
     useEffect(() => {
      
-        navigate('/home', { replace: true }); 
+        navigate('/', { replace: true }); 
     }, [navigate])
 
     return  <h2>ForwardToHome page</h2>

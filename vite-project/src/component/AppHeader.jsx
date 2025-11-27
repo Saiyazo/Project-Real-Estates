@@ -30,7 +30,7 @@ const AppNavbar = () => {
                 className="d-flex justify-content-between align-items-center px-4 py-3" 
                 style={{ borderBottom: '1px solid #dee2e6', backgroundColor: '#fff' }} 
             >
-                {/*  โลโก้  */}
+                {/* โลโก้  */}
                 <div className="d-flex align-items-center">
                     <Link to={'/'} className="text-decoration-none d-flex align-items-center">
                         <img 
@@ -44,9 +44,14 @@ const AppNavbar = () => {
                 <div className="d-flex align-items-center flex-grow-1 mx-4 gap-1">
                     
                     <div className="flex-fill">
-                        <Link to={'/'}>
-                            <Button className={primaryButtonClasses}>หน้าแรก</Button>
-                        </Link>
+                        {/* ปุ่มหน้าแรก */}
+                        <Button 
+                            as={Link} 
+                            to={'/'} // หน้า Home (Listing Page)
+                            className={primaryButtonClasses}
+                        >
+                            หน้าแรก
+                        </Button>
                     </div>
 
                     <div className="flex-fill">
@@ -54,9 +59,12 @@ const AppNavbar = () => {
                     </div>
 
                     <div className="flex-fill">
-                        <Link to={'/Fav'}>
-                            <Button className={primaryButtonClasses}>รายการโปรด</Button>
-                        </Link>
+                        <Button 
+                            as={Link} 
+                            to={'/Fav'}
+                            className={primaryButtonClasses}
+                        >
+                            รายการโปรด</Button>
                     </div>
                 </div>
 
@@ -76,8 +84,8 @@ const AppNavbar = () => {
             <Modal 
                 show={showChatModal} 
                 onHide={handleClose} 
-                className="full-height-chat-modal"
-                dialogClassName="modal-fullscreen-sm-down"
+                // 🚨 ใช้คลาส modal-fullscreen บังคับให้เต็มจอ (แก้ไขจาก full-height-chat-modal)
+                dialogClassName="modal-fullscreen" 
             >
                 <Chat handleClose={handleClose} />
             </Modal>

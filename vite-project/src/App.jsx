@@ -38,7 +38,7 @@ function App() {
               <Route path="/buyer-profile" element={<BuyerProfile />} />
               <Route path="/edit-profile" element={<EditProfile />} />
               <Route path="/change-password" element={<ChangePass />} />
-              <Route path="/agent-home" element={<AgentHome />} />
+              <Route path="/AgentHome" element={<AgentHome />} />
               
               <Route path="*" element={<ForwardToHome />} />
             </Route>

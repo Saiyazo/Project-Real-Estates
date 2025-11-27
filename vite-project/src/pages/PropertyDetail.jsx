@@ -231,7 +231,7 @@ const PropertyDetail = () => {
             {/* ปุ่มเล็กชิดขวา */}
             <button
               className="mini-navigate-btn"
-              onClick={() => navigate("/agent/profile")} 
+              onClick={() => navigate("/AgentHome")} 
             >
               ➜
             </button>
