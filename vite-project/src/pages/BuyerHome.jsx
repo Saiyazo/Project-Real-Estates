@@ -317,4 +317,4 @@ function HomeListing() {
     );
 }
 
-export default Home;
+export default HomeListing;
