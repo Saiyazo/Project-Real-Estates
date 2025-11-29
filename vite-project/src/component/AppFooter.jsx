@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import './AppFooter.css'; 
 import { Link } from 'react-router-dom';
- 
-
 
 //เกี่ยวกับเรา
 const ModalAbout = ({ show, handleClose }) => (
@@ -129,55 +127,7 @@ const ModalPrivacy = ({ show, handleClose }) => (
         </Modal.Header>
         <Modal.Body className="text-secondary lh-lg">
             <span className="d-block mb-3 small text-muted">แก้ไขล่าสุด: 24 พฤศจิกายน 2568</span>
-            
-            <p>บริษัท ไลค์บ้าน จำกัด ตระหนักถึงความสำคัญของการคุ้มครองข้อมูลส่วนบุคคลของท่าน เพื่อให้เป็นไปตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) เราจึงจัดทำนโยบายฉบับนี้ขึ้นเพื่อแจ้งให้ท่านทราบถึงรายละเอียดการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลของท่าน</p>
-
-            <h6 className="text-blue-theme fw-bold mt-4">1. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม</h6>
-            <p>เราเก็บรวบรวมข้อมูลเท่าที่จำเป็นต่อการให้บริการซื้อ-ขาย-เช่าอสังหาริมทรัพย์ และการบริหารจัดการบัญชีผู้ใช้ ได้แก่:</p>
-            <ul>
-                <li><strong>ข้อมูลระบุตัวตน:</strong> ชื่อ, นามสกุล, รูปภาพโปรไฟล์</li>
-                <li><strong>ข้อมูลการติดต่อ:</strong> เบอร์โทรศัพท์, อีเมล, ID Line, ที่อยู่</li>
-                <li><strong>ข้อมูลการลงประกาศ:</strong>รายละเอียดทรัพย์สิน, รูปภาพโฉนด (เพื่อการตรวจสอบสิทธิ์), พิกัดที่ตั้ง</li>
-                <li><strong>ข้อมูลทางเทคนิค:</strong> IP Address, ข้อมูลการใช้งานเว็บไซต์ (Log Files), คุกกี้ (Cookies)</li>
-            </ul>
-
-            <h6 className="text-blue-theme fw-bold mt-4">2. วัตถุประสงค์การเก็บรวบรวมและใช้ข้อมูล</h6>
-            <p>เราใช้ข้อมูลของท่านเพื่อวัตถุประสงค์ดังต่อไปนี้:</p>
-            <ul>
-                <li>เพื่อยืนยันตัวตนในการสมัครสมาชิก (User Authentication) และรักษาความปลอดภัยของบัญชี</li>
-                <li>เพื่อให้ผู้ซื้อ/ผู้เช่า สามารถติดต่อสื่อสารกับผู้ลงประกาศได้โดยตรง</li>
-                <li>เพื่อตรวจสอบความถูกต้องของประกาศและป้องกันการฉ้อโกง</li>
-                <li>เพื่อดำเนินการจัดการเรื่องร้องเรียนและการรีวิวผู้ใช้งาน</li>
-                <li>เพื่อดำเนินการชำระค่าบริการพื้นที่โฆษณา (Banner) (ถ้ามี)</li>
-                <li>เพื่อวิเคราะห์และปรับปรุงประสิทธิภาพของเว็บไซต์ให้ตอบสนองความต้องการของผู้ใช้</li>
-            </ul>
-
-            <h6 className="text-blue-theme fw-bold mt-4">3. การเปิดเผยข้อมูลส่วนบุคคล</h6>
-            <p>เราจะไม่เปิดเผยข้อมูลของท่านแก่บุคคลภายนอก เว้นแต่ในกรณีดังต่อไปนี้:</p>
-            <ul>
-                <li>เปิดเผยข้อมูลการติดต่อ (เบอร์โทร, Line) บนหน้าประกาศอสังหาฯ ตามความประสงค์ของท่านเพื่อให้ผู้สนใจติดต่อได้</li>
-                <li>เป็นการปฏิบัติตามกฎหมาย หรือตามคำสั่งของหน่วยงานรัฐที่มีอำนาจ</li>
-            </ul>
-
-            <h6 className="text-blue-theme fw-bold mt-4">4. สิทธิของเจ้าของข้อมูลส่วนบุคคล</h6>
-            <p>ท่านมีสิทธิตามกฎหมายในการดำเนินการดังนี้:</p>
-            <ul>
-                <li>ขอเข้าถึงและขอรับสำเนาข้อมูลส่วนบุคคลของท่าน</li>
-                <li>ขอแก้ไขข้อมูลให้ถูกต้อง เป็นปัจจุบัน</li>
-                <li>ขอให้ลบ หรือทำลายข้อมูล (เมื่อหมดความจำเป็นหรือท่านถอนความยินยอม)</li>
-                <li>ขอระงับการใช้ข้อมูล หรือคัดค้านการประมวลผลข้อมูล</li>
-            </ul>
-
-            <h6 className="text-blue-theme fw-bold mt-4">5. นโยบายคุกกี้ (Cookies)</h6>
-            <p>เว็บไซต์ของเราใช้คุกกี้เพื่อจดจำการตั้งค่าและการเข้าสู่ระบบของท่าน ท่านสามารถตั้งค่าเบราว์เซอร์เพื่อปฏิเสธคุกกี้ได้ แต่อาจส่งผลให้การใช้งานบางฟีเจอร์ของเว็บไซต์ไม่สมบูรณ์</p>
-
-            <h6 className="text-blue-theme fw-bold mt-4">6. ช่องทางการติดต่อ</h6>
-            <p>หากท่านมีข้อสงสัยเกี่ยวกับนโยบายความเป็นส่วนตัว หรือต้องการใช้สิทธิเกี่ยวกับข้อมูลของท่าน สามารถติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล (DPO) ได้ที่:</p>
-            <div className="bg-light p-3 rounded">
-                <strong className="text-blue-theme">บริษัท ไลค์บ้าน จำกัด</strong>
-                <p className='small mb-0'>อีเมล: dpo@likeban.com<br/>โทรศัพท์: 02-999-1234</p>
-            </div>
-            <br/>
+            <p>บริษัท ไลค์บ้าน จำกัด ตระหนักถึงความสำคัญของการคุ้มครองข้อมูลส่วนบุคคลของท่าน ...</p>
         </Modal.Body>
     </Modal>
 );
@@ -194,18 +144,14 @@ const AppFooter = () => {
 
     return (
         <>
-            
             <footer className="bg-light border-top py-4 mt-auto">
                 <div className="container text-center">
                     
                     {/*  Navigation */}
                     <div className="d-flex justify-content-center flex-wrap gap-4 mb-3">
-                        
                         <Link to="/" className="footer-link">หน้าหลัก</Link>
-                        
                         <a href="#" className="footer-link" onClick={(e) => { e.preventDefault(); setShowAbout(true); }}>เกี่ยวกับเรา</a>
                         <a href="#" className="footer-link" onClick={(e) => { e.preventDefault(); setShowContact(true); }}>ติดต่อเรา</a>
-                        
                         <a href="#" className="footer-link" onClick={(e) => { e.preventDefault(); setShowPrivacy(true); }}>นโยบายความเป็นส่วนตัว</a>
                     </div>
 
@@ -217,19 +163,12 @@ const AppFooter = () => {
 
                     {/* ข้อมูลติดต่อ */}
                     <div className="d-flex justify-content-center flex-wrap gap-3">
-                        <div className="contact-pill">
-                            <i className="bi bi-telephone-fill"></i> 02-999-1234
-                        </div>
-                        <div className="contact-pill">
-                            <i className="bi bi-telephone-fill"></i> (Sales) 02-999-4321
-                        </div>
-                        <div className="contact-pill">
-                            <i className="bi bi-envelope-fill"></i> contact@likeban.com
-                        </div>
+                        <div className="contact-pill"><i className="bi bi-telephone-fill"></i> 02-999-1234</div>
+                        <div className="contact-pill"><i className="bi bi-telephone-fill"></i> (Sales) 02-999-4321</div>
+                        <div className="contact-pill"><i className="bi bi-envelope-fill"></i> contact@likeban.com</div>
                     </div>
 
                     <p className="mt-3 mb-0 text-muted small">&copy; 2025 Likeban. All rights reserved.</p>
-
                 </div>
             </footer>
             

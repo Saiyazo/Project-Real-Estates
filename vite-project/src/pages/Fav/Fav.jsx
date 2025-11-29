@@ -1,5 +1,5 @@
-import React, { useState,  useRef } from 'react';
-import { Card, Badge } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Fav.css'; 
 import propertyListingData from '../../data/propertyListing'; 
@@ -36,15 +36,15 @@ const transformListings = (data) => {
                 }
             }
         }
+
         const formattedRentPrice = rentPriceVal ? rentPriceVal.toLocaleString() : "-";
-        
+
         // ข้อมูลห้อง
         const bedMatch = item.description ? item.description.match(/(\d+)\s*ห้องนอน/) : null;
         const bathMatch = item.description ? item.description.match(/(\d+)\s*ห้องน้ำ/) : null;
         const bed = bedMatch ? bedMatch[1] : "-";
         const bath = bathMatch ? bathMatch[1] : "-";
 
-        // จัดการราคา
         let priceBuy = null;
         let priceRent = null;
 
@@ -73,48 +73,11 @@ const transformListings = (data) => {
 
 const Fav = () => {
     const [favorites, setFavorites] = useState(transformListings(propertyListingData));
-    
-    // Undo State
-    const [removedItem, setRemovedItem] = useState(null);
-    const [removedIndex, setRemovedIndex] = useState(-1); 
-    const [showUndo, setShowUndo] = useState(false);
-    const undoTimeoutRef = useRef(null);
+
 
     const handleRemoveFavorite = (idToRemove) => {
-        const indexToRemove = favorites.findIndex(item => item.id === idToRemove);
-        
-        if (indexToRemove !== -1) {
-            const itemToRemove = favorites[indexToRemove];
-            
-            setRemovedItem(itemToRemove);
-            setRemovedIndex(indexToRemove);
-            
-            const newFavorites = [...favorites];
-            newFavorites.splice(indexToRemove, 1);
-            setFavorites(newFavorites);
-
-            setShowUndo(true);
-
-            if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
-            undoTimeoutRef.current = setTimeout(() => {
-                setShowUndo(false);
-                setRemovedItem(null);
-                setRemovedIndex(-1);
-            }, 4000);
-        }
-    };
-
-    const handleUndo = () => {
-        if (removedItem && removedIndex !== -1) {
-            const newFavorites = [...favorites];
-            newFavorites.splice(removedIndex, 0, removedItem);
-            setFavorites(newFavorites);
-            
-            setShowUndo(false);
-            setRemovedItem(null);
-            setRemovedIndex(-1);
-            if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
-        }
+        const newFavorites = favorites.filter(item => item.id !== idToRemove);
+        setFavorites(newFavorites);
     };
 
     return (
@@ -206,17 +169,6 @@ const Fav = () => {
                     <p className="lead">ไม่มีรายการโปรด</p>
                 </div>
             )}
-
-            {showUndo && (
-                <div className="undo-toast-container">
-                    <span>ลบรายการเรียบร้อยแล้ว</span>
-                    <button className="undo-btn" onClick={handleUndo}>
-                        <i className="bi bi-arrow-counterclockwise me-1"></i>
-                        เลิกทำ
-                    </button>
-                </div>
-            )}
-
         </div>
     );
 };

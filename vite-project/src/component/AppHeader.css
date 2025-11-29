@@ -6,11 +6,10 @@
     padding: 0 !important; 
 }
 
-.modal-fullscreen .modal-content {
+.full-height-chat-modal .modal-content {
     height: 100%;
     border-radius: 0;
 }
-
 
 .buyer-profile-link {
     padding: 0.25rem 0.5rem;
@@ -22,6 +21,7 @@
     background-color: #e9ecef; 
 }
 
+/* Avatar size */
 .buyer-avatar {
     width: 28px;
     height: 28px;
@@ -29,6 +29,7 @@
     object-fit: cover;
 }
 
+/* Email text */
 .buyer-email {
     font-size: 0.9rem;
     font-weight: 500;
