@@ -1,4 +1,3 @@
-
 const reasonsData = {
     // หมวด: ประกาศ
     listing: [

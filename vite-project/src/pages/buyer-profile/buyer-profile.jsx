@@ -15,11 +15,10 @@ const BuyerProfile = () => {
 
     const handleLogout = () => {
         console.log('Logging out...');
-        navigate('/Logout'); //รอเขื่อมหน้าล็อกเอาท์
+        navigate('/Logout');
     };
 
 
-    // 1. Handler สำหรับรูปปก 
     const handleCoverImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -29,8 +28,7 @@ const BuyerProfile = () => {
             console.log('Cover Image selected:', file.name);
         }
     };
-
-    // 2. Handler สำหรับรูป Avatar 
+ 
     const handleProfileAvatarChange = (event) => {
         const file = event.target.files[0];
         if (file) {

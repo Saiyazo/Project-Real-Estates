@@ -4,7 +4,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './buyer-profile.css';
 import BackButton from '../../component/BackButton/BackButton';
 
-// Default images import
 import defaultCover from '/img/personImg/grey-bg.jpg';
 import defaultAvatar from '/img/personImg/Buyer.jpg';
 import emptyAvatar from '/img/personImg/person.jpg';
@@ -31,7 +30,7 @@ const BuyerProfileEdit = () => {
   const coverInputRef = useRef(null);
   const avatarInputRef = useRef(null);
 
-  // --- Image Functions ---
+  
   const handleFileChange = (e, type) => {
     const file = e.target.files[0];
     if (file) {
@@ -48,7 +47,7 @@ const BuyerProfileEdit = () => {
 
   const triggerFileInput = (ref) => ref.current.click();
 
-  // --- Form Functions ---
+  
   const handleNameChange = (e) => {
     setFormData(prev => ({ ...prev, name: e.target.value }));
   };

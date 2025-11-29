@@ -227,14 +227,14 @@
   transition: 0.25s ease;
 }
 
-/* toggle สีแดงเมื่อกด */
+
 .like-wrap input:checked + .heart {
   background: url("https://cdn-icons-png.flaticon.com/512/833/833472.png")
     no-repeat center / contain;
   transform: scale(1.08);
 }
 
-/* ===== ปุ่มแชร์ ===== */
+
 .btn-share {
   background: #f3f3f3;
   padding: 8px 18px;
@@ -279,23 +279,22 @@
   justify-content: center;
   z-index: 999;
 
-  /* แก้เส้นแดง */
-  -webkit-backdrop-filter: blur(3px); /* Safari / Chrome */
-  backdrop-filter: blur(3px);         /* Standard */
+  
+  -webkit-backdrop-filter: blur(3px); 
+  backdrop-filter: blur(3px);      
 }
 
 
-/* กล่อง popup ขนาดใหญ่ + ดีไซน์แพง */
 .popup-box {
   position: relative;
   background: #ffffff;
   padding: 40px 45px;
-  width: 380px; /* ใหญ่กว่าเดิม */
+  width: 380px; 
   border-radius: 18px;
   text-align: center;
   box-shadow: 0px 15px 40px rgba(0,0,0,0.25);
   animation: popupBoom 0.28s ease-out;
-  border-top: 6px solid #2563eb; /* เส้นฟ้าเพิ่มความแพง */
+  border-top: 6px solid #2563eb; 
 }
 
 /* ไอคอน Success */
@@ -349,7 +348,7 @@
   margin-top: 4px;
 }
 
-/* Animation ใหญ่-เด้ง ป๊อป */
+
 @keyframes popupBoom {
   0% {
     transform: scale(0.75) translateY(25px);
@@ -376,7 +375,7 @@
   gap: 16px;
 }
 
-/* ===== Top Row ===== */
+
 .top-row {
   display: flex;
   justify-content: space-between;
@@ -402,7 +401,7 @@
   font-weight: 700;
 }
 
-/* ===== Tags ===== */
+
 .tag-row {
   margin-top: 12px;
   display: flex;
@@ -420,7 +419,7 @@
   color: #374151;
 }
 
-/* ===== Transport ===== */
+
 .transport-row {
   margin-top: 12px;
   display: flex;
@@ -436,14 +435,14 @@
   gap: 4px;
 }
 
-/* ===== Agent Card ===== */
+
 .agent-card {
   margin-top: 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* กระจายซ้าย–ขวา */
+  justify-content: space-between; 
   
-  width: 100%; /* ยืดเต็มความกว้าง */
+  width: 100%; 
   
   padding: 12px 18px;
   background: #ffffff;
@@ -452,23 +451,22 @@
   gap: 16px;
 }
 
-/* รูปนายหน้า */
 .agent-img {
   width: 50px;
   height: 52px;
   border-radius: 50%;
   object-fit: cover;
-  flex-shrink: 0; /* ไม่ให้รูปโดนบีบ */
+  flex-shrink: 0; 
 }
 
-/* โซนข้อมูล */
+
 .agent-info {
   display: flex;
   flex-direction: column;
-  width: 100%; /* ให้กินพื้นที่ด้านขวา */
+  width: 100%; 
 }
 
-/* ตำแหน่งนายหน้า */
+
 .agent-role {
   font-size: 15px;
   font-weight: 600;
@@ -476,7 +474,7 @@
   margin: 0;
 }
 
-/* ชื่อนายหน้า */
+
 .agent-name {
   font-size: 25px;
   font-weight: 600;
@@ -484,11 +482,10 @@
   margin-top: 2px;
 }
 
-/* Verified + Rating */
+
 .agent-status {
   display: flex;
-  justify-content: space-between; /* แยกซ้าย–ขวา */
-  align-items: center;
+  justify-content: space-between; 
 
   margin-top: 4px;
   width: 100%;
@@ -504,18 +501,17 @@
   color: #fbbf24;
 }
 
-/* โครงหลักสองฝั่ง */
+
 .detail-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* ซ้าย 1 | ขวา 1 */
+  grid-template-columns: 1fr 1fr;
   gap: 30px;
   width: 100%;
-  padding: 0;     /* ชิดขอบ */
-  margin: 0;      /* ชิดขอบ */
+  padding: 0;   
+  margin: 0;  
   gap: 50px;
 }
 
-/* ---------- LEFT BOX ---------- */
 .left-box {
   background: #ffffff;
   border-radius: 12px;
@@ -539,7 +535,7 @@
 .left-item {
   display: flex;
   justify-content: space-between;
-  padding: 4px 0;        /* ระยะห่างเล็กน้อยให้ดูไม่อัด */
+  padding: 4px 0;       
   background: transparent; 
   border-radius: 0;
   font-size: 14px;
@@ -549,7 +545,7 @@
   color: #555;
 }
 
-/* ---------- RIGHT BOX ---------- */
+
 .right-box {
   width: 100%;
     background: #ffffff;
@@ -575,13 +571,13 @@
 .dara-map {
   width: 100%;
   display: flex;
-  justify-content: center; /* ตรงกลางแนวนอน */
+  justify-content: center;
   margin-top: 20px;
 }
 
 .map {
-  width: 100%;            /* ยาวเต็มจอ */
-  max-width: 600px;       /* (กันไม่ให้กว้างเกินไปบนจอใหญ่ — เอาออกได้) */
+  width: 100%;        
+  max-width: 600px;       
   padding: 12px 0;
   background: #2563eb;
   color: white;
@@ -602,13 +598,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-family: "Sarabun", sans-serif;
-  align-items: start; /* ← ดันทั้ง 2 ฝั่งขึ้นบน */
-  padding-top: 40px; /* ขยับลงมาเล็กน้อยให้บาลานซ์ */
+  align-items: start; 
+  padding-top: 40px;
   padding-bottom: 40px;
 }
 
 
-/* LEFT SECTION */
+
 .left-section {
   padding: 50px 60px;
   background: #ffffff;
@@ -677,9 +673,9 @@ input:focus {
   cursor: pointer;
 }
 
-/* RIGHT SECTION */
+
 .right-section {
-  background: #1e3a8a; /* น้ำเงินเข้ม */
+  background: #1e3a8a; 
   color: white;
   padding: 60px 80px;
 }
@@ -759,7 +755,7 @@ input:focus {
   margin: 4px 0;
 }
 
-/* 🔘 ปุ่มเล็กขวาบน */
+
 .mini-navigate-btn {
   position: absolute;
   top: 8px;

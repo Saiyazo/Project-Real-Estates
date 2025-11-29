@@ -23,7 +23,6 @@ body {
     flex-direction: column;
 }
 
-/* สีธีมสำหรับหัวข้อ/เนื้อหาที่ไม่ใช่สีน้ำเงิน */
 .text-theme { 
     color: #212529 !important; 
 }
@@ -32,7 +31,6 @@ body {
     color: white; 
 }
 
-/* สไตล์ Button ภายใน Modal ที่ใช้สีดำ */
 .btn-theme { 
     background-color: #212529; 
     color: white; 
@@ -44,7 +42,6 @@ body {
     color: white; 
 }
 
-/* สไตล์ Footer Link */
 .footer-link {
     text-decoration: none;
     color: #6c757d; 
@@ -56,7 +53,6 @@ body {
     color: #003CFF; 
 }
 
-/* กล่องข้อมูลติดต่อ Contact Us (Minimalist) */
 .contact-pill {
     background-color: transparent; 
     border: none; 
@@ -68,10 +64,9 @@ body {
     gap: 5px;
 }
 .contact-pill i { 
-    color: #003CFF !important; /* ไอคอนติดต่อเป็นสีน้ำเงิน */
+    color: #003CFF !important; 
 }
 
-/* ปรับ Modal Title */
 .modal-title { 
     font-weight: 600; 
     font-size: 1.25rem; 

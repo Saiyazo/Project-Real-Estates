@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
  
 
 
-// Modal: เกี่ยวกับเรา
+//เกี่ยวกับเรา
 const ModalAbout = ({ show, handleClose }) => (
     <Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton className="border-0 modal-header-white">
@@ -37,13 +37,11 @@ const ModalAbout = ({ show, handleClose }) => (
     </Modal>
 );
 
-// Modal: ติดต่อเรา (Contact Us)
-
+// ติดต่อเรา 
 const ModalContact = ({ show, handleClose, handleShowPrivacy }) => {
-    //  State สำหรับ Checkbox 
+
     const [isChecked, setIsChecked] = useState(false);
 
-    // จัดการการเปลี่ยนสถานะของ Checkbox
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
     };
@@ -56,11 +54,12 @@ const ModalContact = ({ show, handleClose, handleShowPrivacy }) => {
             <Modal.Body>
                 <div className="row g-4">
                     <div className="col-md-5">
-                        {/* ... (ข้อมูลติดต่อบริษัทคงเดิม) ... */}
+                        {/* ข้อมูลติดต่อบริษัทคงเดิม*/}
                         <h4 className="text-blue-theme">บริษัท ไลค์บ้าน จำกัด</h4>
                         <p className="text-muted small">Likeban Co., Ltd.</p>
                         <hr />
-                        {/* ... (ที่อยู่ เวลาทำการ ช่องทางออนไลน์) ... */}
+
+                        {/* ที่อยู่ เวลาทำการ*/}
                         <div className="mb-3">
                             <strong className="text-blue-theme d-block mb-1"><i className="bi bi-geo-alt-fill"></i> ที่อยู่สำนักงาน</strong>
                             <span className="small text-secondary">เลขที่ 123 อาคาร A ชั้น 9 ถนนพระราม 10<br/>แขวงทุ่งมหาเมฆ เขตสาทร<br/>กรุงเทพมหานคร 10120</span>
@@ -89,28 +88,28 @@ const ModalContact = ({ show, handleClose, handleShowPrivacy }) => {
                             </div>
                             <div className="mb-3"><textarea className="form-control" rows="3" placeholder="รายละเอียด..." required></textarea></div>
                             <div className="mb-3 form-check small">
-                                {/* 🔥 3. เชื่อม Checkbox กับ State และฟังก์ชันจัดการ */}
+                               
                                 <input 
                                     type="checkbox" 
                                     className="form-check-input" 
                                     id="checkConsent" 
-                                    checked={isChecked} // ควบคุมโดย State
-                                    onChange={handleCheckboxChange} // จัดการเมื่อมีการเปลี่ยนแปลง
+                                    checked={isChecked} 
+                                    onChange={handleCheckboxChange} 
                                 />
                                 <label className="form-check-label text-secondary" htmlFor="checkConsent">
                                     ข้าพเจ้ายอมรับ 
                                     <a href="#" className="text-blue-theme" onClick={(e) => { e.preventDefault(); handleClose(); handleShowPrivacy(); }}>
                                         นโยบายความเป็นส่วนตัว
                                     </a>
-                                    {/* 🔥 4. ข้อความเตือน (สีแดง) ถ้ายังไม่ติ๊ก */}
+                                    {/* ข้อความเตือนถ้ายังไม่ติ๊ก */}
                                     {!isChecked && <span className="text-danger-custom ms-2">*ต้องยอมรับเงื่อนไข</span>}
                                 </label>
                             </div>
-                            {/* 🔥 5. ควบคุมปุ่มด้วย State 'isChecked' */}
+                            
                             <button 
                                 type="submit" 
                                 className="btn btn-blue-theme w-100 py-2"
-                                disabled={!isChecked} // ปุ่มจะถูกปิดการใช้งานถ้า isChecked เป็น false
+                                disabled={!isChecked} 
                             >
                                 ส่งข้อความ
                             </button>
@@ -122,7 +121,7 @@ const ModalContact = ({ show, handleClose, handleShowPrivacy }) => {
     );
 };
 
-// Modal: นโยบายความเป็นส่วนตัว 
+// นโยบายความเป็นส่วนตัว 
 const ModalPrivacy = ({ show, handleClose }) => (
     <Modal show={show} onHide={handleClose} size="lg" scrollable>
         <Modal.Header closeButton className="border-0 modal-header-white">
@@ -183,14 +182,14 @@ const ModalPrivacy = ({ show, handleClose }) => (
     </Modal>
 );
 
-// AppFooter Component หลัก
+
 const AppFooter = () => {
-    // 💡 จัดการ State การเปิด/ปิด Modal
+    
     const [showAbout, setShowAbout] = useState(false);
     const [showContact, setShowContact] = useState(false);
     const [showPrivacy, setShowPrivacy] = useState(false);
 
-    // ฟังก์ชันช่วยเปิด Modal Privacy (สำหรับส่งไป Modal Contact)
+    
     const handleShowPrivacy = () => setShowPrivacy(true);
 
     return (
@@ -199,7 +198,7 @@ const AppFooter = () => {
             <footer className="bg-light border-top py-4 mt-auto">
                 <div className="container text-center">
                     
-                    {/* ส่วน Link Navigation */}
+                    {/*  Navigation */}
                     <div className="d-flex justify-content-center flex-wrap gap-4 mb-3">
                         
                         <Link to="/" className="footer-link">หน้าหลัก</Link>
@@ -210,13 +209,13 @@ const AppFooter = () => {
                         <a href="#" className="footer-link" onClick={(e) => { e.preventDefault(); setShowPrivacy(true); }}>นโยบายความเป็นส่วนตัว</a>
                     </div>
 
-                    {/* ส่วนที่อยู่ */}
+                    {/* ที่อยู่ */}
                     <div className="mb-3 text-secondary small">
                         <i className="bi bi-geo-alt-fill text-blue-theme fs-6 me-1"></i>
                         <span>เลขที่ 123 อาคาร A ชั้น 9 ถนนพระราม 10 แขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพมหานคร 10120</span>
                     </div>
 
-                    {/* ส่วนข้อมูลติดต่อแบบ Pill */}
+                    {/* ข้อมูลติดต่อ */}
                     <div className="d-flex justify-content-center flex-wrap gap-3">
                         <div className="contact-pill">
                             <i className="bi bi-telephone-fill"></i> 02-999-1234
@@ -234,7 +233,6 @@ const AppFooter = () => {
                 </div>
             </footer>
             
-            {/* Modal ต่างๆ ถูกส่ง props show และ handleClose เข้าไป */}
             <ModalAbout 
                 show={showAbout} 
                 handleClose={() => setShowAbout(false)} 
@@ -248,7 +246,6 @@ const AppFooter = () => {
                 show={showPrivacy} 
                 handleClose={() => setShowPrivacy(false)}
             />
-            {/* Note: CSS ถูกแยกไปอยู่ใน AppFooter.css แล้ว */}
         </>
     );
 };

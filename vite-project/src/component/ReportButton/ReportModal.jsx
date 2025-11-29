@@ -7,7 +7,7 @@ const ReportModal = ({ isModalOpen, onClose, onSuccess, reportedTarget }) => {
     const [reason, setReason] = useState('');
     const [otherReason, setOtherReason] = useState('');
     const [details, setDetails] = useState('');
-    const [selectedFiles, setSelectedFiles] = useState([]); // ✅ เพิ่ม State สำหรับรูปภาพ
+    const [selectedFiles, setSelectedFiles] = useState([]); 
 
     const { name, label, icon } = useMemo(() => {
         const targetName = reportedTarget ? reportedTarget.name : "ไม่ระบุคู่สนทนา";
@@ -49,7 +49,7 @@ const ReportModal = ({ isModalOpen, onClose, onSuccess, reportedTarget }) => {
         setOtherReason('');
     }, [category, reasonsList]);
 
-    // ✅ ฟังก์ชันจัดการการเลือกไฟล์ (รองรับ Multiple Files)
+    
     const handleFileChange = (event) => {
         const files = event.target.files;
         if (files) {
@@ -63,11 +63,9 @@ const ReportModal = ({ isModalOpen, onClose, onSuccess, reportedTarget }) => {
         }
     };
 
-    // ✅ ฟังก์ชันลบรูปภาพ
+    // ลบรูป
     const removeImage = (indexToRemove) => {
         setSelectedFiles(prev => {
-            // Optional: Revoke URL if you want to free up memory immediately
-            // URL.revokeObjectURL(prev[indexToRemove].url); 
             return prev.filter((_, index) => index !== indexToRemove);
         });
     };
@@ -78,10 +76,10 @@ const ReportModal = ({ isModalOpen, onClose, onSuccess, reportedTarget }) => {
             category,
             reason: isOtherSelected ? otherReason : reason,
             details,
-            evidenceFiles: selectedFiles.map(f => f.file), // ✅ ส่งไฟล์ที่เลือกไป
+            evidenceFiles: selectedFiles.map(f => f.file), 
         };
         console.log("Report Submitted:", reportPayload);
-        setSelectedFiles([]); // ✅ เคลียร์ไฟล์หลังจากส่งสำเร็จ
+        setSelectedFiles([]); 
         onSuccess();
     };
 
@@ -170,7 +168,7 @@ const ReportModal = ({ isModalOpen, onClose, onSuccess, reportedTarget }) => {
                                 ></textarea>
                             </div>
 
-                            {/* ✅ Image Preview Section */}
+
                             {selectedFiles.length > 0 && (
                                 <div className="image-preview-report-container mb-3 d-flex flex-wrap gap-2">
                                     {selectedFiles.map((imgObj, index) => (
@@ -202,7 +200,7 @@ const ReportModal = ({ isModalOpen, onClose, onSuccess, reportedTarget }) => {
                                         style={{ display: 'none' }}
                                         onChange={handleFileChange}
                                         accept="image/*"
-                                        multiple // ✅ รองรับหลายไฟล์
+                                        multiple 
                                     />
                                     <i className="bi bi-cloud-arrow-up-fill fs-3 text-danger"></i>
                                     <span className="upload-text">คลิกเพื่อแนบรูปภาพเพิ่มเติม</span>

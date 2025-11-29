@@ -5,7 +5,7 @@ import "./PropertyDetail.css";
 import { useNavigate, useParams, Link } from "react-router-dom"; 
 
 
-// --- Helper Functions ---
+
 const formatPrice = (price) => {
     if (price === null || price === undefined) return 'N/A';
     return price.toLocaleString('th-TH', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -24,7 +24,7 @@ const extractRoomInfo = (listing) => {
         bathrooms: bathroomMatch ? bathroomMatch[1] : '1'
     };
 };
-// --- END Helper Functions ---
+
 
 
 const PropertyDetail = () => { 
@@ -32,13 +32,13 @@ const PropertyDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams(); 
   
-  // 1. ค้นหาข้อมูลอสังหาฯ ที่ตรงกับ ID (Logic แก้ไขแล้ว)
+  
   const property = useMemo(() => {
-      // 🚨 แก้ไข: ค้นหาโดยเปรียบเทียบ String ID โดยตรง
+    
       return propertyListing.listings.find(item => String(item.id) === id); 
   }, [id]);
 
-  // --- States และ Logic เดิม (สำหรับ Modal/Calculator) ---
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
@@ -96,10 +96,10 @@ const PropertyDetail = () => {
     setMonthly(0);
     setIncome(0);
   };
-  // --- END States และ Logic ---
+  
 
 
-  // 4. จัดการกรณีไม่พบข้อมูล
+  
   if (!property) {
       return (
           <div className="detail-error-container p-10 text-center">
@@ -110,7 +110,7 @@ const PropertyDetail = () => {
       );
   }
   
-  // 5. ดึงข้อมูลจาก Property ที่ค้นหาได้
+  
   const roomInfo = extractRoomInfo(property);
   const roomDetailsSection = property.descriptionSections.find(s => s.sectionId === 'room_details');
   const transportSection = property.descriptionSections.find(s => s.sectionId === 'transportation');
@@ -118,7 +118,7 @@ const PropertyDetail = () => {
   return (
     <div className="home-container">
       
-      {/* --- Modal / Popup Section --- */}
+      
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content">
@@ -144,7 +144,7 @@ const PropertyDetail = () => {
         </div>
       )}
 
-      {/* --- Gallery Grid Layout (ใช้ Thumbnail Dynamic) --- */}
+
       <div className="gallery-grid">
         <div className="gallery-item large-item" onClick={() => openModal(0)}>
           <img src={property.thumbnail} alt={property.title} />
@@ -152,7 +152,7 @@ const PropertyDetail = () => {
         </div>
 
         <div className="gallery-column">
-          {/* ใช้ thumbnail ซ้ำเพราะไม่มีรูปอื่นใน JSON */}
+          
           <div className="gallery-item" onClick={() => openModal(0)}>
               <img src={property.thumbnail} alt={property.title} />
           </div>
@@ -189,7 +189,7 @@ const PropertyDetail = () => {
 
       <div className="property-card">
 
-          {/* ส่วนหัวชื่อ + ราคา */}
+
           <div className="top-row">
             <div className="title-section">
               <h2 className="prop-title">{property.title}</h2> 
@@ -201,7 +201,7 @@ const PropertyDetail = () => {
             </div>
           </div>
 
-          {/* แท็กข้อมูล */}
+
           <div className="tag-row">
             <div className="tag active">{property.propertyType}</div>
             <div className="tag">{roomInfo.bedrooms} ห้องนอน</div> 
@@ -209,7 +209,7 @@ const PropertyDetail = () => {
             <div className="tag">{property.unitSizeSqm} ตร.ม.</div>
           </div>
 
-          {/* ข้อมูลการเดินทาง */}
+
           {transportSection && (
               <div className="transport-row">
                   <div className="station">🚆 {transportSection.body}</div>
@@ -228,7 +228,7 @@ const PropertyDetail = () => {
               </div>
             </div>
 
-            {/* ปุ่มเล็กชิดขวา */}
+
             <button
               className="mini-navigate-btn"
               onClick={() => navigate("/AgentHome")} 
@@ -241,7 +241,7 @@ const PropertyDetail = () => {
 
       <div className="detail-wrapper">
 
-        {/* LEFT BOX */}
+
         <div className="left-box">
           <h3 className="left-title">รายละเอียดโครงการ</h3>
           {property.descriptionSections.filter(s => s.sectionId !== 'room_details' && s.sectionId !== 'transportation').map((section, index) => (
@@ -253,7 +253,7 @@ const PropertyDetail = () => {
           
         </div>
 
-        {/* RIGHT DETAILS */}
+
         <div className="right-box">
           
           <h3 className="right-title">รายละเอียดห้องและเฟอร์นิเจอร์</h3>
@@ -284,10 +284,10 @@ const PropertyDetail = () => {
         <br />
         <hr />
 
-      {/* --- Loan Calculator --- */}
+
       <div className="loan-container">
 
-        {/* LEFT */}
+
         <div className="left-section">
           <h2 className="form-title">อัตราการผ่อนชำระ</h2>
 
@@ -324,14 +324,14 @@ const PropertyDetail = () => {
             </div>
           </div>
 
-          {/* Buttons */}
+
           <div className="button-row">
             <button className="btn-primary" onClick={calculate}>คำนวณ</button>
             <button className="btn-reset" onClick={reset}>เริ่มใหม่</button>
           </div>
         </div>
 
-        {/* RIGHT */}
+
         <div className="right-section">
           <h2 className="result-title">ผลการคำนวณเงินกู้</h2>
 

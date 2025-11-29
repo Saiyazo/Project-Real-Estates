@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './change-password.css'; // เรียกใช้ CSS ที่แยกไว้
+import './change-password.css'; 
 import BackButton from '../../component/BackButton/BackButton';
 
 const ChangePassword = () => {
   const navigate = useNavigate();
 
-  // 1. เก็บข้อมูลรหัสผ่านทั้ง 3 ช่อง
+  // เก็บข้อมูลรหัสผ่านทั้ง 3 ช่อง
   const [passwords, setPasswords] = useState({
     oldPassword: '',
     newPassword: '',
     confirmPassword: ''
   });
 
-  // 2. ตัวแปรเปิด/ปิดตา (แยกกัน 3 ตัว)
+  // ตัวแปรเปิด/ปิดตา 
   const [showOldPass, setShowOldPass] = useState(false);
   const [showNewPass, setShowNewPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -59,7 +59,7 @@ const ChangePassword = () => {
 
       <form onSubmit={handleSubmit}>
         
-        {/* --- ช่อง 1: รหัสผ่านเก่า --- */}
+        {/*รหัสผ่านเก่า */}
         <div className="input-group-custom">
           <input 
             type={showOldPass ? "text" : "password"}
@@ -75,7 +75,7 @@ const ChangePassword = () => {
           ></i>
         </div>
 
-        {/* --- ช่อง 2: รหัสผ่านใหม่ --- */}
+        {/* รหัสผ่านใหม่ */}
         <div className="input-group-custom">
           <input 
             type={showNewPass ? "text" : "password"} 
@@ -91,7 +91,8 @@ const ChangePassword = () => {
           ></i>
         </div>
 
-        {/* --- ช่อง 3: ยืนยันรหัสผ่านใหม่ --- */}
+
+        {/* ยืนยันรหัสผ่านใหม่ */}
         <div className="input-group-custom">
           <input 
             type={showConfirmPass ? "text" : "password"}

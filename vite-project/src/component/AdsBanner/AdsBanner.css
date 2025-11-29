@@ -30,7 +30,6 @@
 .banner-image {
     width: 100%;
     height: 100%;
-    /* ปรับปรุง: ใช้ object-fit: cover; เพื่อให้รูปภาพเต็มพื้นที่โดยไม่บิดเบี้ยว */
     object-fit: cover; 
     display: block;
 }

@@ -1,4 +1,4 @@
-/* ---------- Layout Basics ---------- */
+
 .page-wrapper {
   background-color: var(--background-light);
 }
@@ -27,7 +27,7 @@
 }
 
 
-/* ---------- Card ---------- */
+/* Card */
 .card {
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -41,7 +41,6 @@
   margin-bottom: 8px;
 }
 
-/* ---------- Avatar & Cover ---------- */
 .cover-image {
   height: 16rem;
   background: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEba_ZXAZOzpRSbhRBe-ZQbvTsxTk0C1f-1K8b0_jM4OvgjBngJsqa3Lku1ibIQ85gt5rS6qEz-R5DEA6SptkDdAsTLcYBZe1ZCeU9uZXUaeOHlaowP3mE3LwHwuojs7vqvubG7AMHD3MC8muc5QWhLlpjKiEDHWudqKcChnd-hUzjHys8uPGBwdlRpTAfupfKZN8COLMBdv1nuWfmSGe46waoUCd3mzNAHLPeoV9A12-H0HRZgHw2b95l_OfaJ8lM5-8ylCPKzgVw")
@@ -68,7 +67,7 @@
   object-fit: cover;
 }
 
-/* ---------- Text & Info ---------- */
+
 .name {
   font-size: 2rem;
   font-weight: bold;
@@ -100,7 +99,7 @@
   padding: 24px;
 }
 
-/* ---------- Buttons ---------- */
+
 .action-buttons {
   margin-top: 1.5rem;
   display: flex;
@@ -116,8 +115,8 @@
   gap: 6px;
   align-items: center;
   font-size: 0.875rem;
-  text-decoration: none; /* <-- ป้องกันลิงก์สีน้ำเงิน */
-  color: inherit;         /* <-- ใช้สีตามปุ่ม */
+  text-decoration: none; 
+  color: inherit;         
 }
 
 
@@ -145,7 +144,7 @@
   background: #f0f8ff;
 }
 
-/* ---------- Stats ---------- */
+
 .stats-container {
   display: flex;
   gap: 16px;
@@ -187,7 +186,7 @@
   background-color: #95ffc0;
 }
 
-/* ---------- Other ---------- */
+
 .material-icons {
   font-size: inherit;
   vertical-align: middle;
@@ -199,7 +198,7 @@
   align-items: center;
 }
 
-/* ---------- Responsive Grid ---------- */
+
 @media (min-width: 1024px) {
   .bottom-grid {
     display: grid;

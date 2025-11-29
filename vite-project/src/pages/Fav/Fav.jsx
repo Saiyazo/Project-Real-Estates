@@ -17,15 +17,14 @@ const getDealClass = (transaction) => {
 const transformListings = (data) => {
     if (!data || !data.listings) return [];
 
-    // กรองข้อมูล: เอาแค่รายการที่ 1-2 และ 12-13
     const filteredData = data.listings.filter((_, index) => {
         return index < 2 || index > 10;
     });
 
     return filteredData.map(item => {
         const formattedPrice = item.price ? item.price.toLocaleString() : "-";
-        
-        // --- Logic หาราคาเช่า ---
+    
+        // หาราคาเช่า 
         let rentPriceVal = item.rentPrice || 0;
 
         if (!rentPriceVal && item.dealType === 'ขายและเช่า' && item.descriptionSections) {
@@ -63,7 +62,6 @@ const transformListings = (data) => {
             type: item.propertyType,
             transaction: item.dealType,
             title: item.title,
-            // [แก้ไข] ดึงเฉพาะ district (เขต/อำเภอ) ไม่เอา address
             location: item.location.district, 
             priceBuy: priceBuy,
             priceRent: priceRent,

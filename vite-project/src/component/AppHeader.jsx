@@ -84,7 +84,6 @@ const AppNavbar = () => {
             <Modal 
                 show={showChatModal} 
                 onHide={handleClose} 
-                // 🚨 ใช้คลาส modal-fullscreen บังคับให้เต็มจอ (แก้ไขจาก full-height-chat-modal)
                 dialogClassName="modal-fullscreen" 
             >
                 <Chat handleClose={handleClose} />

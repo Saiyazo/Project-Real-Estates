@@ -91,7 +91,6 @@ const PropertyCard = ({ property, navigate }) => {
     const dealTypeClass = getDealTypeClass(dealTypeStr);
 
     const handleCardClick = () => {
-        //  นำทางไปยัง /property/ID
      navigate(`/property/${property.id}`);
     };
 
@@ -158,7 +157,6 @@ const PropertyCard = ({ property, navigate }) => {
 };
 
 
-// --- MAIN COMPONENT: Home ---
 function Home() {
     const navigate = useNavigate(); 
     const allListings = useMemo(() => propertyListing.listings, []);
@@ -252,7 +250,7 @@ function Home() {
 
     return (
         <div className="listing-page-container">
-            {/* ... (Search Bar และ Filter Bar) ... */}
+            
             <div className="mb-3 d-flex">
                 <div className="input-group">
                     <span className="input-group-text bg-white">

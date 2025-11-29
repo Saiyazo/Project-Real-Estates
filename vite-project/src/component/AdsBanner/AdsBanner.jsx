@@ -1,7 +1,4 @@
-// src/component/AdsBanner/AdsBanner.jsx
-
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-// 🚨 (1) ต้อง Import useNavigate
 import { useNavigate } from 'react-router-dom'; 
 import './AdsBanner.css';
 
@@ -10,7 +7,6 @@ import bannerImg2 from '/img/AdsBannerImg/AdsBanner2.jpg';
 import bannerImg3 from '/img/AdsBannerImg/AdsBanner3.jpg';
 import bannerImg4 from '/img/AdsBannerImg/AdsBanner4.jpg';
 
-// 🚨 (2) กำหนด ID ของอสังหาฯ ที่ต้องการ (รายการที่ 1, 3, 9, 13)
 const DUMMY_BANNERS = [
     { id: 1, src: bannerImg1, alt: 'ไลฟ์แอทรัชดา', propertyId: 'CONDO-001' },  
     { id: 2, src: bannerImg2, alt: 'ไนท์บริดจ์', propertyId: 'CONDO-003' },     
@@ -19,7 +15,6 @@ const DUMMY_BANNERS = [
 ];
 
 const AdsBanner = ({ banners = DUMMY_BANNERS, interval = 5000 }) => {
-    // 🚨 (3) เรียกใช้ useNavigate Hook
     const navigate = useNavigate(); 
     
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,7 +42,6 @@ const AdsBanner = ({ banners = DUMMY_BANNERS, interval = 5000 }) => {
                 <div
                     key={banner.id}
                     className={`slide-item ${index === currentIndex ? 'active' : ''}`}
-                    // 🚨 (4) เปลี่ยน onClick ให้ใช้ navigate ไปที่ Detail Page
                     onClick={() => navigate(`/property/${banner.propertyId}`)} 
                     style={{ cursor: "pointer" }}
                 >
